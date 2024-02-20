@@ -1,26 +1,10 @@
-.chat-window {
-    height: 60vh;
-}
-.actions-window {
-    height: 40vh;
-}
-.info-window {
-    height: 100vh;
-}
-
-.container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: flex-start;
-    max-width: 1000px;
-    margin: 0 auto;
+#window {
+    min-height: 500px;
 }
 
 .chat {
-    min-width: 500px;
-    max-width: 1000px;
-    height: 300px;
+    width: 100%;
+    height: 100%;
     border: 1px solid black;
     margin-bottom: 20px;
     text-align: left;
@@ -28,17 +12,15 @@
 }
 
 .actions {
-    min-width: 500px;
-    max-width: 1000px;
-    height: 200px;
+    width: 100%;
+    height: 60%;
     border: 1px solid black;
-    margin-bottom: 20px;
     text-align: left;
     padding: 20px;
 }
 .info {
-    width: 200px;
-    height: 500px;
+    width: 60%;
+    height: 100%;
     border: 1px solid black;
     margin-left: 20px;
     display: flex;

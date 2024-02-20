@@ -12,24 +12,18 @@
     {% block body_block %}
     <h1>Диалоговое окно</h1>
 
-    <div class="container d-flex flex-row">
+    <div class="container d-flex flex-row" id="window">
         <div class="col-md-8 d-flex flex-column">
-            <div class="chat-window flex-grow-1">
-                <!-- Chat window goes here -->
-                <div class="chat">
-                    Текст чата
-                </div>
+            <div class="chat">
+                Текст чата
             </div>
-            <div class="actions-window">
-                <!-- Actions window goes here -->
-                <div class="actions">
-                    Кликабельный текст
-                </div>
+
+            <div class="actions">
+                Кликабельный текст
             </div>
         </div>
 
-        <div class="col-md-4 d-flex flex-column info-window">
-            <!-- Info window goes here -->
+        <div class="col-md-4">
             <div class="info">
                 <img src="https://via.placeholder.com/150" alt="Image">
                 <h2>Заголовок</h2>
