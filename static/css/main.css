@@ -1,0 +1,13 @@
+* {
+
+    text-align: center;
+}
+
+.status-bar {
+    background-color: #f8f9fa;
+    padding: 10px;
+}
+.status-item {
+    display: inline-block;
+    margin-right: 20px;
+}

@@ -1,0 +1,24 @@
+﻿    {% extends 'main.htm' %}
+
+    {% block head_block %}
+
+    {{ super() }}
+
+    <title>Инвентарь</title>
+    <link href="../static/css/" rel="stylesheet">
+
+    {% endblock %}
+
+    {% block body_block %}
+    <h1>Инвентарь</h1>
+    <table>
+        {% for index in range(10) %}
+            <tr>
+                <td>{{ index }}</td>
+                <td>____</td>
+                <td>____</td>
+                <td>____</td>
+            </tr>
+        {% endfor %}
+    </table>
+    {% endblock %}

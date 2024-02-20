@@ -1,0 +1,70 @@
+.chat-window {
+    height: 60vh;
+}
+.actions-window {
+    height: 40vh;
+}
+.info-window {
+    height: 100vh;
+}
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.chat {
+    min-width: 500px;
+    max-width: 1000px;
+    height: 300px;
+    border: 1px solid black;
+    margin-bottom: 20px;
+    text-align: left;
+    padding: 20px;
+}
+
+.actions {
+    min-width: 500px;
+    max-width: 1000px;
+    height: 200px;
+    border: 1px solid black;
+    margin-bottom: 20px;
+    text-align: left;
+    padding: 20px;
+}
+.info {
+    width: 200px;
+    height: 500px;
+    border: 1px solid black;
+    margin-left: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+}
+.info img {
+    max-width: 100%;
+    height: auto;
+}
+.info h2 {
+    margin-top: 0;
+}
+.health-bar {
+    width: 100%;
+    height: 20px;
+    background-color: #ddd;
+    margin-top: 10px;
+    position: relative;
+}
+.health-bar .bar {
+    height: 100%;
+    background-color: green;
+    position: absolute;
+    top: 0;
+    left: 0;
+}

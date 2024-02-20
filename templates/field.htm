@@ -1,0 +1,30 @@
+﻿    {% extends 'main.htm' %}
+
+    {% block head_block %}
+
+    {{ super() }}
+
+    <title>Поле</title>
+    <link href="../static/css/field.css" rel="stylesheet">
+
+    {% endblock %}
+
+    {% block body_block %}
+    <h1>Поле</h1>
+
+    <div class="container" >
+        <table id="field">
+            <tbody>
+            {% for i in range(20) %}
+            <tr>
+                {% for j in range(40) %}
+                <td></td>
+                {% endfor %}
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <script src="../static/js/hero.js"></script>
+    {% endblock %}

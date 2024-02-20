@@ -1,0 +1,14 @@
+table {
+    margin: 0 auto;
+    border-collapse: collapse;
+}
+
+#field td {
+    width: 30px;
+    height: 30px;
+    border: 1px solid black;
+}
+
+.hero {
+    background-color: blue;
+}
