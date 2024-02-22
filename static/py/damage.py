@@ -2,10 +2,10 @@
 DAMAGE_TYPES = {'Режущий', 'Колющий', 'Дробящий', 'Огненный', 'Ледяной', 'Отравляющий', 'Электрический'}
 
 class Damage:
-    def __init__(self, slash: int = 0, peirce: int = 0, blunt: int = 0,
+    def __init__(self, slash: int = 0, pierce: int = 0, blunt: int = 0,
                  fire: int = 0, ice: int = 0, poison: int = 0, electric: int = 0):
         self._slash = slash
-        self._peirce = peirce
+        self._pierce = pierce
         self._blunt = blunt
         self._fire = fire
         self._ice = ice
