@@ -1,6 +1,8 @@
 from Inventory import Inventory
 from Equipment import Equipment
 from Transform import Transform
+from Armor import Armor
+
 
 class Actor:
     # Поля персонажа
@@ -66,7 +68,7 @@ class Actor:
             print(f"Уровень увеличен! Теперь ваш уровень: {self._level}")
 
 
-    def getInfo(self):
+    def info(self):
         print(f'Персонаж: {self._name}')
         print(f'Уровень: {self._level}')
         print(f'Здоровье: {self._health}/{self._max_health}')
@@ -82,6 +84,13 @@ class Actor:
     def moveXY(self, x: int, y: int):
         self._transform += Transform(x, y)
 
+    def heal(self, amount: int):
+        self._health = min(amount+self._health, self._max_health)
+
+    @property
+    def name(self):
+        return self._name
+
     # Геттер для уровня
     @property
     def level(self) -> int:
@@ -96,6 +105,13 @@ class Actor:
     @property
     def max_health(self) -> int:
         return self._max_health
+
+    @property
+    def armor(self) -> Armor:
+        if (self._equip.armor):
+            return self._equip.armor
+        else:
+            return Armor()
 
     # Деструктор
     def __del__(self):

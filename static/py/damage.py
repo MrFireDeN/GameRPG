@@ -13,15 +13,15 @@ class Damage:
         self._electric = electric
 
     @staticmethod
-    def calculate_damage(weapon_damage, weapon_level: int, character_armor, character_level: int):
+    def calculate_damage(weapon_damage: 'Damage', weapon_level: int, armor_defence: 'Damage', armor_level: int):
         total_damage = (
-            max(0, (weapon_damage.slash * weapon_level - character_armor.slash * character_level)) +
-            max(0, (weapon_damage.pierce * weapon_level - character_armor.pierce * character_level)) +
-            max(0, (weapon_damage.blunt * weapon_level - character_armor.blunt * character_level)) +
-            max(0, (weapon_damage.fire * weapon_level - character_armor.fire * character_level)) +
-            max(0, (weapon_damage.ice * weapon_level - character_armor.ice * character_level)) +
-            max(0, (weapon_damage.poison * weapon_level - character_armor.poison * character_level)) +
-            max(0, (weapon_damage.electric * weapon_level - character_armor.electric * character_level))
+                max(0, (weapon_damage.slash * weapon_level - armor_defence.slash * armor_level)) +
+                max(0, (weapon_damage.pierce * weapon_level - armor_defence.pierce * armor_level)) +
+                max(0, (weapon_damage.blunt * weapon_level - armor_defence.blunt * armor_level)) +
+                max(0, (weapon_damage.fire * weapon_level - armor_defence.fire * armor_level)) +
+                max(0, (weapon_damage.ice * weapon_level - armor_defence.ice * armor_level)) +
+                max(0, (weapon_damage.poison * weapon_level - armor_defence.poison * armor_level)) +
+                max(0, (weapon_damage.electric * weapon_level - armor_defence.electric * armor_level))
 
         )
         return total_damage

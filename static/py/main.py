@@ -27,7 +27,7 @@ def main():
     print(equipment.info())
 
     inventory = Inventory()
-    
+
     inventory.display_inventory()
     inventory.add_item(potion)
     inventory.display_inventory()
