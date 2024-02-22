@@ -5,6 +5,7 @@ from Damage import Damage
 from Player import Player
 from Armor import Armor
 from Equipment import Equipment
+from Inventory import Inventory
 
 
 def main():
@@ -24,6 +25,16 @@ def main():
     print(equipment.info())
     equipment.use_item(2)
     print(equipment.info())
+
+    inventory = Inventory()
+    
+    inventory.display_inventory()
+    inventory.add_item(potion)
+    inventory.display_inventory()
+    inventory.add_item(armor)
+    inventory.display_inventory()
+    inventory.remove_item(potion)
+    inventory.display_inventory()
 
 
 if __name__ == '__main__':
