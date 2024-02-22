@@ -27,7 +27,7 @@ class Actor:
         # Уровень персонажа
         self._level = 0
         # Шкала опыта
-        self._op = (self._level + 1) * 100
+        self._ep = (self._level + 1) * 100
         # Максимальное здоровье персонажа
         self._max_health = self.calculateMaxHealth(self._level)
         # Здоровье персонажа
@@ -48,9 +48,9 @@ class Actor:
         # Уровень персонажа
         self._level = level
         # Шкала опыта
-        self._op = (level + 1) * 100
+        self._ep = (level + 1) * 100
         # Максимальное здоровье персонажа
-        self._max_health = self.calculateMaxHealth(level)
+        self._max_health = 100 + level * 10
         # Здоровье персонажа
         self._health = self._max_health
         # Жив ли персонаж
@@ -60,10 +60,6 @@ class Actor:
         # Снаряжение
         self._equip = Equipment.Equipment()
 
-    @staticmethod
-    def calculateMaxHealth(level: int):
-        return 100 + level * 10
-
     # Конструктор копирования
     def copy(self) -> 'Actor':
         new_actor = self.__class__()
@@ -72,35 +68,31 @@ class Actor:
 
     # Получение урона персонажем
     def takeDamage(self, damage: int):
-        self._health -= damage / (self._armor + 1)
+        self._health -= damage
         print(f'у {self._name} осталось {self._health} здоровья')
         return self.__isAlive()
 
     @staticmethod
-    def calculateDamage(level: int):
-        return level * 10
+    def calculateGainedEP(player_level: int, monster_level: int):
+        return int (10 * (monster_level / player_level))
 
-    @staticmethod
-    def chackLevelUp(op: int):
-        return op <= 0
 
     # Дать опыт
-    def giveExperience(self, op: int = 0):
-        self._op -= op
-
-        if self._op <= 0:
-            self.__levelUp()
+    def gainExperience(self, ep: int = 0):
+        self._ep -= ep
+        self.__levelUp()
 
 
     # Повышение уровеня
     def __levelUp(self):
-        self._level += 1
-        self._max_health = self.calculateMaxHealth(self._level)
-        self._health = self._max_health
-        print(f"Уровень увеличен! Теперь ваш уровень: {self._level}")
-        self._op += (self._level + 1) * 100
+        if (self._ep >= self._level * 100):
+            self._level += 1
+            self._ep = 0
+            self._max_health += 10
+            self._health = self._max_health
 
-        self.giveExperience()
+            print(f"Уровень увеличен! Теперь ваш уровень: {self._level}")
+
 
     def getInfo(self):
         print(f'Персонаж: {self._name}')
@@ -114,20 +106,6 @@ class Actor:
             print(f'{self._name} умер :(')
             self._isAlive = False
         return self._isAlive
-
-    def __add__(self, other):
-        return self._level + other._level
-
-    def __iadd__(self, other):
-        self._level += other._level
-
-        self._max_health = self.calculateMaxHealth(self._level)
-        self._health += other._health
-
-        if (self._health > self._max_health):
-            self._health = self._max_health
-
-        return self
 
     # Геттер для уровня
     def getLevel(self):
@@ -148,3 +126,17 @@ class Actor:
     # Деструктор
     def __del__(self):
         print('Выполняется деструктор!')
+
+    def __add__(self, other):
+        return self._level + other._level
+
+    def __iadd__(self, other):
+        self._level += other._level
+
+        self._max_health = self.calculateMaxHealth(self._level)
+        self._health += other._health
+
+        if (self._health > self._max_health):
+            self._health = self._max_health
+
+        return self
