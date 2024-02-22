@@ -1,11 +1,12 @@
 from Inventory import Inventory
 from Equipment import Equipment
+from Transform import Transform
 
 class Actor:
     # Поля персонажа
 
     # Иницилизация
-    def __init__(self, name: str = '', level: int = 0, isAlive: bool = True):
+    def __init__(self, name: str = '', level: int = 0, isAlive: bool = True, transform: Transform = Transform(0, 0)):
         if not (name or level) and isAlive:
             print('Стандартный конструктор')
         else:
@@ -22,6 +23,8 @@ class Actor:
         self._health = self._max_health
         # Жив ли персонаж
         self._isAlive = isAlive
+        # Свойство Transfrom для персонажа
+        self._transform = transform
         # Инвентарь
         self._items = Inventory()
         # Снаряжение
@@ -76,21 +79,23 @@ class Actor:
             self._isAlive = False
         return self._isAlive
 
+    def moveXY(self, x: int, y: int):
+        self._transform += Transform(x, y)
+
     # Геттер для уровня
-    def getLevel(self):
+    @property
+    def level(self) -> int:
         return self._level
 
     # Геттер для здоровья
-    def getHealth(self):
+    @property
+    def health(self) -> int:
         return self._health
 
     # Геттер для максимального здоровья
-    def getMaxHealth(self):
+    @property
+    def max_health(self) -> int:
         return self._max_health
-
-    # Геттер для брони
-    def getArmor(self):
-        return self._armor
 
     # Деструктор
     def __del__(self):
