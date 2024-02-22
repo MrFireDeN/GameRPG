@@ -1,54 +1,21 @@
-import Inventory, Equipment
-
-"""
-В лабораторной работе должно быть реализовано:
-* конструктор по умолчанию,
-* конструктор с параметрами,
-* конструктор копирования,
-* динамические методы,
-* статические методы,
-* перегрузка операции,
-* работа с уровнями доступа.
-"""
+from Inventory import Inventory
+from Equipment import Equipment
 
 class Actor:
     # Поля персонажа
 
-    # Скорость персонажа
-    _speed = 1
-    # Броня персонажа
-    _armor = 0
-
-
-    def create(self):
-        print('Стандартный конструктор')
-        # Имя персонажа
-        self._name = 'A'
-        # Уровень персонажа
-        self._level = 0
-        # Шкала опыта
-        self._ep = (self._level + 1) * 100
-        # Максимальное здоровье персонажа
-        self._max_health = self.calculateMaxHealth(self._level)
-        # Здоровье персонажа
-        self._health = self._max_health
-        # Жив ли персонаж
-        self._isAlive = True
-        # Инвентарь
-        self._items = Inventory.Inventory()
-        # Снаряжение
-        self._equip = Equipment.Equipment()
-
-
     # Иницилизация
     def __init__(self, name: str = '', level: int = 0, isAlive: bool = True):
-        print('Параметризированный конструктор')
+        if not (name or level) and isAlive:
+            print('Стандартный конструктор')
+        else:
+            print('Параметризированный конструктор')
         # Имя персонажа
         self._name = name
         # Уровень персонажа
         self._level = level
         # Шкала опыта
-        self._ep = (level + 1) * 100
+        self._ep = 0
         # Максимальное здоровье персонажа
         self._max_health = 100 + level * 10
         # Здоровье персонажа
@@ -56,9 +23,11 @@ class Actor:
         # Жив ли персонаж
         self._isAlive = isAlive
         # Инвентарь
-        self._items = Inventory.Inventory()
+        self._items = Inventory()
         # Снаряжение
-        self._equip = Equipment.Equipment()
+        self._equip = Equipment()
+        # Скорость персонажа
+        _speed = 1
 
     # Конструктор копирования
     def copy(self) -> 'Actor':
