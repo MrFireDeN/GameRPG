@@ -8,6 +8,10 @@ class Item:
         self._value = value
         self._transfrom = transfrom
 
+    @property
+    def name(self) -> str:
+        return self._name
+
     def getInfo(self):
         print(f'Name: {self._name}\nLevel: {self._level}\nValue: {self._value}')
         return self._name, self._level, self._value

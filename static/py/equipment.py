@@ -1,34 +1,39 @@
+from Weapon import Weapon
+from Armor import Armor
+from Item import Item
+
+
 # Снаряжение
 class Equipment:
-    # Свойства
-    _armor_types = ('ничего', 'броня 1', 'броня 2', 'броня 3')
-    _weapon_types = ('ничего', 'меч 1', 'меч 2', 'меч 3')
-    _item_types = ('ничего', 'лечение 1', 'лечение 2', 'лечение 3')
-
     # Иницилизация
-    def __init__(self, armor_type: str = 'ничего', weapon_type: str = 'ничего',
-                 item: str = 'ничего'):
-        self.armor = armor_type
-        self.weapon = weapon_type
-        self.item = item
+    def __init__(self):
+        self._weapon = None
+        self._armor = None
+        self._items = []
 
-    # Надеть броню
-    def setArmor(self, armor):
-        if armor in self._armor_types:
-            self.weapon = armor
-        else:
-            print('такого снаряжения не существует')
+    def equip_weapon(self, weapon: Weapon):
+        print(f'В снаряжение добавлено оружие {weapon.name}')
+        self._weapon = weapon
 
-    # Надеть меч
-    def setWeapon(self, weapon):
-        if weapon in self._weapon_types:
-            self.weapon = weapon
-        else:
-            print('такого снаряжения не существует')
+    def equip_armor(self, armor: Armor):
+        print(f'В снаряжение добавлена броня {armor.name}')
+        self._armor = armor
 
-    # Надеть броню
-    def setItem(self, item):
-        if item in self._item_types:
-            self.item, = item
+    def add_item(self, item: Item):
+        if len(self._items) < 3:
+            print(f'В снаряжение добавлен предмет {item.name}')
+            self._items.append(item)
+
+    def use_item(self, item: int):
+        if item >= 0 and item < len(self._items):
+            self.__remove_item(self._items[item])
         else:
-            print('такого снаряжения не существует')
+            print('Нет такого предмета')
+
+    def __remove_item(self, item: Item):
+        if item in self._items:
+            print(f'Был удален предмет {item.name}')
+            self._items.remove(item)
+
+    def info(self):
+        return self._weapon.name, self._armor.name, [item.name for item in self._items]
