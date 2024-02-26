@@ -2,6 +2,7 @@
 import os
 
 from flask import Flask, g, render_template, request, jsonify, url_for, send_file, redirect
+from static.py.main import main
 
 import settings
 

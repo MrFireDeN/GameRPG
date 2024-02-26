@@ -6,35 +6,29 @@ from Player import Player
 from Armor import Armor
 from Equipment import Equipment
 from Inventory import Inventory
+from Battle import Battle
 
 
 def main():
-    Petya = Player("Petya", 1)
+    # Создание игрока и врага
+    player = Player("Петя", 2)
+    enemy = Enemy("Вася", 1)
 
-    sword = Weapon("меч", 1, 100, fire = 10)
-    armor = Armor("Armor", 5, 1000, slash= 5, fire = 5)
+    # Предеметы для игрока
+    sword = Weapon("меч", 2, 100, slash=10)
+    armor = Armor("Armor", 5, 1000, slash=5, fire=5)
     potion = Item("Potion", 2, 50)
 
-    print(Damage.calculate_damage(sword.damage, sword.level, armor.defence, armor.level))
+    player.equip.equip_weapon(sword)
+    player.equip.equip_armor(armor)
+    player.equip.add_item(potion)
 
-    equipment = Equipment()
+    # Предметы для врага
+    fiery_hand = Weapon("огненный шар", 1, 50, fire=5)
+    enemy.equip.equip_weapon(fiery_hand)
 
-    equipment.equip_weapon(sword)
-    equipment.equip_armor(armor)
-    equipment.add_item(potion)
-    print(equipment.info())
-    equipment.use_item(2)
-    print(equipment.info())
-
-    inventory = Inventory()
-
-    inventory.display_inventory()
-    inventory.add_item(potion)
-    inventory.display_inventory()
-    inventory.add_item(armor)
-    inventory.display_inventory()
-    inventory.remove_item(potion)
-    inventory.display_inventory()
+    battle = Battle(player, enemy)
+    battle.start_battle()
 
 
 if __name__ == '__main__':

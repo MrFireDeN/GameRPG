@@ -12,31 +12,31 @@ class Battle():
         print("Битва началась")
 
         while True:
-            self.player_turn()
-            if self.is_battle_over():
+            self.__player_turn()
+            if self.__is_battle_over():
                 break
 
-            self.enemies_turn()
-            if self.is_battle_over():
+            self.__enemies_turn()
+            if self.__is_battle_over():
                 break
 
-            self.display_battle_result()
+            self.__display_battle_result()
 
 
     # Логика хода игрока: выбор атаки или использование предмета
-    def player_turn(self):
+    def __player_turn(self):
         print("Ход игрока")
         pass
 
     # Логика хода врага
-    def enemies_turn(self):
+    def __enemies_turn(self):
         print("Ход врагов")
         pass
 
 
     # Проверяем условия окончания боя, например, если у игрока закончилось здоровье или у врагов
     # Если бой окончен, возвращаем True, иначе - False
-    def is_battle_over(self):
+    def __is_battle_over(self):
         # Проверяем умер ли игрок
         if self.__player.is_alive == False:
             print(f'{self.__player.name} умер')
@@ -49,7 +49,7 @@ class Battle():
             return True
 
     # Отображаем результат боя, например, сообщение о победе или поражении
-    def display_battle_result(self):
+    def __display_battle_result(self):
         if self.__winner:
             print(f'{self.__player.name} победил {self.__enemy.name}!')
         else:

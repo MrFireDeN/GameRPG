@@ -30,7 +30,7 @@ class Actor:
         # Инвентарь
         self._items = Inventory()
         # Снаряжение
-        self._equip = Equipment()
+        self.equip = Equipment()
         # Скорость персонажа
         _speed = 1
 
@@ -114,7 +114,7 @@ class Actor:
             return Armor()
 
     @property
-    def is_alive(self):
+    def is_alive(self) -> bool:
         return self._isAlive
 
     # Деструктор
