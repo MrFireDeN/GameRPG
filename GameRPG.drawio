@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2024-02-27T09:49:39.535Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36" etag="HhQ6ytgRmspNf6Bfic1z" version="23.1.6" type="github" pages="5">
+<mxfile host="app.diagrams.net" modified="2024-02-27T10:04:54.818Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36" etag="-RwkrYlk1UNlEysTBoRK" version="23.1.6" type="github" pages="5">
   <diagram name="Поле" id="CCncLsbLfHj1No5blmt5">
     <mxGraphModel dx="1434" dy="746" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -413,20 +413,15 @@
     </mxGraphModel>
   </diagram>
   <diagram id="iwvVyPzZVxNLSGZTn-hz" name="Взаимодействие между классами">
-    <mxGraphModel dx="1434" dy="1915" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="2049" dy="2235" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="CLuSENkLMRl_paRI8fT--47" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="CLuSENkLMRl_paRI8fT--1" target="CLuSENkLMRl_paRI8fT--14">
+        <mxCell id="CLuSENkLMRl_paRI8fT--64" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="CLuSENkLMRl_paRI8fT--1" target="CLuSENkLMRl_paRI8fT--59">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="CLuSENkLMRl_paRI8fT--48" value="Атаковать" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="CLuSENkLMRl_paRI8fT--47">
-          <mxGeometry x="-0.04" y="-1" relative="1" as="geometry">
-            <mxPoint as="offset" />
-          </mxGeometry>
-        </mxCell>
         <mxCell id="CLuSENkLMRl_paRI8fT--1" value="Кнопка игрока" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="850" y="-40" width="120" height="40" as="geometry" />
+          <mxGeometry x="1300" y="-40" width="120" height="40" as="geometry" />
         </mxCell>
         <mxCell id="CLuSENkLMRl_paRI8fT--12" value="Логики боя" style="swimlane;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="390" y="140" width="680" height="470" as="geometry" />
@@ -544,6 +539,52 @@
         </mxCell>
         <mxCell id="CLuSENkLMRl_paRI8fT--50" value="Логика смерти игрока" style="whiteSpace=wrap;html=1;" vertex="1" parent="CLuSENkLMRl_paRI8fT--12">
           <mxGeometry x="400" y="385" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="CLuSENkLMRl_paRI8fT--57" value="Интерфейс боя" style="swimlane;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="400" y="-470" width="730" height="360" as="geometry" />
+        </mxCell>
+        <mxCell id="CLuSENkLMRl_paRI8fT--67" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="CLuSENkLMRl_paRI8fT--59" target="CLuSENkLMRl_paRI8fT--14">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="CLuSENkLMRl_paRI8fT--59" value="Ход игрока" style="swimlane;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1200" y="66.25" width="320" height="277.5" as="geometry" />
+        </mxCell>
+        <mxCell id="CLuSENkLMRl_paRI8fT--69" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="CLuSENkLMRl_paRI8fT--59" source="CLuSENkLMRl_paRI8fT--62" target="CLuSENkLMRl_paRI8fT--63">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="CLuSENkLMRl_paRI8fT--70" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="CLuSENkLMRl_paRI8fT--59" source="CLuSENkLMRl_paRI8fT--62" target="CLuSENkLMRl_paRI8fT--65">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="80" y="65" />
+              <mxPoint x="80" y="145" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="CLuSENkLMRl_paRI8fT--71" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="CLuSENkLMRl_paRI8fT--59" source="CLuSENkLMRl_paRI8fT--62" target="CLuSENkLMRl_paRI8fT--66">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="80" y="65" />
+              <mxPoint x="80" y="225" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="CLuSENkLMRl_paRI8fT--62" value="Начало" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="CLuSENkLMRl_paRI8fT--59">
+          <mxGeometry x="16" y="40" width="50" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="CLuSENkLMRl_paRI8fT--63" value="Атаковать противника" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="CLuSENkLMRl_paRI8fT--59">
+          <mxGeometry x="100" y="35" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="CLuSENkLMRl_paRI8fT--65" value="Использование предметов" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="CLuSENkLMRl_paRI8fT--59">
+          <mxGeometry x="100" y="115" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="CLuSENkLMRl_paRI8fT--72" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="CLuSENkLMRl_paRI8fT--59" source="CLuSENkLMRl_paRI8fT--66" target="CLuSENkLMRl_paRI8fT--68">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="CLuSENkLMRl_paRI8fT--66" value="Отступление" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="CLuSENkLMRl_paRI8fT--59">
+          <mxGeometry x="100" y="195" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="CLuSENkLMRl_paRI8fT--68" value="Конец" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="CLuSENkLMRl_paRI8fT--59">
+          <mxGeometry x="250" y="200" width="50" height="50" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
