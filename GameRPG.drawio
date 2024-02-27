@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2024-02-27T08:21:34.391Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36" etag="nQK9SFfiosVkvL4qUAug" version="23.1.6" type="github" pages="4">
+<mxfile host="app.diagrams.net" modified="2024-02-27T09:49:39.535Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36" etag="HhQ6ytgRmspNf6Bfic1z" version="23.1.6" type="github" pages="5">
   <diagram name="Поле" id="CCncLsbLfHj1No5blmt5">
     <mxGraphModel dx="1434" dy="746" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -408,6 +408,142 @@
         </mxCell>
         <mxCell id="i4u1sZojZzhQmknyGNTJ-27" value="+ heal&lt;span style=&quot;background-color: initial;&quot;&gt;(in amount: int): void&lt;/span&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="i4u1sZojZzhQmknyGNTJ-5">
           <mxGeometry y="398" width="220" height="26" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="iwvVyPzZVxNLSGZTn-hz" name="Взаимодействие между классами">
+    <mxGraphModel dx="1434" dy="1915" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="CLuSENkLMRl_paRI8fT--47" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="CLuSENkLMRl_paRI8fT--1" target="CLuSENkLMRl_paRI8fT--14">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="CLuSENkLMRl_paRI8fT--48" value="Атаковать" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="CLuSENkLMRl_paRI8fT--47">
+          <mxGeometry x="-0.04" y="-1" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="CLuSENkLMRl_paRI8fT--1" value="Кнопка игрока" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="850" y="-40" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="CLuSENkLMRl_paRI8fT--12" value="Логики боя" style="swimlane;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="390" y="140" width="680" height="470" as="geometry" />
+        </mxCell>
+        <mxCell id="CLuSENkLMRl_paRI8fT--24" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="CLuSENkLMRl_paRI8fT--12" source="CLuSENkLMRl_paRI8fT--13" target="CLuSENkLMRl_paRI8fT--23">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="CLuSENkLMRl_paRI8fT--25" value="Выбор ход" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="CLuSENkLMRl_paRI8fT--24">
+          <mxGeometry x="0.05" y="3" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="CLuSENkLMRl_paRI8fT--13" value="цикл боя" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="CLuSENkLMRl_paRI8fT--12">
+          <mxGeometry x="120" y="35" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="CLuSENkLMRl_paRI8fT--32" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="CLuSENkLMRl_paRI8fT--12" source="CLuSENkLMRl_paRI8fT--14" target="CLuSENkLMRl_paRI8fT--16">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="640" y="65" />
+              <mxPoint x="640" y="280" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="CLuSENkLMRl_paRI8fT--14" value="Ход игрока" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="CLuSENkLMRl_paRI8fT--12">
+          <mxGeometry x="450" y="35" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="CLuSENkLMRl_paRI8fT--33" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="CLuSENkLMRl_paRI8fT--12" source="CLuSENkLMRl_paRI8fT--15" target="CLuSENkLMRl_paRI8fT--16">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="640" y="170" />
+              <mxPoint x="640" y="280" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="CLuSENkLMRl_paRI8fT--15" value="Ход противнка" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="CLuSENkLMRl_paRI8fT--12">
+          <mxGeometry x="450" y="140" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="CLuSENkLMRl_paRI8fT--35" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="CLuSENkLMRl_paRI8fT--12" source="CLuSENkLMRl_paRI8fT--16" target="CLuSENkLMRl_paRI8fT--34">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="84" y="380" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="CLuSENkLMRl_paRI8fT--36" value="кто умер?" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="CLuSENkLMRl_paRI8fT--35">
+          <mxGeometry x="-0.5889" y="3" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="CLuSENkLMRl_paRI8fT--16" value="Провека статуса боя" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="CLuSENkLMRl_paRI8fT--12">
+          <mxGeometry x="24" y="250" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="CLuSENkLMRl_paRI8fT--22" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="CLuSENkLMRl_paRI8fT--12" source="CLuSENkLMRl_paRI8fT--19" target="CLuSENkLMRl_paRI8fT--13">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="CLuSENkLMRl_paRI8fT--19" value="Начало" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="CLuSENkLMRl_paRI8fT--12">
+          <mxGeometry x="20" y="40" width="50" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="CLuSENkLMRl_paRI8fT--20" value="Конец" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="CLuSENkLMRl_paRI8fT--12">
+          <mxGeometry x="580" y="350" width="60" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="CLuSENkLMRl_paRI8fT--26" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="CLuSENkLMRl_paRI8fT--12" source="CLuSENkLMRl_paRI8fT--23" target="CLuSENkLMRl_paRI8fT--14">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="CLuSENkLMRl_paRI8fT--27" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="CLuSENkLMRl_paRI8fT--12" source="CLuSENkLMRl_paRI8fT--23" target="CLuSENkLMRl_paRI8fT--15">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="CLuSENkLMRl_paRI8fT--23" value="" style="triangle;whiteSpace=wrap;html=1;" vertex="1" parent="CLuSENkLMRl_paRI8fT--12">
+          <mxGeometry x="360" y="40" width="40" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="CLuSENkLMRl_paRI8fT--38" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="CLuSENkLMRl_paRI8fT--12" source="CLuSENkLMRl_paRI8fT--34" target="CLuSENkLMRl_paRI8fT--13">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="230" y="380" />
+              <mxPoint x="230" y="190" />
+              <mxPoint x="180" y="190" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="CLuSENkLMRl_paRI8fT--39" value="никто не умер" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="CLuSENkLMRl_paRI8fT--38">
+          <mxGeometry x="0.286" y="-1" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="CLuSENkLMRl_paRI8fT--51" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="CLuSENkLMRl_paRI8fT--12" source="CLuSENkLMRl_paRI8fT--34" target="CLuSENkLMRl_paRI8fT--50">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="CLuSENkLMRl_paRI8fT--53" value="Умер игрок" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="CLuSENkLMRl_paRI8fT--51">
+          <mxGeometry x="0.5407" y="-2" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="CLuSENkLMRl_paRI8fT--34" value="" style="triangle;whiteSpace=wrap;html=1;" vertex="1" parent="CLuSENkLMRl_paRI8fT--12">
+          <mxGeometry x="130" y="350" width="40" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="CLuSENkLMRl_paRI8fT--43" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="CLuSENkLMRl_paRI8fT--12" source="CLuSENkLMRl_paRI8fT--34" target="CLuSENkLMRl_paRI8fT--18">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="870" y="520" as="targetPoint" />
+            <mxPoint x="690" y="520" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="CLuSENkLMRl_paRI8fT--46" value="Умер противник" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="CLuSENkLMRl_paRI8fT--43">
+          <mxGeometry x="0.14" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="CLuSENkLMRl_paRI8fT--55" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="CLuSENkLMRl_paRI8fT--12" source="CLuSENkLMRl_paRI8fT--18" target="CLuSENkLMRl_paRI8fT--20">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="CLuSENkLMRl_paRI8fT--18" value="объявить результаты о победе" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="CLuSENkLMRl_paRI8fT--12">
+          <mxGeometry x="400" y="300" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="CLuSENkLMRl_paRI8fT--56" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="CLuSENkLMRl_paRI8fT--12" source="CLuSENkLMRl_paRI8fT--50" target="CLuSENkLMRl_paRI8fT--20">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="CLuSENkLMRl_paRI8fT--50" value="Логика смерти игрока" style="whiteSpace=wrap;html=1;" vertex="1" parent="CLuSENkLMRl_paRI8fT--12">
+          <mxGeometry x="400" y="385" width="120" height="60" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
