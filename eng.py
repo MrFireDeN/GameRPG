@@ -2,13 +2,19 @@
 import os
 
 from flask import Flask, g, render_template, request, jsonify, url_for, send_file, redirect
-from static.py.main import main
+#from static.py.main import main
+#from static.py.Battle import Battle
+
+from flask_sqlalchemy import SQLAlchemy
 
 import settings
 
 app = Flask(__name__, template_folder="templates")
 
 app.config['SECRET_KEY'] = settings.SECRET_KEY
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///game.db'
+
+db = SQLAlchemy(app)
 
 
 @app.errorhandler(404)
@@ -24,6 +30,12 @@ def main(page_name):
 def index():
     return redirect(url_for('main', page_name='main'))
 
+@app.route("/attack/")
+def attack():
+    print("attack\n"*10)
+    #Battle().player_turn()
+    return redirect(url_for('main', page_name='window'))
+
 
 if __name__ == "__main__":
 ##    #Еще один способ добавления статической дирректории
@@ -31,4 +43,4 @@ if __name__ == "__main__":
     app.wsgi_app = SharedDataMiddleware(app.wsgi_app, {
       '/': os.path.join(os.path.dirname(__file__), 'static')
     })
-    app.run(host='0.0.0.0', port=5000, debug=True)
+    app.run(debug=True)
