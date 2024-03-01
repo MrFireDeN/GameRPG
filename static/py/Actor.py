@@ -34,12 +34,6 @@ class Actor:
         # Скорость персонажа
         _speed = 1
 
-    # Конструктор копирования
-    def copy(self) -> 'Actor':
-        new_actor = self.__class__()
-        new_actor.__dict__ = self.__dict__
-        return new_actor
-
     # Получение урона персонажем
     def takeDamage(self, damage: int):
         self._health -= damage

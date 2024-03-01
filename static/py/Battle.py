@@ -2,7 +2,8 @@ from Player import Player
 from Enemy import Enemy
 from Actor import Actor
 
-class Battle():
+
+class Battle:
     def __init__(self, player: Player, enemy: Enemy):
         self.__player = player
         self.__enemy = enemy
@@ -22,9 +23,8 @@ class Battle():
 
             self.__display_battle_result()
 
-
     # Логика хода игрока: выбор атаки или использование предмета
-    def __player_turn(self):
+    def player_turn(self):
         print("Ход игрока")
         pass
 
@@ -33,19 +33,18 @@ class Battle():
         print("Ход врагов")
         pass
 
-
     # Проверяем условия окончания боя, например, если у игрока закончилось здоровье или у врагов
     # Если бой окончен, возвращаем True, иначе - False
     def __is_battle_over(self):
         # Проверяем умер ли игрок
         if self.__player.is_alive == False:
             print(f'{self.__player.name} умер')
-            self.__winner = False # Игрок проиграл
+            self.__winner = False  # Игрок проиграл
             return True
 
         if self.__enemy.is_alive == False:
             print(f'{self.__enemy.name} умер')
-            self.__winner = True # Игрок выиграл
+            self.__winner = True  # Игрок выиграл
             return True
 
     # Отображаем результат боя, например, сообщение о победе или поражении

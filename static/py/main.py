@@ -4,6 +4,7 @@ from Item import Item
 from Damage import Damage
 from Player import Player
 from Armor import Armor
+from Enemy import Enemy
 from Equipment import Equipment
 from Inventory import Inventory
 from Battle import Battle
