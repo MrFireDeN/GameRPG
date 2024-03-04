@@ -2,8 +2,6 @@
 import os
 
 from flask import Flask, g, render_template, request, jsonify, url_for, send_file, redirect
-#from static.py.main import main
-#from static.py.Battle import Battle
 
 from flask_sqlalchemy import SQLAlchemy
 
@@ -12,9 +10,8 @@ import settings
 app = Flask(__name__, template_folder="templates")
 
 app.config['SECRET_KEY'] = settings.SECRET_KEY
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///game.db'
-
-db = SQLAlchemy(app)
+#app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///game.db'
+#db = SQLAlchemy(app)
 
 
 @app.errorhandler(404)
