@@ -11,22 +11,33 @@ class PersonaData(Base):
     id = Column(Integer, primary_key=True)
 
     # Поля персонажа
-    name = Column(String(20), nullable=False, default="")
-    level = Column(Integer, nullable=False, default=1)
-    ep = Column(Integer, nullable=False, default=0)
-    health = Column(Integer, nullable=False)
-    max_health = Column(Integer, nullable=False, default=100)
-    is_alive = Column(Boolean, default=True)
+    name        = Column(String(20), nullable=False, default="")
+    level       = Column(Integer, nullable=False, default=1)
+    ep          = Column(Integer, nullable=False, default=0)
+    health      = Column(Integer, nullable=False)
+    max_health  = Column(Integer, nullable=False, default=100)
+    is_alive    = Column(Boolean, default=True)
 
     # Координаты
     x = Column(Integer, nullable=False, default=0)
     y = Column(Integer, nullable=False, default=0)
 
-    items = relationship("Inventory", back_populates="persona")
+    # Снаряжение
+    weapon_id       = Column(Integer, ForeignKey('weapons.id'), doc="Оружие")
+    armor_id        = Column(Integer, ForeignKey('armors.id'), doc="Оружие")
+    consumable1_id  = Column(Integer, ForeignKey('consumables.id'), doc="Оружие")
+    consumable2_id  = Column(Integer, ForeignKey('consumables.id'), doc="Оружие")
+    consumable3_id  = Column(Integer, ForeignKey('consumables.id'), doc="Оружие")
+    weapon          = relationship("WeaponData", back_populates="persona")
+    armor           = relationship("ArmorData", back_populates="persona")
+    consumable1     = relationship("ConsumableData", back_populates="persona")
+    consumable2     = relationship("ConsumableData", back_populates="persona")
+    consumable3     = relationship("ConsumableData", back_populates="persona")
 
-    #battle_id = Column(Integer, ForeignKey('battles.id'), doc="Сражение")
-    #battle = relationship("BattleData", back_populates="actors")
+    # Инвентарь
+    items = relationship("InventoryData", back_populates="persona")
 
+    # Описание
     note = Column(Text, doc="Описание")
 
 class InventoryData(Base):
@@ -36,18 +47,18 @@ class InventoryData(Base):
     capacity = Column(Integer, nullable=False, default=10)
     is_eqiup = Column(Boolean, default=False)
 
-    actor_id = Column(Integer, ForeignKey('personas.id'), doc="Персонаж")
-    item_id = Column(Integer, ForeignKey('items.id'), doc="Предмет")
-    actor = relationship("PersonaData", back_populates="items")
-    item = relationship("ItemData", back_populates="personas")
+    actor_id    = Column(Integer, ForeignKey('personas.id'), doc="Персонаж")
+    item_id     = Column(Integer, ForeignKey('items.id'), doc="Предмет")
+    actor       = relationship("PersonaData", back_populates="items")
+    item        = relationship("ItemData", back_populates="personas")
 
 class ItemData(Base):
     __tablename__ = 'items'
     id = Column(Integer, primary_key=True)
 
-    name = Column(String(20), nullable=False, default="")
-    level = Column(Integer, nullable=False, default=1)
-    value = Column(Integer, nullable=False, default=1)
+    name    = Column(String(20), nullable=False, default="")
+    level   = Column(Integer, nullable=False, default=1)
+    value   = Column(Integer, nullable=False, default=1)
 
     # Координаты
     x = Column(Integer, nullable=False, default=0)
@@ -63,18 +74,6 @@ class PlayerData(PersonaData):
 class EnemyData(PersonaData):
     pass
 
-# class EquipmentData(Base):
-#     __tablename__ = 'equipments'
-#     id = Column(Integer, primary_key=True)
-#
-#     weapon_id = Column(Integer, ForeignKey('weapons.id'), doc="Оружие")
-#     armor_id = Column(Integer, ForeignKey('armors.id'), doc="Броня")
-#     consumable_id = Column(Integer, ForeignKey('consumables.id'), doc="Расходник")
-#
-#     weapon = relationship("WeaponData", back_populates="equipments")
-#     armor = relationship("ArmorData", back_populates="equipments")
-#     consumable = relationship("ConsumableData", back_populates="equipments")
-
 # class BattleData(Base):
 #     __tablename__ = 'battles'
 #     id = Column(Integer, primary_key=True)
@@ -87,34 +86,46 @@ class EnemyData(PersonaData):
 
 
 
-# class WeaponData(ItemData):
-#     super.__tablename__ = "weapons"
-#
-#     slash = Column(Integer, nullable=False, default=0)
-#     pierce = Column(Integer, nullable=False, default=0)
-#     blunt = Column(Integer, nullable=False, default=0)
-#     fire = Column(Integer, nullable=False, default=0)
-#     ice = Column(Integer, nullable=False, default=0)
-#     poison = Column(Integer, nullable=False, default=0)
-#     electric = Column(Integer, nullable=False, default=0)
-#
-# class ArmorData(ItemData):
-#     super.__tablename__ = "armors"
-#
-#     slash = Column(Integer, nullable=False, default=0)
-#     pierce = Column(Integer, nullable=False, default=0)
-#     blunt = Column(Integer, nullable=False, default=0)
-#     fire = Column(Integer, nullable=False, default=0)
-#     ice = Column(Integer, nullable=False, default=0)
-#     poison = Column(Integer, nullable=False, default=0)
-#     electric = Column(Integer, nullable=False, default=0)
-#
-# class ConsumableData(ItemData):
-#     super.__tablename__ = "consumables"
-#
-#     type = Column(Integer, default=0)
-#
-#     pass
+class WeaponData(Base):
+    __tablename__ = "weapons"
+    id = Column(Integer, primary_key=True)
+
+    item_id = Column(Integer, ForeignKey('items.id'))
+    item = relationship("ItemData", back_populates="weapons")
+
+    slash = Column(Integer, nullable=False, default=0)
+    pierce = Column(Integer, nullable=False, default=0)
+    blunt = Column(Integer, nullable=False, default=0)
+    fire = Column(Integer, nullable=False, default=0)
+    ice = Column(Integer, nullable=False, default=0)
+    poison = Column(Integer, nullable=False, default=0)
+    electric = Column(Integer, nullable=False, default=0)
+
+class ArmorData(Base):
+    __tablename__ = "armors"
+    id = Column(Integer, primary_key=True)
+
+    item_id = Column(Integer, ForeignKey('items.id'))
+    item = relationship("ItemData", back_populates="armors")
+
+    slash = Column(Integer, nullable=False, default=0)
+    pierce = Column(Integer, nullable=False, default=0)
+    blunt = Column(Integer, nullable=False, default=0)
+    fire = Column(Integer, nullable=False, default=0)
+    ice = Column(Integer, nullable=False, default=0)
+    poison = Column(Integer, nullable=False, default=0)
+    electric = Column(Integer, nullable=False, default=0)
+
+class ConsumableData(Base):
+    __tablename__ = "consumables"
+    id = Column(Integer, primary_key=True)
+
+    item_id = Column(Integer, ForeignKey('items.id'))
+    item = relationship("ItemData", back_populates="weapons")
+
+    type = Column(Integer, default=0)
+
+    pass
 
 # def example_1():
 #     """
@@ -194,8 +205,8 @@ class DoorData(Base):
     x = Column(Integer, nullable=False, default=0)
     y = Column(Integer, nullable=False, default=0)
 
-    is_open = Column(Boolean, default=False)
-    is_locked = Column(Boolean, default=False)
+    is_open     = Column(Boolean, default=False)
+    is_locked   = Column(Boolean, default=False)
 
     def __init__(self):
         super().__init__()
