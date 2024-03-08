@@ -1,4 +1,4 @@
-from Actor import Actor
+from Persona import Persona
 from Weapon import Weapon
 from Item import Item
 from Damage import Damage

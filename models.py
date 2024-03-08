@@ -6,8 +6,8 @@ from sqlalchemy.sql import func
 from database import Base, db_session, engine as db_engine
 import datetime
 
-class ActorData(Base):
-    __tablename__ = 'actors'
+class PersonaData(Base):
+    __tablename__ = 'personas'
     id = Column(Integer, primary_key=True)
 
     # Поля персонажа
@@ -22,7 +22,7 @@ class ActorData(Base):
     x = Column(Integer, nullable=False, default=0)
     y = Column(Integer, nullable=False, default=0)
 
-    items = relationship("Inventory", back_populates="actor")
+    items = relationship("Inventory", back_populates="persona")
 
     #battle_id = Column(Integer, ForeignKey('battles.id'), doc="Сражение")
     #battle = relationship("BattleData", back_populates="actors")
@@ -36,10 +36,10 @@ class InventoryData(Base):
     capacity = Column(Integer, nullable=False, default=10)
     is_eqiup = Column(Boolean, default=False)
 
-    actor_id = Column(Integer, ForeignKey('actors.id'), doc="Персонаж")
+    actor_id = Column(Integer, ForeignKey('personas.id'), doc="Персонаж")
     item_id = Column(Integer, ForeignKey('items.id'), doc="Предмет")
-    actor = relationship("ActorData", back_populates="items")
-    item = relationship("ItemData", back_populates="actors")
+    actor = relationship("PersonaData", back_populates="items")
+    item = relationship("ItemData", back_populates="personas")
 
 class ItemData(Base):
     __tablename__ = 'items'
@@ -49,17 +49,18 @@ class ItemData(Base):
     level = Column(Integer, nullable=False, default=1)
     value = Column(Integer, nullable=False, default=1)
 
-    actor = relationship("InventoryData", back_populates="item")
+    # Координаты
+    x = Column(Integer, nullable=False, default=0)
+    y = Column(Integer, nullable=False, default=0)
 
-    #transform_id = Column(Integer, ForeignKey('transforms.id'), doc="Координаты")
-    #transform = relationship("TransformData", back_populates="items")
+    actor = relationship("InventoryData", back_populates="item")
 
     note = Column(Text, doc="Описание")
 
-class PlayerData(ActorData):
+class PlayerData(PersonaData):
     pass
 
-class EnemyData(ActorData):
+class EnemyData(PersonaData):
     pass
 
 # class EquipmentData(Base):
@@ -174,6 +175,42 @@ class EnemyData(ActorData):
 #                 .filter(Group.year >= 2022)
 #     for s in query.all():
 #         print(s.fio, s.group.year)
+
+#Стены
+class WallData(Base):
+    __tablename__ = 'walls'
+    id = Column(Integer, primary_key=True)
+
+    # Координаты
+    x = Column(Integer, nullable=False, default=0)
+    y = Column(Integer, nullable=False, default=0)
+
+# Двери
+class DoorData(Base):
+    __tablename__ = 'doors'
+    id = Column(Integer, primary_key=True)
+
+    # Координаты
+    x = Column(Integer, nullable=False, default=0)
+    y = Column(Integer, nullable=False, default=0)
+
+    is_open = Column(Boolean, default=False)
+    is_locked = Column(Boolean, default=False)
+
+    def __init__(self):
+        super().__init__()
+    def open_door(self):
+        self.is_open = True
+
+    def close_door(self):
+        self.is_open = False
+
+    def lock_door(self):
+        self.is_locked = True
+
+    def unlock_door(self):
+        self.is_locked = False
+
 
 def init_db():
     # import all modules here that might define models so that

@@ -1,5 +1,5 @@
 from Transform import Transform
-from Actor import Actor
+from Persona import Persona
 from Damage import Damage
 
 # Класс предметов
@@ -25,7 +25,7 @@ class Consumable(Item):
                  transfrom: Transform = Transform(0, 0)) -> None:
         super().__init__(self, name, level, value, transfrom)
 
-    def use(self, target: Actor) -> None:
+    def use(self, target: Persona) -> None:
         pass
 
 # Класс зелья лечения
@@ -34,7 +34,7 @@ class HealthPotion(Consumable):
                  transfrom: Transform = Transform(0, 0)) -> None:
         super().__init__(self, "Зелье лечения", level, value, transfrom)
 
-    def use(self, target: Actor) -> None:
+    def use(self, target: Persona) -> None:
         target.heal(self._level * 50)
         print(f"{target.name} использует {self._name} {self._level}")
 
@@ -46,6 +46,6 @@ class Bomb(Consumable):
         super().__init__(self, name, level, value, transfrom)
         self._damage = damage
 
-    def use(self, target: Actor) -> None:
+    def use(self, target: Persona) -> None:
         target.takeDamage(Damage.calculate_damage(self._damage, self._level, target.armor.defence, target.armor.level))
         print(f"{self._name} {self._level} взорволась рядом с {target.name}")

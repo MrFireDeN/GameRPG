@@ -4,7 +4,7 @@ from Transform import Transform
 from Armor import Armor
 
 
-class Actor:
+class Persona:
     # Поля персонажа
 
     # Иницилизация

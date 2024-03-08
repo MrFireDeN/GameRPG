@@ -1,6 +1,6 @@
 from Player import Player
 from Enemy import Enemy
-from Actor import Actor
+from Persona import Persona
 
 
 class Battle:
