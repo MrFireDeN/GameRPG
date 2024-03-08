@@ -69,22 +69,18 @@ class ItemData(Base):
     note = Column(Text, doc="Описание")
 
 class PlayerData(PersonaData):
-    pass
+    __tablename__ = 'players'
+    id = Column(Integer, primary_key=True)
+
+    persona_id = Column(Integer, ForeignKey('personas.id'))
+    persona = relationship("PersonaData", back_populates="players")
 
 class EnemyData(PersonaData):
-    pass
+    __tablename__ = 'enemies'
+    id = Column(Integer, primary_key=True)
 
-# class BattleData(Base):
-#     __tablename__ = 'battles'
-#     id = Column(Integer, primary_key=True)
-#
-#     player_id = Column(Integer, ForeignKey('player.id'), doc="Персонаж")
-#     enemy_id = Column(Integer, ForeignKey('enemies.id'), doc="Персонаж")
-#
-#     player = relationship("PlayerData", back_populates="battles")
-#     enemy = relationship("EnemyData", back_populates="battles")
-
-
+    persona_id = Column(Integer, ForeignKey('personas.id'))
+    persona = relationship("PersonaData", back_populates="enemies")
 
 class WeaponData(Base):
     __tablename__ = "weapons"
@@ -125,7 +121,40 @@ class ConsumableData(Base):
 
     type = Column(Integer, default=0)
 
-    pass
+#Стены
+class WallData(Base):
+    __tablename__ = 'walls'
+    id = Column(Integer, primary_key=True)
+
+    # Координаты
+    x = Column(Integer, nullable=False, default=0)
+    y = Column(Integer, nullable=False, default=0)
+
+# Двери
+class DoorData(Base):
+    __tablename__ = 'doors'
+    id = Column(Integer, primary_key=True)
+
+    # Координаты
+    x = Column(Integer, nullable=False, default=0)
+    y = Column(Integer, nullable=False, default=0)
+
+    is_open     = Column(Boolean, default=False)
+    is_locked   = Column(Boolean, default=False)
+
+    def __init__(self):
+        super().__init__()
+    def open_door(self):
+        self.is_open = True
+
+    def close_door(self):
+        self.is_open = False
+
+    def lock_door(self):
+        self.is_locked = True
+
+    def unlock_door(self):
+        self.is_locked = False
 
 # def example_1():
 #     """
@@ -186,42 +215,6 @@ class ConsumableData(Base):
 #                 .filter(Group.year >= 2022)
 #     for s in query.all():
 #         print(s.fio, s.group.year)
-
-#Стены
-class WallData(Base):
-    __tablename__ = 'walls'
-    id = Column(Integer, primary_key=True)
-
-    # Координаты
-    x = Column(Integer, nullable=False, default=0)
-    y = Column(Integer, nullable=False, default=0)
-
-# Двери
-class DoorData(Base):
-    __tablename__ = 'doors'
-    id = Column(Integer, primary_key=True)
-
-    # Координаты
-    x = Column(Integer, nullable=False, default=0)
-    y = Column(Integer, nullable=False, default=0)
-
-    is_open     = Column(Boolean, default=False)
-    is_locked   = Column(Boolean, default=False)
-
-    def __init__(self):
-        super().__init__()
-    def open_door(self):
-        self.is_open = True
-
-    def close_door(self):
-        self.is_open = False
-
-    def lock_door(self):
-        self.is_locked = True
-
-    def unlock_door(self):
-        self.is_locked = False
-
 
 def init_db():
     # import all modules here that might define models so that
