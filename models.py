@@ -27,11 +27,11 @@ class PersonaData(Base):
     y = Column(Integer, default=0)
 
     # Снаряжение
-    weapon_id       = Column(Integer, ForeignKey('weapons.id'), doc="Оружие")
-    armor_id        = Column(Integer, ForeignKey('armors.id'), doc="Оружие")
-    consumable1_id  = Column(Integer, ForeignKey('consumables.id'), doc="Оружие")
-    consumable2_id  = Column(Integer, ForeignKey('consumables.id'), doc="Оружие")
-    consumable3_id  = Column(Integer, ForeignKey('consumables.id'), doc="Оружие")
+    weapon_id       = Column(Integer, ForeignKey('equipments.id'), doc="Оружие")
+    armor_id        = Column(Integer, ForeignKey('equipments.id'), doc="Броня")
+    consumable1_id  = Column(Integer, ForeignKey('consumables.id'), doc="Предмет 1")
+    consumable2_id  = Column(Integer, ForeignKey('consumables.id'), doc="Предмет 2")
+    consumable3_id  = Column(Integer, ForeignKey('consumables.id'), doc="Предмет 3")
     weapon          = relationship("WeaponData", back_populates="persona")
     armor           = relationship("ArmorData", back_populates="persona")
     consumable1     = relationship("ConsumableData", back_populates="persona")
@@ -45,15 +45,23 @@ class PersonaData(Base):
     note = Column(Text, doc="Описание")
 
 # Игкрок
-class PlayerData(PersonaData):
+class PlayerData(Base):
     __tablename__ = 'players'
     id = Column(Integer, primary_key=True)
 
     persona_id = Column(Integer, ForeignKey('personas.id'))
     persona = relationship("PersonaData", back_populates="players")
 
+# Персонаж
+class CharacterData(Base):
+    __tablename__ = 'characters'
+    id = Column(Integer, primary_key=True)
+
+    persona_id = Column(Integer, ForeignKey('personas.id'))
+    persona = relationship("PersonaData", back_populates="characters")
+
 # Противник
-class EnemyData(PersonaData):
+class EnemyData(Base):
     __tablename__ = 'enemies'
     id = Column(Integer, primary_key=True)
 
@@ -65,10 +73,9 @@ class InventoryData(Base):
     __tablename__ = 'inventories'
     id = Column(Integer, primary_key=True)
 
-    capacity = Column(Integer, default=10)
     is_eqiup = Column(Boolean, default=False)
 
-    actor_id    = Column(Integer, ForeignKey('personas.id'), doc="Персонаж")
+    persona_id    = Column(Integer, ForeignKey('personas.id'), doc="Персонаж")
     item_id     = Column(Integer, ForeignKey('items.id'), doc="Предмет")
     actor       = relationship("PersonaData", back_populates="items")
     item        = relationship("ItemData", back_populates="personas")
@@ -79,14 +86,19 @@ class ItemData(Base):
     id = Column(Integer, primary_key=True)
 
     name    = Column(String(20), nullable=False)
-    level   = Column(Integer, default=1)
     value   = Column(Integer, default=1)
 
     # Координаты
     x = Column(Integer, default=0)
     y = Column(Integer, default=0)
 
-    actor = relationship("InventoryData", back_populates="item")
+    persona = relationship("InventoryData", back_populates="item")
+
+    # Ссылки на друние сущности
+    equipment_id = Column(Integer, ForeignKey('equipments.id'))
+    consumable_id = Column(Integer, ForeignKey('consumables.id'))
+    equipment = relationship("EquipmentData", back_populates="items")
+    consumable = relationship("ConsumableData", back_populates="items")
 
     note = Column(Text, doc="Описание")
 
@@ -95,10 +107,9 @@ class EquipmentData(Base):
     __tablename__ = "equipments"
     id = Column(Integer, primary_key=True)
 
-    item_id = Column(Integer, ForeignKey('items.id'))
-    item = relationship("ItemData", back_populates="equipments")
-
     type = Column(Boolean, nullable=False)
+
+    level = Column(Integer, default=1)
 
     slash = Column(Integer, default=0)
     pierce = Column(Integer, default=0)
@@ -113,8 +124,7 @@ class ConsumableData(Base):
     __tablename__ = "consumables"
     id = Column(Integer, primary_key=True)
 
-    item_id = Column(Integer, ForeignKey('items.id'))
-    item = relationship("ItemData", back_populates="consumables")
+    level = Column(Integer, default=1)
 
     type = Column(Integer, default=0)
 
