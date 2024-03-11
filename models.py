@@ -114,7 +114,7 @@ class ConsumableData(Base):
     id = Column(Integer, primary_key=True)
 
     item_id = Column(Integer, ForeignKey('items.id'))
-    item = relationship("ItemData", back_populates="weapons")
+    item = relationship("ItemData", back_populates="consumables")
 
     type = Column(Integer, default=0)
 
