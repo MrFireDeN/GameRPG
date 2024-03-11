@@ -6,21 +6,25 @@ from sqlalchemy.sql import func
 from database import Base, db_session, engine as db_engine
 import datetime
 
+WEAPON = False
+ARMOR = True
+
+# Персонаж
 class PersonaData(Base):
     __tablename__ = 'personas'
     id = Column(Integer, primary_key=True)
 
     # Поля персонажа
-    name        = Column(String(20), nullable=False, default="")
-    level       = Column(Integer, nullable=False, default=1)
-    ep          = Column(Integer, nullable=False, default=0)
-    health      = Column(Integer, nullable=False)
-    max_health  = Column(Integer, nullable=False, default=100)
+    name        = Column(String(20), nullable=False)
+    level       = Column(Integer, default=1)
+    ep          = Column(Integer, default=0)
+    max_health  = Column(Integer, default=100)
+    health      = Column(Integer, default=max_health)
     is_alive    = Column(Boolean, default=True)
 
     # Координаты
-    x = Column(Integer, nullable=False, default=0)
-    y = Column(Integer, nullable=False, default=0)
+    x = Column(Integer, default=0)
+    y = Column(Integer, default=0)
 
     # Снаряжение
     weapon_id       = Column(Integer, ForeignKey('weapons.id'), doc="Оружие")
@@ -40,34 +44,7 @@ class PersonaData(Base):
     # Описание
     note = Column(Text, doc="Описание")
 
-class InventoryData(Base):
-    __tablename__ = 'inventories'
-    id = Column(Integer, primary_key=True)
-
-    capacity = Column(Integer, nullable=False, default=10)
-    is_eqiup = Column(Boolean, default=False)
-
-    actor_id    = Column(Integer, ForeignKey('personas.id'), doc="Персонаж")
-    item_id     = Column(Integer, ForeignKey('items.id'), doc="Предмет")
-    actor       = relationship("PersonaData", back_populates="items")
-    item        = relationship("ItemData", back_populates="personas")
-
-class ItemData(Base):
-    __tablename__ = 'items'
-    id = Column(Integer, primary_key=True)
-
-    name    = Column(String(20), nullable=False, default="")
-    level   = Column(Integer, nullable=False, default=1)
-    value   = Column(Integer, nullable=False, default=1)
-
-    # Координаты
-    x = Column(Integer, nullable=False, default=0)
-    y = Column(Integer, nullable=False, default=0)
-
-    actor = relationship("InventoryData", back_populates="item")
-
-    note = Column(Text, doc="Описание")
-
+# Игкрок
 class PlayerData(PersonaData):
     __tablename__ = 'players'
     id = Column(Integer, primary_key=True)
@@ -75,6 +52,7 @@ class PlayerData(PersonaData):
     persona_id = Column(Integer, ForeignKey('personas.id'))
     persona = relationship("PersonaData", back_populates="players")
 
+# Противник
 class EnemyData(PersonaData):
     __tablename__ = 'enemies'
     id = Column(Integer, primary_key=True)
@@ -82,36 +60,55 @@ class EnemyData(PersonaData):
     persona_id = Column(Integer, ForeignKey('personas.id'))
     persona = relationship("PersonaData", back_populates="enemies")
 
-class WeaponData(Base):
-    __tablename__ = "weapons"
+# Инвентарь
+class InventoryData(Base):
+    __tablename__ = 'inventories'
+    id = Column(Integer, primary_key=True)
+
+    capacity = Column(Integer, default=10)
+    is_eqiup = Column(Boolean, default=False)
+
+    actor_id    = Column(Integer, ForeignKey('personas.id'), doc="Персонаж")
+    item_id     = Column(Integer, ForeignKey('items.id'), doc="Предмет")
+    actor       = relationship("PersonaData", back_populates="items")
+    item        = relationship("ItemData", back_populates="personas")
+
+# Предмет
+class ItemData(Base):
+    __tablename__ = 'items'
+    id = Column(Integer, primary_key=True)
+
+    name    = Column(String(20), nullable=False)
+    level   = Column(Integer, default=1)
+    value   = Column(Integer, default=1)
+
+    # Координаты
+    x = Column(Integer, default=0)
+    y = Column(Integer, default=0)
+
+    actor = relationship("InventoryData", back_populates="item")
+
+    note = Column(Text, doc="Описание")
+
+# Снаряжение
+class EquipmentData(Base):
+    __tablename__ = "equipments"
     id = Column(Integer, primary_key=True)
 
     item_id = Column(Integer, ForeignKey('items.id'))
-    item = relationship("ItemData", back_populates="weapons")
+    item = relationship("ItemData", back_populates="equipments")
 
-    slash = Column(Integer, nullable=False, default=0)
-    pierce = Column(Integer, nullable=False, default=0)
-    blunt = Column(Integer, nullable=False, default=0)
-    fire = Column(Integer, nullable=False, default=0)
-    ice = Column(Integer, nullable=False, default=0)
-    poison = Column(Integer, nullable=False, default=0)
-    electric = Column(Integer, nullable=False, default=0)
+    type = Column(Boolean, nullable=False)
 
-class ArmorData(Base):
-    __tablename__ = "armors"
-    id = Column(Integer, primary_key=True)
+    slash = Column(Integer, default=0)
+    pierce = Column(Integer, default=0)
+    blunt = Column(Integer, default=0)
+    fire = Column(Integer, default=0)
+    ice = Column(Integer, default=0)
+    poison = Column(Integer, default=0)
+    electric = Column(Integer, default=0)
 
-    item_id = Column(Integer, ForeignKey('items.id'))
-    item = relationship("ItemData", back_populates="armors")
-
-    slash = Column(Integer, nullable=False, default=0)
-    pierce = Column(Integer, nullable=False, default=0)
-    blunt = Column(Integer, nullable=False, default=0)
-    fire = Column(Integer, nullable=False, default=0)
-    ice = Column(Integer, nullable=False, default=0)
-    poison = Column(Integer, nullable=False, default=0)
-    electric = Column(Integer, nullable=False, default=0)
-
+# Расходник
 class ConsumableData(Base):
     __tablename__ = "consumables"
     id = Column(Integer, primary_key=True)
@@ -127,8 +124,8 @@ class WallData(Base):
     id = Column(Integer, primary_key=True)
 
     # Координаты
-    x = Column(Integer, nullable=False, default=0)
-    y = Column(Integer, nullable=False, default=0)
+    x = Column(Integer, default=0)
+    y = Column(Integer, default=0)
 
 # Двери
 class DoorData(Base):
@@ -136,14 +133,12 @@ class DoorData(Base):
     id = Column(Integer, primary_key=True)
 
     # Координаты
-    x = Column(Integer, nullable=False, default=0)
-    y = Column(Integer, nullable=False, default=0)
+    x = Column(Integer, default=0)
+    y = Column(Integer, default=0)
 
     is_open     = Column(Boolean, default=False)
     is_locked   = Column(Boolean, default=False)
 
-    def __init__(self):
-        super().__init__()
     def open_door(self):
         self.is_open = True
 
