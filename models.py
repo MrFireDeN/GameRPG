@@ -6,6 +6,10 @@ from sqlalchemy.sql import func
 from database import Base, db_session, engine as db_engine
 import datetime
 
+# логин
+from flask_login import UserMixin
+from eng import manager
+
 WEAPON = False
 ARMOR = True
 
@@ -45,12 +49,19 @@ class PersonaData(Base):
     note = Column(Text, doc="Описание")
 
 # Игкрок
-class PlayerData(Base):
+class PlayerData(Base, UserMixin):
     __tablename__ = 'players'
     id = Column(Integer, primary_key=True)
 
+    login = Column(String(32), unique=True)
+    password = Column(String(64))
+
     persona_id = Column(Integer, ForeignKey('personas.id'))
     persona = relationship("PersonaData", back_populates="players")
+
+@manager.user_loader
+def load_player(player_id):
+    return PlayerData.query.get(player_id)
 
 # Персонаж
 class CharacterData(Base):
