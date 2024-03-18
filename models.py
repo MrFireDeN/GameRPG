@@ -59,9 +59,8 @@ class PlayerData(Base, UserMixin):
     persona_id = Column(Integer, ForeignKey('personas.id'))
     persona = relationship("PersonaData", back_populates="players")
 
-@manager.user_loader
-def load_player(player_id):
-    return PlayerData.query.get(player_id)
+    # Прогресс квестов для игрока
+    quest_progress = relationship("QuestProgress", back_populates="player")
 
 # Персонаж
 class CharacterData(Base):
@@ -71,13 +70,13 @@ class CharacterData(Base):
     persona_id = Column(Integer, ForeignKey('personas.id'))
     persona = relationship("PersonaData", back_populates="characters")
 
-# Противник
-class EnemyData(Base):
-    __tablename__ = 'enemies'
-    id = Column(Integer, primary_key=True)
 
-    persona_id = Column(Integer, ForeignKey('personas.id'))
-    persona = relationship("PersonaData", back_populates="enemies")
+class PlayerEnemyAssociation(Base):
+    __tablename__ = 'player_enemy_association'
+
+    player_id = Column(Integer, ForeignKey('players.id'))
+    enemy_id = Column(Integer, ForeignKey('enemies.id'))
+    player = relationship("")
 
 # Инвентарь
 class InventoryData(Base):
@@ -172,6 +171,59 @@ class DoorData(Base):
     def unlock_door(self):
         self.is_locked = False
 
+# Мир
+class WorldData(Base):
+    __tablename__ = 'worlds'
+    id = Column(Integer, primary_key=True)
+
+    # Связь с игроком
+    player_id = Column(Integer, ForeignKey('players.id'))
+    player = relationship("PlayerData", back_populates="worlds")
+
+
+
+# Сообщения
+class MessageData(Base):
+    """реалмзует диалогувую систему"""
+    __tablename__ = 'messages'
+    id = Column(Integer, primary_key=True)
+
+    message = Column(Text, doc="Сообщение")
+
+    author_id = Column(Integer, ForeignKey('characters.id'))
+    quest_id = Column(Integer, ForeignKey('quests.id'))
+
+    author = relationship("CharacterData", back_populates="messages")
+    quest = relationship("QuestData", back_populates="messages")
+
+# Квесты
+class QuestData(Base):
+    __tablename__ = 'quests'
+    id = Column(Integer, primary_key=True)
+
+    name = Column(String(50), nullable=False)
+    description = Column(Text, nullable=False)
+
+    # Связь с прогрессом квеста для каждого игрока
+    progress = relationship("QuestProgress", back_populates="quest")
+
+# Прогресс квеста для каждого игрока
+class QuestProgress(Base):
+    __tablename__ = 'quest_progress'
+    id = Column(Integer, primary_key=True)
+
+    # Состояние квеста для конкретного игрока
+    is_completed = Column(Boolean, default=False)
+    player_id = Column(Integer, ForeignKey('players.id'))
+    quest_id = Column(Integer, ForeignKey('quests.id'))
+
+    player = relationship("PlayerData", back_populates="quest_progress")
+    quest = relationship("QuestData", back_populates="progress")
+
+@manager.user_loader
+def load_player(player_id):
+    return PlayerData.query.get(player_id)
+
 # def example_1():
 #     """
 #     Добавляем группу в базу данных
@@ -233,9 +285,6 @@ class DoorData(Base):
 #         print(s.fio, s.group.year)
 
 def init_db():
-    # import all modules here that might define models so that
-    # they will be registered properly on the metadata.  Otherwise
-    # you will have to import them first before calling init_db()
     from database import engine
     Base.metadata.create_all(bind=engine)
     db_session.commit()
