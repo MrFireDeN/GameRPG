@@ -27,16 +27,16 @@ class PersonaData(Base):
     y = Column(Integer, default=0)
 
     # Снаряжение
-    weapon_id       = Column(Integer, ForeignKey('equipments.id'), doc="Оружие")
-    armor_id        = Column(Integer, ForeignKey('equipments.id'), doc="Броня")
-    consumable1_id  = Column(Integer, ForeignKey('consumables.id'), doc="Предмет 1")
-    consumable2_id  = Column(Integer, ForeignKey('consumables.id'), doc="Предмет 2")
-    consumable3_id  = Column(Integer, ForeignKey('consumables.id'), doc="Предмет 3")
-    weapon          = relationship("WeaponData", back_populates="persona")
-    armor           = relationship("ArmorData", back_populates="persona")
-    consumable1     = relationship("ConsumableData", back_populates="persona")
-    consumable2     = relationship("ConsumableData", back_populates="persona")
-    consumable3     = relationship("ConsumableData", back_populates="persona")
+    weapon_id       = Column(Integer, ForeignKey('items.id'), doc="Оружие")
+    armor_id        = Column(Integer, ForeignKey('items.id'), doc="Броня")
+    consumable1_id  = Column(Integer, ForeignKey('items.id'), doc="Предмет 1")
+    consumable2_id  = Column(Integer, ForeignKey('items.id'), doc="Предмет 2")
+    consumable3_id  = Column(Integer, ForeignKey('items.id'), doc="Предмет 3")
+    weapon          = relationship("ItemData", back_populates="persona")
+    armor           = relationship("ItemData", back_populates="persona")
+    consumable1     = relationship("ItemData", back_populates="persona")
+    consumable2     = relationship("ItemData", back_populates="persona")
+    consumable3     = relationship("ItemData", back_populates="persona")
 
     # Инвентарь
     items = relationship("InventoryData", back_populates="persona")
