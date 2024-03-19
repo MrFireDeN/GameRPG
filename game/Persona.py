@@ -48,11 +48,11 @@ class Persona:
     # Дать опыт
     def gainExperience(self, ep: int = 0):
         self._ep -= ep
-        self.__levelUp()
+        self._levelUp()
 
 
     # Повышение уровеня
-    def __levelUp(self):
+    def _levelUp(self):
         if (self._ep >= self._level * 100):
             self._level += 1
             self._ep = 0

@@ -9,6 +9,16 @@ from Equipment import Equipment
 from Inventory import Inventory
 from Battle import Battle
 
+"""
+(1) Специализация X (Player <- Persona)
+(2) Спецификация X (SmallHealthPotion <- Consumable)
+(3) Обобщение X (HealthPotion <- SmallHealthPotion)
+(4) Расширение X (Consumable <- Item)
+(5) Ограничение X (Enemy <- Persona)
+(6) Конструирование X (EnemyGroup <- Enemy)
+(7) Варьирование
+(8) Комбинирование X (Weapon <- Item, Damage)
+"""
 
 def main():
     # Создание игрока и врага

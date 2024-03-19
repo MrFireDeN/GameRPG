@@ -29,15 +29,29 @@ class Consumable(Item):
         pass
 
 # Класс зелья лечения
-class HealthPotion(Consumable):
+class SmallHealthPotion(Consumable):
+    _heal = 50
+
     def __init__(self, level: int = 1, value: int = 50,
                  transfrom: Transform = Transform(0, 0)) -> None:
         super().__init__(self, "Зелье лечения", level, value, transfrom)
 
     def use(self, target: Persona) -> None:
-        target.heal(self._level * 50)
+        target.heal(self._level * self._heal)
         print(f"{target.name} использует {self._name} {self._level}")
 
+# Класс зелья лечения
+class HealthPotion(SmallHealthPotion):
+    def __init__(self, level: int = 1, value: int = 50,
+                 transfrom: Transform = Transform(0, 0)) -> None:
+        super().__init__(self, "Зелье лечения", level, value, transfrom)
+
+    def use(self, target: Persona) -> None:
+        target.heal(self._level * self._heal)
+        print(f"{target.name} использует {self._name} {self._level}")
+
+    def setHeal(self, heal: int):
+        _heal = heal
 
 # Класс бомбы
 class Bomb(Consumable):
