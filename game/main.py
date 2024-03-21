@@ -16,7 +16,7 @@ from Battle import Battle
 (4) Расширение X (Consumable <- Item)
 (5) Ограничение X (Enemy <- Persona)
 (6) Конструирование X (EnemyGroup <- Enemy)
-(7) Варьирование
+(7) Варьирование X (Armor <- Weapon)
 (8) Комбинирование X (Weapon <- Item, Damage)
 """
 
