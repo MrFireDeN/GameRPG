@@ -9,10 +9,6 @@ app = Flask(__name__, template_folder="templates")
 app.config['SECRET_KEY'] = settings.SECRET_KEY
 manager = LoginManager(app)
 
-import models
-from models import db_session, PersonaData, PlayerData, EnemyData, CharacterData, InventoryData, ItemData, \
-    EquipmentData, ConsumableData, WallData, DoorData
-
 FIELD_HEIGHT = 20
 FILED_WIDTH = 40
 

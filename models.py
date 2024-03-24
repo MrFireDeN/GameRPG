@@ -12,14 +12,18 @@ from eng import manager
 
 WEAPON = False
 ARMOR = True
+ENEMY = False
+FRIEND = True
 
-# Персонаж
-class PersonaData(Base):
-    __tablename__ = 'personas'
+# Игкрок
+class PlayerData(Base, UserMixin):
+    __tablename__ = 'players'
     id = Column(Integer, primary_key=True)
 
+    login = Column(String(32), unique=True)
+    password = Column(String(64))
+
     # Поля персонажа
-    name        = Column(String(20), nullable=False)
     level       = Column(Integer, default=1)
     ep          = Column(Integer, default=0)
     max_health  = Column(Integer, default=100)
@@ -31,112 +35,120 @@ class PersonaData(Base):
     y = Column(Integer, default=0)
 
     # Снаряжение
-    weapon_id       = Column(Integer, ForeignKey('items.id'), doc="Оружие")
-    armor_id        = Column(Integer, ForeignKey('items.id'), doc="Броня")
-    consumable1_id  = Column(Integer, ForeignKey('items.id'), doc="Предмет 1")
-    consumable2_id  = Column(Integer, ForeignKey('items.id'), doc="Предмет 2")
-    consumable3_id  = Column(Integer, ForeignKey('items.id'), doc="Предмет 3")
-    weapon          = relationship("ItemData", back_populates="persona")
-    armor           = relationship("ItemData", back_populates="persona")
-    consumable1     = relationship("ItemData", back_populates="persona")
-    consumable2     = relationship("ItemData", back_populates="persona")
-    consumable3     = relationship("ItemData", back_populates="persona")
+    weapon_id = Column(Integer, ForeignKey('items.id'), doc="Оружие")
+    armor_id = Column(Integer, ForeignKey('items.id'), doc="Броня")
+    consumable1_id = Column(Integer, ForeignKey('items.id'), doc="Предмет 1")
+    consumable2_id = Column(Integer, ForeignKey('items.id'), doc="Предмет 2")
+    consumable3_id = Column(Integer, ForeignKey('items.id'), doc="Предмет 3")
+    weapon = relationship("ItemData", back_populates="player")
+    armor = relationship("ItemData", back_populates="player")
+    consumable1 = relationship("ItemData", back_populates="player")
+    consumable2 = relationship("ItemData", back_populates="player")
+    consumable3 = relationship("ItemData", back_populates="player")
 
     # Инвентарь
-    items = relationship("InventoryData", back_populates="persona")
+    items = relationship("PlayerInventory", back_populates="player")
 
-    # Описание
-    note = Column(Text, doc="Описание")
-
-# Игкрок
-class PlayerData(Base, UserMixin):
-    __tablename__ = 'players'
-    id = Column(Integer, primary_key=True)
-
-    login = Column(String(32), unique=True)
-    password = Column(String(64))
-
-    persona_id = Column(Integer, ForeignKey('personas.id'))
-    persona = relationship("PersonaData", back_populates="players")
-
-    # Прогресс квестов для игрока
-    quest_progress = relationship("QuestProgress", back_populates="player")
+    @manager.user_loader
+    def load_player(player_id):
+        return PlayerData.query.get(player_id)
 
 # Персонаж
+class PersonaData(Base):
+    __tablename__ = 'personas'
+    id = Column(Integer, primary_key=True)
+
+    # Поля персонажа
+    name        = Column(String(20), nullable=False)
+    level       = Column(Integer, default=1)
+    max_health  = Column(Integer, default=100)
+    note = Column(Text, doc="Описание")
+
+# НПС
 class CharacterData(Base):
     __tablename__ = 'characters'
     id = Column(Integer, primary_key=True)
 
+    # С каким игроком связан
     persona_id = Column(Integer, ForeignKey('personas.id'))
-    persona = relationship("PersonaData", back_populates="characters")
+    persona = relationship("PersonaData", back_populates="character")
 
+    # Поля персонажа
+    health      = Column(Integer, nullable=False)
+    is_alive    = Column(Boolean, default=True)
+    loyalty     = Column(Boolean, default=FRIEND)
 
-class PlayerEnemyAssociation(Base):
-    __tablename__ = 'player_enemy_association'
+    # Координаты
+    x = Column(Integer, default=0)
+    y = Column(Integer, default=0)
 
+    # Инвентарь
+    items = relationship("CharacterInventory", back_populates="character")
+
+    # С каким игроком связан
     player_id = Column(Integer, ForeignKey('players.id'))
-    enemy_id = Column(Integer, ForeignKey('enemies.id'))
-    player = relationship("")
-
-# Инвентарь
-class InventoryData(Base):
-    __tablename__ = 'inventories'
-    id = Column(Integer, primary_key=True)
-
-    is_eqiup = Column(Boolean, default=False)
-
-    persona_id    = Column(Integer, ForeignKey('personas.id'), doc="Персонаж")
-    item_id     = Column(Integer, ForeignKey('items.id'), doc="Предмет")
-    actor       = relationship("PersonaData", back_populates="items")
-    item        = relationship("ItemData", back_populates="personas")
+    player = relationship("PlayerData", back_populates="character")
 
 # Предмет
 class ItemData(Base):
     __tablename__ = 'items'
     id = Column(Integer, primary_key=True)
 
+    # Поля предмета
     name    = Column(String(20), nullable=False)
     value   = Column(Integer, default=1)
 
-    # Координаты
-    x = Column(Integer, default=0)
-    y = Column(Integer, default=0)
-
-    persona = relationship("InventoryData", back_populates="item")
-
-    # Ссылки на друние сущности
     equipment_id = Column(Integer, ForeignKey('equipments.id'))
+    equipment = relationship("EquipmentData", back_populates="item")
     consumable_id = Column(Integer, ForeignKey('consumables.id'))
-    equipment = relationship("EquipmentData", back_populates="items")
-    consumable = relationship("ConsumableData", back_populates="items")
+    consumable = relationship("ConsumableData", back_populates="item")
 
     note = Column(Text, doc="Описание")
+
+class PlayerInventory(Base):
+    __tablename__ = 'players_inventory'
+    id = Column(Integer, primary_key=True)
+
+    level       = Column(Integer, default=1)
+    is_eqiup    = Column(Boolean, default=False)
+
+    player_id   = Column(Integer, ForeignKey('players.id'))
+    item_id     = Column(Integer, ForeignKey('items.id'), doc="Предмет")
+    player      = relationship("PlayerData", back_populates="item")
+    item        = relationship("ItemData", back_populates="player")
+
+class CharacterInventory(Base):
+    __tablename__ = 'characters_inventory'
+    id = Column(Integer, primary_key=True)
+
+    level       = Column(Integer, default=1)
+    is_eqiup    = Column(Boolean, default=False)
+
+    character_id= Column(Integer, ForeignKey('characters.id'))
+    item_id     = Column(Integer, ForeignKey('items.id'), doc="Предмет")
+    characters  = relationship("CharacterData", back_populates="item")
+    item        = relationship("ItemData", back_populates="character")
 
 # Снаряжение
 class EquipmentData(Base):
     __tablename__ = "equipments"
     id = Column(Integer, primary_key=True)
 
-    type = Column(Boolean, nullable=False)
+    type = Column(Boolean, nullable=WEAPON)
 
-    level = Column(Integer, default=1)
+    slash       = Column(Integer, default=0)
+    pierce      = Column(Integer, default=0)
+    blunt       = Column(Integer, default=0)
+    fire        = Column(Integer, default=0)
+    ice         = Column(Integer, default=0)
+    poison      = Column(Integer, default=0)
+    electric    = Column(Integer, default=0)
 
-    slash = Column(Integer, default=0)
-    pierce = Column(Integer, default=0)
-    blunt = Column(Integer, default=0)
-    fire = Column(Integer, default=0)
-    ice = Column(Integer, default=0)
-    poison = Column(Integer, default=0)
-    electric = Column(Integer, default=0)
-
-# Расходник
 class ConsumableData(Base):
     __tablename__ = "consumables"
     id = Column(Integer, primary_key=True)
 
-    level = Column(Integer, default=1)
-
-    type = Column(Integer, default=0)
+    type = Column(Integer, nullable=False)
 
 #Стены
 class WallData(Base):
@@ -159,6 +171,10 @@ class DoorData(Base):
     is_open     = Column(Boolean, default=False)
     is_locked   = Column(Boolean, default=False)
 
+    # С каким игроком связан
+    player_id = Column(Integer, ForeignKey('players.id'))
+    player = relationship("PlayerData", back_populates="door")
+
     def open_door(self):
         self.is_open = True
 
@@ -170,31 +186,6 @@ class DoorData(Base):
 
     def unlock_door(self):
         self.is_locked = False
-
-# Мир
-class WorldData(Base):
-    __tablename__ = 'worlds'
-    id = Column(Integer, primary_key=True)
-
-    # Связь с игроком
-    player_id = Column(Integer, ForeignKey('players.id'))
-    player = relationship("PlayerData", back_populates="worlds")
-
-
-
-# Сообщения
-class MessageData(Base):
-    """реалмзует диалогувую систему"""
-    __tablename__ = 'messages'
-    id = Column(Integer, primary_key=True)
-
-    message = Column(Text, doc="Сообщение")
-
-    author_id = Column(Integer, ForeignKey('characters.id'))
-    quest_id = Column(Integer, ForeignKey('quests.id'))
-
-    author = relationship("CharacterData", back_populates="messages")
-    quest = relationship("QuestData", back_populates="messages")
 
 # Квесты
 class QuestData(Base):
@@ -209,80 +200,16 @@ class QuestData(Base):
 
 # Прогресс квеста для каждого игрока
 class QuestProgress(Base):
-    __tablename__ = 'quest_progress'
+    __tablename__ = 'quests_progress'
     id = Column(Integer, primary_key=True)
 
     # Состояние квеста для конкретного игрока
     is_completed = Column(Boolean, default=False)
+
     player_id = Column(Integer, ForeignKey('players.id'))
     quest_id = Column(Integer, ForeignKey('quests.id'))
-
     player = relationship("PlayerData", back_populates="quest_progress")
     quest = relationship("QuestData", back_populates="progress")
-
-@manager.user_loader
-def load_player(player_id):
-    return PlayerData.query.get(player_id)
-
-# def example_1():
-#     """
-#     Добавляем группу в базу данных
-#     """
-#     g = Group(label = "ИСТ22-1", year=2022)
-#     db_session.add(g)
-#     db_session.commit()
-#     print(g.id) # В этот момент у нас уже есть Id
-#     # Добавляем студента
-#     s = Student(
-#             fio="Иванов И.И.",
-#             birthday = datetime.date(1987, 4, 2),
-#             sex = True,
-#             group_id = g.id
-#
-#         )
-#     db_session.add(s)
-#     db_session.commit()
-#     print(s.id) # Теперь у нас есть id студента
-#
-#
-# def example_2():
-#     """
-#     Все тоже самое что и в 1 примере, но в одной транзакции
-#     """
-#     g = Group(label = "ИСТ22-1", year=2022)
-#     db_session.add(g)
-#     db_session.flush() # Вместо подтверждения транзакции мы вызываем данный метод
-#     print(g.id) # В этот момент у нас уже есть Id
-#     # Добавляем студента
-#     s = Student(
-#             fio="Иванов И.И.",
-#             birthday = datetime.date(1987, 4, 2),
-#             sex = True,
-#             group_id = g.id
-#
-#         )
-#     db_session.add(s)
-#     db_session.commit()
-#     print(s.id) # Теперь у нас есть id студента
-#
-# def example_3():
-#     """
-#     выборка данных
-#     """
-#     # Выбираем фамилии студенток и сортрируем по фио и идентификатору (последний в обратном порядке)
-#     query = db_session.query(Student.fio)\
-#                 .filter(Student.sex == True)\
-#                 .order_by(Student.fio)\
-#                 .order_by(Student.id.desc())
-#     for fio, in query.all():
-#         print(fio)
-#
-#     # Выбираем всех студентов поступивших после 2022 года
-#     query = db_session.query(Student)\
-#                 .join(Group)\
-#                 .filter(Group.year >= 2022)
-#     for s in query.all():
-#         print(s.fio, s.group.year)
 
 def init_db():
     from database import engine
