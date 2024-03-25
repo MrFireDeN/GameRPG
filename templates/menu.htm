@@ -15,17 +15,23 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{url_for('main', page_name='inventory')}}">Инвентарь</a>
                 </li>
-            </ul>
-
-            <form class="d-flex">
                 {% if current_user.is_authenticated %}
+                <li class="nav-item">
                     <a class="nav-link disabled" href="#">{{ corrent_user.login }}</a>
-                    <button class="btn btn-light" type="button">Выход</button>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{url_for('main', page_name='login')}}">Выход</a>
+                </li>
                 {% else %}
-                    <button class="btn btn-primary" type="button">Регистрация</button>
-                    <button class="btn btn-light" type="button">Вход</button>
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{url_for('main', page_name='register')}}">Регистрация</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{url_for('main', page_name='login')}}">Вход</a>
+                    </li>
+                </ul>
                 {% endif %}
-            </form>
         </div>
     </div>
 </nav>

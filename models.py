@@ -40,14 +40,14 @@ class PlayerData(Base, UserMixin):
     consumable1_id = Column(Integer, ForeignKey('items.id'), doc="Предмет 1")
     consumable2_id = Column(Integer, ForeignKey('items.id'), doc="Предмет 2")
     consumable3_id = Column(Integer, ForeignKey('items.id'), doc="Предмет 3")
-    weapon = relationship("ItemData", back_populates="player")
-    armor = relationship("ItemData", back_populates="player")
-    consumable1 = relationship("ItemData", back_populates="player")
-    consumable2 = relationship("ItemData", back_populates="player")
-    consumable3 = relationship("ItemData", back_populates="player")
+    weapon = relationship("ItemData", foreign_keys=[weapon_id])
+    armor = relationship("ItemData", foreign_keys=[armor_id])
+    consumable1 = relationship("ItemData", foreign_keys=[consumable1_id])
+    consumable2 = relationship("ItemData", foreign_keys=[consumable2_id])
+    consumable3 = relationship("ItemData", foreign_keys=[consumable3_id])
 
     # Инвентарь
-    items = relationship("PlayerInventory", back_populates="player")
+    #items = relationship("PlayerInventory", back_populates="player")
 
     @manager.user_loader
     def load_player(player_id):
@@ -71,7 +71,7 @@ class CharacterData(Base):
 
     # С каким игроком связан
     persona_id = Column(Integer, ForeignKey('personas.id'))
-    persona = relationship("PersonaData", back_populates="character")
+    persona = relationship("PersonaData")
 
     # Поля персонажа
     health      = Column(Integer, nullable=False)
@@ -83,11 +83,11 @@ class CharacterData(Base):
     y = Column(Integer, default=0)
 
     # Инвентарь
-    items = relationship("CharacterInventory", back_populates="character")
+    items = relationship("CharacterInventory")
 
     # С каким игроком связан
     player_id = Column(Integer, ForeignKey('players.id'))
-    player = relationship("PlayerData", back_populates="character")
+    player = relationship("PlayerData")
 
 # Предмет
 class ItemData(Base):
@@ -99,9 +99,9 @@ class ItemData(Base):
     value   = Column(Integer, default=1)
 
     equipment_id = Column(Integer, ForeignKey('equipments.id'))
-    equipment = relationship("EquipmentData", back_populates="item")
+    equipment = relationship("EquipmentData")
     consumable_id = Column(Integer, ForeignKey('consumables.id'))
-    consumable = relationship("ConsumableData", back_populates="item")
+    consumable = relationship("ConsumableData")
 
     note = Column(Text, doc="Описание")
 
@@ -114,8 +114,6 @@ class PlayerInventory(Base):
 
     player_id   = Column(Integer, ForeignKey('players.id'))
     item_id     = Column(Integer, ForeignKey('items.id'), doc="Предмет")
-    player      = relationship("PlayerData", back_populates="item")
-    item        = relationship("ItemData", back_populates="player")
 
 class CharacterInventory(Base):
     __tablename__ = 'characters_inventory'
@@ -126,8 +124,8 @@ class CharacterInventory(Base):
 
     character_id= Column(Integer, ForeignKey('characters.id'))
     item_id     = Column(Integer, ForeignKey('items.id'), doc="Предмет")
-    characters  = relationship("CharacterData", back_populates="item")
-    item        = relationship("ItemData", back_populates="character")
+    characters  = relationship("CharacterData")
+    item        = relationship("ItemData")
 
 # Снаряжение
 class EquipmentData(Base):
@@ -173,7 +171,7 @@ class DoorData(Base):
 
     # С каким игроком связан
     player_id = Column(Integer, ForeignKey('players.id'))
-    player = relationship("PlayerData", back_populates="door")
+    player = relationship("PlayerData")
 
     def open_door(self):
         self.is_open = True
@@ -196,7 +194,7 @@ class QuestData(Base):
     description = Column(Text, nullable=False)
 
     # Связь с прогрессом квеста для каждого игрока
-    progress = relationship("QuestProgress", back_populates="quest")
+    progress = relationship("QuestProgress")
 
 # Прогресс квеста для каждого игрока
 class QuestProgress(Base):
@@ -208,8 +206,8 @@ class QuestProgress(Base):
 
     player_id = Column(Integer, ForeignKey('players.id'))
     quest_id = Column(Integer, ForeignKey('quests.id'))
-    player = relationship("PlayerData", back_populates="quest_progress")
-    quest = relationship("QuestData", back_populates="progress")
+    player = relationship("PlayerData")
+    quest = relationship("QuestData")
 
 def init_db():
     from database import engine

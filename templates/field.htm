@@ -6,6 +6,7 @@
 
     <title>Поле</title>
     <link href="../static/css/field.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
     {% endblock %}
 
@@ -26,5 +27,8 @@
         </table>
     </div>
 
-    <script src="../static/js/hero.js"></script>
+    {%include 'statusbar.htm'%}
+
+    <script src="../static/js/field.js"></script>
+
     {% endblock %}
