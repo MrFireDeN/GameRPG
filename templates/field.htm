@@ -16,10 +16,14 @@
     <div class="container" >
         <table id="field">
             <tbody>
-            {% for i in range(20) %}
+            {% for i in range(25) %}
             <tr>
-                {% for j in range(40) %}
-                <td></td>
+                {% for j in range(45) %}
+                    {% if i == 12 and j == 22 %}
+                        <td class="hero"></td>
+                    {% else %}
+                        <td></td>
+                    {% endif %}
                 {% endfor %}
             </tr>
             {% endfor %}

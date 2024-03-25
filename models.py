@@ -46,8 +46,29 @@ class PlayerData(Base, UserMixin):
     consumable2 = relationship("ItemData", foreign_keys=[consumable2_id])
     consumable3 = relationship("ItemData", foreign_keys=[consumable3_id])
 
-    # Инвентарь
-    #items = relationship("PlayerInventory", back_populates="player")
+    def serialize(self):
+        return {
+            'id': self.id,
+            'login': self.login,
+            'level': self.level,
+            'ep': self.ep,
+            'max_health': self.max_health,
+            'health': self.health,
+            'is_alive': self.is_alive,
+            'x': self.x,
+            'y': self.y,
+            'weapon_id': self.weapon_id,
+            'armor_id': self.armor_id,
+            'consumable1_id': self.consumable1_id,
+            'consumable2_id': self.consumable2_id,
+            'consumable3_id': self.consumable3_id
+        }
+
+    def serialize_coordinates(self):
+        return {
+            'x': self.x,
+            'y': self.y
+        }
 
     @manager.user_loader
     def load_player(player_id):
@@ -88,6 +109,12 @@ class CharacterData(Base):
     # С каким игроком связан
     player_id = Column(Integer, ForeignKey('players.id'))
     player = relationship("PlayerData")
+
+    def serialize_coordinates(self):
+        return {
+            'x': self.x,
+            'y': self.y
+        }
 
 # Предмет
 class ItemData(Base):
@@ -157,6 +184,12 @@ class WallData(Base):
     x = Column(Integer, default=0)
     y = Column(Integer, default=0)
 
+    def serialize_coordinates(self):
+        return {
+            'x': self.x,
+            'y': self.y
+        }
+
 # Двери
 class DoorData(Base):
     __tablename__ = 'doors'
@@ -172,6 +205,12 @@ class DoorData(Base):
     # С каким игроком связан
     player_id = Column(Integer, ForeignKey('players.id'))
     player = relationship("PlayerData")
+
+    def serialize_coordinates(self):
+        return {
+            'x': self.x,
+            'y': self.y
+        }
 
     def open_door(self):
         self.is_open = True

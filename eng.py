@@ -9,8 +9,8 @@ app = Flask(__name__, template_folder="templates")
 app.config['SECRET_KEY'] = settings.SECRET_KEY
 manager = LoginManager(app)
 
-FIELD_HEIGHT = 20
-FIELD_WIDTH = 40
+FIELD_HEIGHT = 25
+FIELD_WIDTH = 45
 
 if __name__ == "__main__":
     from controller import app

@@ -12,3 +12,11 @@ table {
 .hero {
     background-color: blue;
 }
+
+.wall {
+    background-color: black;
+}
+
+.door {
+    background-color: brown;
+}
