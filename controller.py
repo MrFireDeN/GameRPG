@@ -3,8 +3,9 @@ import time
 from eng import request, render_template, FIELD_WIDTH, FIELD_HEIGHT, app, redirect, url_for, login_user, \
     logout_user, login_required, jsonify
 from models import PersonaData, PlayerData, CharacterData, PlayerInventory, CharacterInventory, ItemData, WallData, \
-    DoorData, EquipmentData, ConsumableData, QuestData, QuestProgress, db_session
+    DoorData, EquipmentData, ConsumableData, QuestData, QuestProgress, db_session, ENEMY, FRIEND, WEAPON, ARMOR
 
+GAME_STATUS = ('WALKING', 'FIGHTING', 'TALKING', 'LOOKING')
 
 @app.errorhandler(404)
 def page_not_found(error):
@@ -50,7 +51,6 @@ def get_field():
 
     return jsonify(field_data)
 
-
 @app.route("/move", methods=['POST'])
 def move():
     key = request.form['key']
@@ -85,6 +85,41 @@ def move():
 
     return jsonify({'status': 'success'})
 
+@app.route('/get-window', methods=['GET'])
+def get_window():
+    player = db_session.query(PlayerData).first()
+    game_status = game_satus(player)
+    if game_status == GAME_STATUS[0]:
+        return jsonify('')
+    elif game_status == GAME_STATUS[1]:
+        return jsonify('')
+    elif game_status == GAME_STATUS[2]:
+        return jsonify('')
+    elif game_status == GAME_STATUS[3]:
+        return jsonify('')
+
+    return jsonify('')
+
+def walking_info(player):
+    pass
+
+@app.route("/attack/", methods=['POST'])
+def attack():
+    #player = db_session.query(PlayerData).first()
+    pass
+
+def game_satus(player):
+    # Если игрок стоит рядом с персонажем
+    character = (db_session.query(CharacterData).filter(CharacterData.player_id == player.id).
+                 filer(CharacterData.x == player.x, CharacterData.y == player.y))
+    if (character):
+        if character.loyalty == ENEMY:
+            return GAME_STATUS[1]
+        else:
+            return GAME_STATUS[2]
+
+    return GAME_STATUS[0]
+
 
 @app.route("/register/", methods=['GET', 'POST'])
 def register():
@@ -107,13 +142,6 @@ def main(page_name):
 @app.route("/")
 def index():
     return redirect(url_for('main', page_name='main'))
-
-
-@app.route("/attack/")
-def attack():
-    print("attack\n" * 10)
-    # Battle().player_turn()
-    return redirect(url_for('main', page_name='window'))
 
 
 @app.route('/logout')
