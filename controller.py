@@ -89,13 +89,14 @@ def move():
 def get_window():
     player = db_session.query(PlayerData).first()
     game_status = game_satus(player)
+
     if game_status == GAME_STATUS[0]:
         return jsonify('')
-    elif game_status == GAME_STATUS[1]:
-        return jsonify('')
-    elif game_status == GAME_STATUS[2]:
-        return jsonify('')
-    elif game_status == GAME_STATUS[3]:
+    if game_status == GAME_STATUS[1]:
+        return dialog_info(player)
+    if game_status == GAME_STATUS[2]:
+        return dialog_info(player)
+    if game_status == GAME_STATUS[3]:
         return jsonify('')
 
     return jsonify('')
@@ -103,7 +104,24 @@ def get_window():
 def walking_info(player):
     pass
 
-@app.route("/attack/", methods=['POST'])
+def dialog_info(player):
+    enemy = (db_session.query(CharacterData).filter(CharacterData.player_id == player.id).
+             filter(CharacterData.x == player.x, CharacterData.y == player.y)).first()
+
+    window_data = {
+        'game_status': GAME_STATUS[1],
+        'player': player.serialize(),
+        'player_weapon': player.weapon.serialize() if player.weapon is not None else None,
+        'player_armor': player.armor.serialize() if player.armor is not None else None,
+        'player_consumable1': player.consumable1.serialize() if player.consumable1 is not None else None,
+        'player_consumable2': player.consumable2.serialize() if player.consumable2 is not None else None,
+        'player_consumable3': player.consumable3.serialize() if player.consumable3 is not None else None,
+        'enemy': enemy.serialize() if enemy is not None else None
+    }
+
+    return jsonify(window_data)
+
+@app.route("/attack", methods=['POST'])
 def attack():
     #player = db_session.query(PlayerData).first()
     pass
@@ -111,7 +129,8 @@ def attack():
 def game_satus(player):
     # Если игрок стоит рядом с персонажем
     character = (db_session.query(CharacterData).filter(CharacterData.player_id == player.id).
-                 filer(CharacterData.x == player.x, CharacterData.y == player.y))
+                 filter(CharacterData.x == player.x, CharacterData.y == player.y)).first()
+
     if (character):
         if character.loyalty == ENEMY:
             return GAME_STATUS[1]

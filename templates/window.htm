@@ -6,6 +6,7 @@
 
     <title>Диалоговое окно</title>
     <link href="../static/css/window.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
     {% endblock %}
 
@@ -19,7 +20,6 @@
             </div>
 
             <div class="actions">
-                <a href="{{url_for('attack')}}">Атаковать</a>
             </div>
         </div>
 
@@ -36,5 +36,7 @@
     </div>
 
     {%include 'statusbar.htm'%}
+
+    <script src="../static/js/window.js"></script>
 
     {% endblock %}
