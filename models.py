@@ -46,9 +46,11 @@ class PlayerData(Base, UserMixin):
     consumable2 = relationship("ItemData", foreign_keys=[consumable2_id])
     consumable3 = relationship("ItemData", foreign_keys=[consumable3_id])
 
+    # Инвентарь
+    items = relationship("PlayerInventory")
+
     def serialize(self):
         return {
-            'id': self.id,
             'login': self.login,
             'level': self.level,
             'ep': self.ep,
@@ -57,11 +59,6 @@ class PlayerData(Base, UserMixin):
             'is_alive': self.is_alive,
             'x': self.x,
             'y': self.y,
-            'weapon_id': self.weapon_id,
-            'armor_id': self.armor_id,
-            'consumable1_id': self.consumable1_id,
-            'consumable2_id': self.consumable2_id,
-            'consumable3_id': self.consumable3_id
         }
 
     def serialize_coordinates(self):
@@ -110,6 +107,19 @@ class CharacterData(Base):
     player_id = Column(Integer, ForeignKey('players.id'))
     player = relationship("PlayerData")
 
+    def serialize(self):
+        return {
+            'name': self.persona.name,
+            'level': self.persona.level,
+            'max_health': self.persona.max_health,
+            'note': self.persona.note,
+            'health': self.health,
+            'is_alive': self.is_alive,
+            'loyalty': self.loyalty,
+            'x': self.x,
+            'y': self.y
+        }
+
     def serialize_coordinates(self):
         return {
             'x': self.x,
@@ -132,6 +142,20 @@ class ItemData(Base):
 
     note = Column(Text, doc="Описание")
 
+    def serialize(self):
+        return {
+            'name': self.name,
+            'level': self.value,
+            'max_health': self.note
+        }
+
+    def serialize_equipment(self, equipment):
+        return equipment.serialize()
+
+    def serialize_consumable(self, consumable):
+        return consumable.serialize()
+
+
 class PlayerInventory(Base):
     __tablename__ = 'players_inventory'
     id = Column(Integer, primary_key=True)
@@ -141,6 +165,23 @@ class PlayerInventory(Base):
 
     player_id   = Column(Integer, ForeignKey('players.id'))
     item_id     = Column(Integer, ForeignKey('items.id'), doc="Предмет")
+    player      = relationship("PlayerData")
+    item        = relationship("ItemData")
+
+    def serialize(self):
+        return {
+            'level': self.level,
+            'is_eqiup': self.is_eqiup
+        }
+
+    def serialize_item(self, item):
+        return item.serialize()
+
+    def serialize_equipment(self, item):
+        return item.serialize_equipment()
+
+    def serialize_consumable(self, item):
+        return item.serialize_consumable()
 
 class CharacterInventory(Base):
     __tablename__ = 'characters_inventory'
@@ -153,6 +194,21 @@ class CharacterInventory(Base):
     item_id     = Column(Integer, ForeignKey('items.id'), doc="Предмет")
     characters  = relationship("CharacterData")
     item        = relationship("ItemData")
+
+    def serialize(self):
+        return {
+            'level': self.level,
+            'is_eqiup': self.is_eqiup
+        }
+
+    def serialize_item(self, item):
+        return item.serialize()
+
+    def serialize_equipment(self, item):
+        return item.serialize_equipment()
+
+    def serialize_consumable(self, item):
+        return item.serialize_consumable()
 
 # Снаряжение
 class EquipmentData(Base):
@@ -169,11 +225,28 @@ class EquipmentData(Base):
     poison      = Column(Integer, default=0)
     electric    = Column(Integer, default=0)
 
+    def serialize(self):
+        return {
+            'type': self.equipment.type,
+            'slash': self.equipment.slash,
+            'piece': self.equipment.piece,
+            'blunt': self.equipment.blunt,
+            'fire': self.equipment.fire,
+            'ice': self.equipment.ice,
+            'poison': self.equipment.poison,
+            'electric': self.equipment.electric
+        }
+
 class ConsumableData(Base):
     __tablename__ = "consumables"
     id = Column(Integer, primary_key=True)
 
     type = Column(Integer, nullable=False)
+
+    def serialize(self):
+        return {
+            'type': self.equipment.type,
+        }
 
 #Стены
 class WallData(Base):
@@ -205,6 +278,12 @@ class DoorData(Base):
     # С каким игроком связан
     player_id = Column(Integer, ForeignKey('players.id'))
     player = relationship("PlayerData")
+
+    def serialize(self):
+        return {
+            'is_open': self.is_open,
+            'is_locked': self.is_locked
+        }
 
     def serialize_coordinates(self):
         return {
@@ -247,6 +326,13 @@ class QuestProgress(Base):
     quest_id = Column(Integer, ForeignKey('quests.id'))
     player = relationship("PlayerData")
     quest = relationship("QuestData")
+
+    def serialize(self):
+        return {
+            'name': self.quest.name,
+            'description': self.quest.description,
+            'is_completed': self.is_completed
+        }
 
 def init_db():
     from database import engine
