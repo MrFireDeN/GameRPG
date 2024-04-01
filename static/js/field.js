@@ -7,7 +7,6 @@ $(document).ready(function(){
         $.ajax({
             type: 'GET',
             url: '/get-field',
-            data: {X: 0, Y: 0}, // Параметры X и Y, замените на нужные значения
             success: function(response){
                 // Обновляем поле с помощью данных из JSON-ответа
                 updateFieldView(response);
@@ -42,11 +41,36 @@ $(document).ready(function(){
     function updateFieldView(data) {
         $('#field td').removeClass('wall');
         $('#field td').removeClass('door');
+        $('#field td').removeClass('friend');
+        $('#field td').removeClass('enemy');
 
 
         // Получаем координаты игрока
         var playerX = data.player.x;
         var playerY = data.player.y;
+
+        console.log(data.enemies);
+        console.log(data.friends);
+
+        // Добавляем класс 'enemy' к ячейкам, соответствующим стенам
+        data.enemies.forEach(function(enemy) {
+            var enemyX = Math.round(enemy.x - playerX + columnsCount / 2) - 1;
+            var enemyY = Math.round(enemy.y - playerY + rowsCount / 2) - 1;
+            if (enemyX >= 0 && enemyX < columnsCount &&
+                enemyY >=0 && enemyY < rowsCount) {
+                $('#field tr:eq(' + enemyY + ') td:eq(' + enemyX + ')').addClass('enemy');
+            }
+        });
+
+        // Добавляем класс 'friend' к ячейкам, соответствующим стенам
+        data.friends.forEach(function(enemy) {
+            var enemyX = Math.round(enemy.x - playerX + columnsCount / 2) - 1;
+            var enemyY = Math.round(enemy.y - playerY + rowsCount / 2) - 1;
+            if (enemyX >= 0 && enemyX < columnsCount &&
+                enemyY >=0 && enemyY < rowsCount) {
+                $('#field tr:eq(' + enemyY + ') td:eq(' + enemyX + ')').addClass('friend');
+            }
+        });
 
         // Добавляем класс 'wall' к ячейкам, соответствующим стенам
         data.walls.forEach(function(wall) {

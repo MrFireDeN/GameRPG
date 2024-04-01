@@ -11,6 +11,21 @@ GAME_STATUS = ('WALKING', 'FIGHTING', 'TALKING', 'LOOKING')
 def page_not_found(error):
     return render_template('404.htm'), 404
 
+@app.route("/get-player-status")
+def get_player_status():
+    # Игрок
+    player = db_session.query(PlayerData).first()
+
+    player_status = {
+        "health": player.health,
+        "max_health": player.max_health,
+        "level": player.level,
+        "ep": player.ep,
+        "money": 0
+    }
+
+    return jsonify(player_status)
+
 
 @app.route("/get-field/")
 def get_field():
@@ -26,6 +41,29 @@ def get_field():
     x = player.x
     y = player.y
 
+    # Персонажи
+    characters = db_session.query(CharacterData).filter(CharacterData.player_id == player.id).filter(
+        CharacterData.x >= x - FIELD_WIDTH / 2,
+        CharacterData.x < x + FIELD_WIDTH / 2,
+        CharacterData.y >= y - FIELD_HEIGHT / 2,
+        CharacterData.y < y + FIELD_HEIGHT / 2
+    ).all()
+
+    # Инициализация списков для друзей и врагов
+    friends = []
+    enemies = []
+
+    # Разделение персонажей на друзей и врагов
+    for character in characters:
+        print(character.loyalty)
+        if character.loyalty:
+            friends.append(character)
+        else:
+            enemies.append(character)
+
+    print(friends)
+    print(enemies)
+
     # Стены
     walls = db_session.query(WallData).filter(
         WallData.x >= x - FIELD_WIDTH / 2,
@@ -35,7 +73,7 @@ def get_field():
     ).all()
 
     # Двери
-    doors = db_session.query(DoorData).filter(DoorData.id == player.id).filter(
+    doors = db_session.query(DoorData).filter(DoorData.player_id == player.id).filter(
         DoorData.x >= x - FIELD_WIDTH / 2,
         DoorData.x < x + FIELD_WIDTH / 2,
         DoorData.y >= y - FIELD_HEIGHT / 2,
@@ -45,6 +83,8 @@ def get_field():
     # Формируем данные в формате JSON
     field_data = {
         'player': player.serialize_coordinates(),
+        'friends': [friend.serialize_coordinates() for friend in friends],
+        'enemies': [enemy.serialize_coordinates() for enemy in enemies],
         'walls': [wall.serialize_coordinates() for wall in walls],
         'doors': [door.serialize_coordinates() for door in doors]
     }
@@ -111,20 +151,52 @@ def dialog_info(player):
     window_data = {
         'game_status': GAME_STATUS[1],
         'player': player.serialize(),
-        'player_weapon': player.weapon.serialize() if player.weapon is not None else None,
-        'player_armor': player.armor.serialize() if player.armor is not None else None,
-        'player_consumable1': player.consumable1.serialize() if player.consumable1 is not None else None,
-        'player_consumable2': player.consumable2.serialize() if player.consumable2 is not None else None,
-        'player_consumable3': player.consumable3.serialize() if player.consumable3 is not None else None,
-        'enemy': enemy.serialize() if enemy is not None else None
+        'player_weapon': player.weapon.serialize() if player.weapon else None,
+        'player_armor': player.armor.serialize() if player.armor else None,
+        'player_consumable1': player.consumable1.serialize() if player.consumable1 else None,
+        'player_consumable2': player.consumable2.serialize() if player.consumable2 else None,
+        'player_consumable3': player.consumable3.serialize() if player.consumable3 else None,
+        'enemy': enemy.serialize() if enemy else None
     }
 
     return jsonify(window_data)
 
-@app.route("/attack", methods=['POST'])
+@app.route("/attack/", methods=['POST', 'GET'])
 def attack():
-    #player = db_session.query(PlayerData).first()
-    pass
+    player = db_session.query(PlayerData).first()
+
+    enemy = (db_session.query(CharacterData).filter(CharacterData.player_id == player.id).
+             filter(CharacterData.x == player.x, CharacterData.y == player.y)).first()
+
+    weapon = player.weapon.equipment
+    #armor = enemy.armor.equipment
+    armor = None
+
+    damage = (
+        max(0, (weapon.slash if weapon else 0)     * player.level - (armor.slash if armor else 0)    * enemy.persona.level) +
+        max(0, (weapon.pierce if weapon else 0)    * player.level - (armor.pierce if armor else 0)   * enemy.persona.level) +
+        max(0, (weapon.blunt if weapon else 0)     * player.level - (armor.blunt if armor else 0)    * enemy.persona.level) +
+        max(0, (weapon.fire if weapon else 0)      * player.level - (armor.fire if armor else 0)     * enemy.persona.level) +
+        max(0, (weapon.ice if weapon else 0)       * player.level - (armor.poison if armor else 0)   * enemy.persona.level) +
+        max(0, (weapon.poison if weapon else 0)    * player.level - (armor.poison if armor else 0)   * enemy.persona.level) +
+        max(0, (weapon.electric if weapon else 0)  * player.level - (armor.electric if armor else 0) * enemy.persona.level)
+    )
+
+    print(f'damage: {damage}')
+
+    print(f'enemy health: {enemy.health}')
+    enemy.health -= damage * 30
+    print(f'enemy health: {enemy.health}')
+
+    if (enemy.health <= 0):
+        enemy.health = 0
+        enemy.is_alive = False
+
+    # Сохраняем изменения в базе данных
+    db_session.commit()
+    time.sleep(0.2)
+
+    return jsonify({'status': 'success'})
 
 def game_satus(player):
     # Если игрок стоит рядом с персонажем
