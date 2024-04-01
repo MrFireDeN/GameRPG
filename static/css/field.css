@@ -13,6 +13,14 @@ table {
     background-color: blue;
 }
 
+.friend {
+    background-color: green;
+}
+
+.enemy {
+    background-color: #9C1A1C;
+}
+
 .wall {
     background-color: black;
 }
