@@ -185,7 +185,7 @@ def attack():
     print(f'damage: {damage}')
 
     print(f'enemy health: {enemy.health}')
-    enemy.health -= damage * 30
+    enemy.health -= damage
     print(f'enemy health: {enemy.health}')
 
     if (enemy.health <= 0):
