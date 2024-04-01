@@ -77,7 +77,7 @@ function updateWindowView(data) {
                 var characterHtml = '';
                 // Здесь заменить на реальные картинки
                 // -------------------------------
-                characterHtml += "<img src='https://via.placeholder.com/150' alt='Image'>"
+                characterHtml += "<img src='../img/" + enemy_name + ".png' alt='Image'>"
                 // -------------------------------
                 characterHtml += "<h2>" + enemy_name + "</h2>"
                 characterHtml += "<p>" + enemy_note + "</p>"
