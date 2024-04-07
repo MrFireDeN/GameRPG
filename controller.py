@@ -1,9 +1,10 @@
 import time
 
 from eng import request, render_template, FIELD_WIDTH, FIELD_HEIGHT, app, redirect, url_for, login_user, \
-    logout_user, login_required, jsonify
+    logout_user, login_required, jsonify, flash
 from models import PersonaData, PlayerData, CharacterData, PlayerInventory, CharacterInventory, ItemData, WallData, \
     DoorData, EquipmentData, ConsumableData, QuestData, QuestProgress, db_session, ENEMY, FRIEND, WEAPON, ARMOR
+from re import match
 
 GAME_STATUS = ('WALKING', 'FIGHTING', 'TALKING', 'LOOKING')
 
@@ -211,19 +212,62 @@ def game_satus(player):
 
     return GAME_STATUS[0]
 
-
 @app.route("/register/", methods=['GET', 'POST'])
 def register():
-    if request.method == 'GET':
-        return render_template('register.htm')
-    login = request.form.get('username')
-    password = request.form.get('password')
-    player = PlayerData(login=login, password=password)
-    db_session.add(player)
-    db_session.commit()
-    login_user(player)
-    return render_template('register.htm')
+    error = None
+    if request.method == 'POST':
+        login = request.form.get('username')
+        password = request.form.get('password')
+        confirm_password = request.form.get('confirm_password')
 
+        # Проверка на совпадение паролей
+        if password != confirm_password:
+            error = 'Пароли не совпадают!'
+
+        # Проверка на длину пароля
+        elif len(password) < 8:
+            error = 'Пароль должен содержать как минимум 8 символов!'
+
+        # Проверка наличия заглавных и строчных букв, а также цифр в пароле
+        elif not any(char.isupper() for char in password) or \
+             not any(char.islower() for char in password) or \
+             not any(char.isdigit() for char in password):
+            error = 'Пароль должен содержать хотя бы одну заглавную букву, одну строчную букву и одну цифру!'
+
+        # Проверка уникальности логина
+        elif PlayerData.query.filter_by(login=login).first():
+            error = 'Такой логин уже существует!'
+
+        # Проверка логина на соответствие критериям
+        elif not match("^[a-zA-Z][a-zA-Z0-9]{3,15}$", login):
+            error = 'Логин должен начинаться с буквы, состоять только из букв и цифр и иметь длину от 4 до 16 символов!'
+
+
+        else:
+            player = PlayerData(login=login, password=password)
+            db_session.add(player)
+            db_session.commit()
+            login_user(player)
+            flash('Успешная регистрация!', 'success')
+            return redirect(url_for('index'))  # Redirect to another page after successful registration
+    return render_template('register.htm', error=error)
+
+@app.route('/login/', methods=['GET', 'POST'])
+def login():
+    error = None
+    if request.method == 'POST':
+        username = request.form.get('username')
+        password = request.form.get('password')
+        player = PlayerData.query.filter_by(login=username).first()
+        # Проверка ваших пользователей и паролей, например:
+        if not player or not player.check_password(password):
+            error = 'Неправильное имя пользователя или пароль. Пожалуйста, попробуйте еще раз.'
+        else:
+            # Здесь вы можете добавить логику для входа пользователя, например, установить сеанс входа
+            login_user(player)
+            flash('Успешный вход!', 'success')
+            return redirect(url_for('index'))
+    return render_template('login.htm', error=error)
 
 @app.route("/<page_name>/")
 def main(page_name):
@@ -239,7 +283,8 @@ def index():
 @login_required
 def logout():
     logout_user()
-    return redirect(url_for('main'))
+    flash('Вы успешно вышли!', 'success')
+    return redirect(url_for('index'))
 
 
 @app.after_request

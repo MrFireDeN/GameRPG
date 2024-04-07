@@ -11,18 +11,17 @@
     {% endblock %}
 
     {% block body_block %}
-    <h1>Инвентарь</h1>
-    <table>
-        {% for index in range(10) %}
-            <tr>
-                <td>{{ index }}</td>
-                <td>____</td>
-                <td>____</td>
-                <td>____</td>
-            </tr>
-        {% endfor %}
-    </table>
-
-    {%include 'statusbar.htm'%}
+            <h1>Инвентарь</h1>
+            <table>
+                {% for index in range(10) %}
+                    <tr>
+                        <td>{{ index }}</td>
+                        <td>____</td>
+                        <td>____</td>
+                        <td>____</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        {%include 'statusbar.htm'%}
 
     {% endblock %}

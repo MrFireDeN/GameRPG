@@ -27,7 +27,7 @@ class PlayerData(Base, UserMixin):
     level       = Column(Integer, default=1)
     ep          = Column(Integer, default=0)
     max_health  = Column(Integer, default=100)
-    health      = Column(Integer, default=max_health)
+    health      = Column(Integer, default=100)
     is_alive    = Column(Boolean, default=True)
 
     # Координаты
@@ -70,6 +70,9 @@ class PlayerData(Base, UserMixin):
     @manager.user_loader
     def load_player(player_id):
         return PlayerData.query.get(player_id)
+
+    def check_password(self, password):
+        return password == self.password
 
 # Персонаж
 class PersonaData(Base):

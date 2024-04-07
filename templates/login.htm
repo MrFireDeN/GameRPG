@@ -1,17 +1,18 @@
-    {% extends 'main.htm' %}
+ {% extends 'main.htm' %}
 
     {% block head_block %}
 
     {{ super() }}
 
-    <title>Регистрация</title>
+    <title>Вход</title>
     <link href="../static/css/register.css" rel="stylesheet">
 
     {% endblock %}
 
     {% block body_block %}
     <div class="container mt-5">
-        <h1>Регистрация</h1>
+        <h1>Вход</h1>
+
         <form method="POST">
             <div class="mb-3">
                 <label for="username" class="form-label">Имя пользователя</label>
@@ -19,13 +20,9 @@
             </div>
             <div class="mb-3">
                 <label for="password" class="form-label">Пароль</label>
-                <input type="password" class="form-control" id="password" name="password"  required autocomplete="new-password">
+                <input type="password" class="form-control" id="password" name="password" required>
             </div>
-            <div class="mb-3">
-                <label for="confirm_password" class="form-label">Подтвердите пароль</label>
-                <input type="password" class="form-control" id="confirm_password" name="confirm_password"  required autocomplete="new-password">
-            </div>
-            <button type="submit" class="btn btn-primary">Зарегистрироватся</button>
+            <button type="submit" class="btn btn-primary">Войти</button>
         </form>
 
         {% if error %}

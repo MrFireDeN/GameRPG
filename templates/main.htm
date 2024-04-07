@@ -30,9 +30,11 @@
   </head>
   <body>
   {%include 'menu.htm'%}
+  <div id="content">
   {%block body_block %}
   <h><a href="{{url_for('main', page_name='field')}}">Играть</a></h>
   {%endblock %}
+  </div>
   {%include 'footer.htm'%}
   </body>
   <!--  Здесь указать ссылку на bootstrap js -->

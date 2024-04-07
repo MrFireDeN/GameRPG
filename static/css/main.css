@@ -1,6 +1,9 @@
 * {
-
     text-align: center;
+}
+
+#content{
+    min-height:80%;
 }
 
 .status-bar {
@@ -10,4 +13,8 @@
 .status-item {
     display: inline-block;
     margin-right: 20px;
+}
+
+#footer {
+    height: 10%;
 }
