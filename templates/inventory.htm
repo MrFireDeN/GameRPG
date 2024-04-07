@@ -5,23 +5,58 @@
     {{ super() }}
 
     <title>Инвентарь</title>
-    <link href="../static/css/" rel="stylesheet">
+    <link href="../static/css/inventory.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
     {% endblock %}
 
     {% block body_block %}
-            <h1>Инвентарь</h1>
-            <table>
-                {% for index in range(10) %}
-                    <tr>
-                        <td>{{ index }}</td>
-                        <td>____</td>
-                        <td>____</td>
-                        <td>____</td>
-                    </tr>
+        <h1>Инвентарь</h1>
+
+        <div class="container d-flex flex-row" id="window">
+            <table id="inventory">
+                <tbody>
+                {% for i in range(5) %}
+                <tr>
+                    {% for j in range(10) %}
+
+                        <td>
+                            <a href="#">
+                                <img src='https://via.placeholder.com/150' alt='Image'>
+                            </a>
+                        </td>
+
+                    {% endfor %}
+                </tr>
                 {% endfor %}
+                </tbody>
             </table>
+
+            <div class="col-md-4">
+                    <div class="info">
+                        <img src="https://via.placeholder.com/150" alt="Image">
+                        <h2>Заголовок</h2>
+                        <p>Описание</p>
+
+                        <button type="button" class="btn btn-primary">Выбрать</button>
+                        <button type="button" class="btn btn-danger">Выбросить</button>
+                    </div>
+            </div>
+        </div>
+
+        <table id="equip">
+            <tbody>
+            <tr>
+                {% for i in range(5) %}
+                    <td>
+                    <img src='https://via.placeholder.com/150' alt='Image'>
+                    <p>Название предмета</p>
+                    </td>
+                {% endfor %}
+            </tr>
+            </tbody>
+        </table>
+
         {%include 'statusbar.htm'%}
 
     {% endblock %}

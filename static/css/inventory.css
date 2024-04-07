@@ -1,0 +1,75 @@
+/* main.css */
+
+
+
+/* Общие стили для таблиц */
+table {
+    margin: 0 auto;
+    border-collapse: collapse;
+}
+
+/* Стили для ячеек инвентаря */
+#inventory td {
+    min-width: 100px;
+    min-height: 100px;
+    width: 100px;
+    height: 100px;
+}
+
+#inventory img {
+    width: 90px;
+    height: 90px;
+    border: 1px solid black;
+}
+#inventory a {
+    min-width: 90px;
+    min-height: 90px;
+    width: 90px;
+    height: 90px;
+}
+
+/* Стили для ячеек снаряжения */
+#equip {
+    width: 80%; /* Занимает всю доступную ширину */
+    margin: 0 auto; /* Центрируем таблицу */
+    margin-top: 5%;
+    border-collapse: collapse;
+}
+
+#equip td {
+    width: 150px;
+    height: 150px;
+}
+
+#equip img {
+    width: 130px;
+    height: 130px;
+    border: 1px solid black;
+}
+
+
+.active {
+    border: 3px solid green !important;
+}
+
+.info {
+    width: 60%;
+    height: 100%;
+    max-height: 500px;
+    margin-left: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+}
+
+.info p {
+    height: 100%;
+    overflow-y: auto;
+}
+
+.info button {
+    margin-bottom: 7px;
+    width: 50%;
+}
