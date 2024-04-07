@@ -1,7 +1,7 @@
 import time
 
 from eng import request, render_template, FIELD_WIDTH, FIELD_HEIGHT, app, redirect, url_for, login_user, \
-    logout_user, login_required, jsonify, flash
+    logout_user, login_required, jsonify, flash, manager, current_user
 from models import PersonaData, PlayerData, CharacterData, PlayerInventory, CharacterInventory, ItemData, WallData, \
     DoorData, EquipmentData, ConsumableData, QuestData, QuestProgress, db_session, ENEMY, FRIEND, WEAPON, ARMOR
 from re import match
@@ -189,6 +189,9 @@ def attack():
     enemy.health -= damage
     print(f'enemy health: {enemy.health}')
 
+    player_message = f'Вы атаковали {enemy.persona.name} и нанесили {damage} урона.'
+    enemy_message = f'{enemy.persona.name} атаковал Вас нанеся {damage} урона.'
+
     if (enemy.health <= 0):
         enemy.health = 0
         enemy.is_alive = False
@@ -197,7 +200,13 @@ def attack():
     db_session.commit()
     time.sleep(0.2)
 
-    return jsonify({'status': 'success'})
+    attack_data = {
+        'name': enemy.persona.name,
+        'player_message': player_message,
+        'character_message': enemy_message
+    }
+
+    return jsonify(attack_data)
 
 def game_satus(player):
     # Если игрок стоит рядом с персонажем

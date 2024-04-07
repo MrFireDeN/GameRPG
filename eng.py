@@ -3,7 +3,7 @@ import os
 import settings
 
 from flask import Flask, render_template, url_for, redirect, request, jsonify, flash
-from flask_login import LoginManager, logout_user, login_required, login_user
+from flask_login import LoginManager, logout_user, login_required, login_user, current_user
 
 app = Flask(__name__, template_folder="templates")
 app.config['SECRET_KEY'] = settings.SECRET_KEY

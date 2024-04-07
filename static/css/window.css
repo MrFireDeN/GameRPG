@@ -12,6 +12,10 @@
     padding: 20px;
 }
 
+.message {
+    text-align: justify;
+}
+
 .actions {
     width: 100%;
     height: 60%;

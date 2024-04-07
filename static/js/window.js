@@ -1,4 +1,5 @@
 const GAME_STATUS = ['WALKING', 'FIGHTING', 'TALKING', 'LOOKING']
+const cookieName = 'windowData'
 
 $(document).ready(function(){
     // Функция для обновления данных об окне
@@ -27,8 +28,7 @@ $(document).ready(function(){
             type: 'POST', // Метод запроса
             url: '/attack/', // URL-адрес, на который отправляется запрос
             success: function(response) { // Обработка успешного ответа
-                console.log('Атака выполнена успешно.');
-                addMessage('Атака выполнена успешно.');
+                updateChat(response);
                 updateWindow(); // Обновляем окно
             },
             error: function(xhr, status, error) { // Обработка ошибки запроса
@@ -37,6 +37,19 @@ $(document).ready(function(){
             }
         });
     });
+
+    function updateChat(data)
+    {
+        var name = data.name
+        var player_message = data.player_message
+        var character_message = data.character_message
+
+        console.log('Атака выполнена успешно.');
+        addMessage(player_message);
+        addMessage(character_message);
+
+        // сохранения в cookie
+    }
 
     // Функция для добавления нового сообщения в чат
     function addMessage(message)
@@ -55,66 +68,126 @@ $(document).ready(function(){
         // Прокрутка вниз, чтобы показать новое сообщение
         $chat.scrollTop($chat.prop('scrollHeight'));
     }
-});
 
-// Функция для обновления визуального представления окна
-function updateWindowView(data) {
-    console.log(data.game_status)
+    // Функция для обновления визуального представления окна
+    function updateWindowView(data) {
+        console.log(data.game_status)
 
-    switch (data.game_status) {
-        case GAME_STATUS[0]:
-            break;
-        case GAME_STATUS[1]:
-            if (data.enemy) {
-                // Противник
-                var enemy_name = data.enemy.name;
-                var enemy_max_health = data.enemy.max_health;
-                var enemy_health = data.enemy.health;
-                var enemy_level = data.enemy.level;
-                var enemy_note = data.enemy.note;
-                var enemy_is_alive = data.enemy.is_alive;
+        switch (data.game_status) {
+            case GAME_STATUS[0]:
+                break;
+            case GAME_STATUS[1]:
+                if (data.enemy) {
+                    // Противник
+                    var enemy_name = data.enemy.name;
+                    var enemy_max_health = data.enemy.max_health;
+                    var enemy_health = data.enemy.health;
+                    var enemy_level = data.enemy.level;
+                    var enemy_note = data.enemy.note;
+                    var enemy_is_alive = data.enemy.is_alive;
 
-                var characterHtml = '';
-                // Здесь заменить на реальные картинки
-                // -------------------------------
-                characterHtml += "<img src='../img/" + enemy_name + ".png' alt='Image'>"
-                // -------------------------------
-                characterHtml += "<h2>" + enemy_name + "</h2>"
-                characterHtml += "<p>" + enemy_note + "</p>"
-                characterHtml += "<div class='health-bar'><div class='bar' style='width: " +
-                    (enemy_health/enemy_max_health) * 100 + "%;'></div></div>";
+                    var characterHtml = '';
+                    // Здесь заменить на реальные картинки
+                    // -------------------------------
+                    characterHtml += "<img src='../img/" + enemy_name + ".png' alt='Image'>"
+                    // -------------------------------
+                    characterHtml += "<h2>" + enemy_name + "</h2>"
+                    characterHtml += "<p>" + enemy_note + "</p>"
+                    characterHtml += "<div class='health-bar'><div class='bar' style='width: " +
+                        (enemy_health/enemy_max_health) * 100 + "%;'></div></div>";
 
-                console.log(enemy_health)
-                console.log(enemy_max_health)
+                    console.log(enemy_health)
+                    console.log(enemy_max_health)
 
-                $('.info').html(characterHtml);
-            } else {
-                console.log('ошибка при получении противника')
-            }
+                    $('.info').html(characterHtml);
+                } else {
+                    console.log('ошибка при получении противника')
+                }
 
-            var actionsHtml = '';
+                var actionsHtml = '';
 
-            if (data.player_weapon)
-                actionsHtml += `<a href='#' class='attack-link'>Атаковать ` + data.player_weapon.name + "</a><br>";
-            else
-                actionsHtml += "<a href=`{{url_for('attack')}}`>Атаковать рукой</a><br>";
+                if (data.player_weapon)
+                    actionsHtml += `<a href='#' class='attack-link'>Атаковать ` + data.player_weapon.name + "</a><br>";
+                else
+                    actionsHtml += "<a href=`{{url_for('attack')}}`>Атаковать рукой</a><br>";
 
-            if (data.player_consumable1)
-                actionsHtml += "<a href='/use_consumable'>Использовать " + data.player_consumable1.name + "</a><br>";
-            if (data.player_consumable2)
-                actionsHtml += "<a href='/use_consumable'>Использовать " + data.player_consumable2.name + "</a><br>";
-            if (data.player_consumable3)
-                actionsHtml += "<a href='/use_consumable'>Использовать " + data.player_consumable3.name + "</a><br>";
+                if (data.player_consumable1)
+                    actionsHtml += "<a href='/use_consumable'>Использовать " + data.player_consumable1.name + "</a><br>";
+                if (data.player_consumable2)
+                    actionsHtml += "<a href='/use_consumable'>Использовать " + data.player_consumable2.name + "</a><br>";
+                if (data.player_consumable3)
+                    actionsHtml += "<a href='/use_consumable'>Использовать " + data.player_consumable3.name + "</a><br>";
 
-            $('.actions').html(actionsHtml);
-
-            break;
-        case GAME_STATUS[2]:
-            break;
-        case GAME_STATUS[3]:
-            break;
-        default:
-            console.log("Wrong game_status: " + data.game_status)
-            break;
+                $('.actions').html(actionsHtml);
+                break;
+            case GAME_STATUS[2]:
+                break;
+            case GAME_STATUS[3]:
+                break;
+            default:
+                console.log("Wrong game_status: " + data.game_status)
+                break;
+        }
     }
-}
+
+    function loadFromCookie(name) {
+        // var cookies = document.cookie.split(';');
+        // for (var i = 0; i < cookies.length; i++) {
+        //     var cookie = cookies[i].trim();
+        //     if (cookie.startsWith(name + '=')) {
+        //         return decodeURIComponent(cookie.substring(name.length + 1));
+        //     }
+        // }
+        // return null;
+        //
+        // var cookieData = getCookie(cookieName);
+        //
+        // if (cookieData) {
+        //     try {
+        //         var parsedData = JSON.parse(cookieData);
+        //         if (parsedData.name === name) {
+        //
+        //         } else {
+        //             // Если имя не совпадает, обнуляем cookie
+        //             clearCookie(cookieName);
+        //         }
+        //     } catch (error) {
+        //         console.error('Ошибка при парсинге данных из cookie:', error);
+        //         clearCookie(cookieName);
+        //     }
+        // }
+        // return null;
+    }
+
+    // Функция для сохранения данных в cookie
+    function saveToCookie(name) {
+        // // Выбираем элемент с классом "chat" с помощью jQuery
+        // var $chat = $('.chat');
+        //
+        // // Находим все элементы с классом "message" внутри элемента с классом "chat"
+        // var $messages = $chat.find('.message');
+        //
+        // // Создаем массив для хранения текста сообщений
+        // var messages = [];
+        //
+        // // Проходим по каждому элементу с классом "message"
+        // $messages.each(function() {
+        //     // Получаем текст из текущего элемента и добавляем его в массив
+        //     var messageText = $(this).text();
+        //     messages.push(messageText);
+        // });
+        //
+        // // Создаем строку, объединяя сообщения через символ ";"
+        // var messagesString = messages.join('; ');
+        //
+        // // Экранируем специальные символы в строке сообщений
+        // var encodedMessages = encodeURIComponent(messagesString);
+        //
+        // document.cookie = cookieName + '='  + encodeURIComponent(name) + '=' + encodedMessages;
+    }
+
+    // Функция для удаления cookie
+    function clearCookie(cookieName) {
+        // document.cookie = cookieName + '=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+    }
+});
