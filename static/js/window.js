@@ -1,5 +1,4 @@
 const GAME_STATUS = ['WALKING', 'FIGHTING', 'TALKING', 'LOOKING']
-const cookieName = 'windowData'
 
 $(document).ready(function(){
     // Функция для обновления данных об окне
@@ -45,10 +44,58 @@ $(document).ready(function(){
         var character_message = data.character_message
 
         console.log('Атака выполнена успешно.');
-        addMessage(player_message);
-        addMessage(character_message);
 
-        // сохранения в cookie
+        saveMessages(player_message, character_message)
+    }
+
+    function loadChatHistory(name) {
+        //удалаяем старые сообщения
+        $('.chat').children().remove()
+
+        // Загружаем сохраненные сообщения
+        var loadedMessages = loadMessages(name);
+        loadedMessages.forEach(message => {
+            addMessage(message.player_message)
+            addMessage(message.character_message)
+        })
+    }
+
+    // Функция для сохранения новых сообщений
+    function saveMessages(player_message, character_message) {
+        // Получаем текущий массив сообщений из localStorage
+        var chatMessages = JSON.parse(localStorage.getItem('chatMessages')) || [];
+
+        // Добавляем новые сообщения
+        chatMessages.push({player_message: player_message, character_message: character_message });
+
+        // Сохраняем обновленный массив сообщений
+        localStorage.setItem('chatMessages', JSON.stringify(chatMessages));
+    }
+
+    // Функция для загрузки сохраненных сообщений
+    function loadMessages(name) {
+        // Получаем текущий сохраненный name
+        var savedName = localStorage.getItem('chatName');
+
+        // Если текущее имя не совпадает с сохраненным, обнуляем массив сообщений
+        if (savedName !== name) {
+            localStorage.setItem('chatMessages', JSON.stringify([])); // Обнуляем массив сообщений
+            localStorage.setItem('chatName', name); // Сохраняем новое имя
+        }
+
+        // Получаем массив сообщений из localStorage
+        var chatMessages = JSON.parse(localStorage.getItem('chatMessages')) || [];
+
+        return chatMessages;
+    }
+
+    Storage.prototype.setObject = function(key, value) {
+        this.setItem(key, JSON.stringify(value));
+    }
+
+    Storage.prototype.getObject = function(key) {
+        var value = this.getItem(key);
+        return value && JSON.parse(value);
     }
 
     // Функция для добавления нового сообщения в чат
@@ -85,6 +132,8 @@ $(document).ready(function(){
                     var enemy_level = data.enemy.level;
                     var enemy_note = data.enemy.note;
                     var enemy_is_alive = data.enemy.is_alive;
+
+                    loadChatHistory(enemy_name);
 
                     var characterHtml = '';
                     // Здесь заменить на реальные картинки
@@ -128,66 +177,5 @@ $(document).ready(function(){
                 console.log("Wrong game_status: " + data.game_status)
                 break;
         }
-    }
-
-    function loadFromCookie(name) {
-        // var cookies = document.cookie.split(';');
-        // for (var i = 0; i < cookies.length; i++) {
-        //     var cookie = cookies[i].trim();
-        //     if (cookie.startsWith(name + '=')) {
-        //         return decodeURIComponent(cookie.substring(name.length + 1));
-        //     }
-        // }
-        // return null;
-        //
-        // var cookieData = getCookie(cookieName);
-        //
-        // if (cookieData) {
-        //     try {
-        //         var parsedData = JSON.parse(cookieData);
-        //         if (parsedData.name === name) {
-        //
-        //         } else {
-        //             // Если имя не совпадает, обнуляем cookie
-        //             clearCookie(cookieName);
-        //         }
-        //     } catch (error) {
-        //         console.error('Ошибка при парсинге данных из cookie:', error);
-        //         clearCookie(cookieName);
-        //     }
-        // }
-        // return null;
-    }
-
-    // Функция для сохранения данных в cookie
-    function saveToCookie(name) {
-        // // Выбираем элемент с классом "chat" с помощью jQuery
-        // var $chat = $('.chat');
-        //
-        // // Находим все элементы с классом "message" внутри элемента с классом "chat"
-        // var $messages = $chat.find('.message');
-        //
-        // // Создаем массив для хранения текста сообщений
-        // var messages = [];
-        //
-        // // Проходим по каждому элементу с классом "message"
-        // $messages.each(function() {
-        //     // Получаем текст из текущего элемента и добавляем его в массив
-        //     var messageText = $(this).text();
-        //     messages.push(messageText);
-        // });
-        //
-        // // Создаем строку, объединяя сообщения через символ ";"
-        // var messagesString = messages.join('; ');
-        //
-        // // Экранируем специальные символы в строке сообщений
-        // var encodedMessages = encodeURIComponent(messagesString);
-        //
-        // document.cookie = cookieName + '='  + encodeURIComponent(name) + '=' + encodedMessages;
-    }
-
-    // Функция для удаления cookie
-    function clearCookie(cookieName) {
-        // document.cookie = cookieName + '=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
     }
 });
