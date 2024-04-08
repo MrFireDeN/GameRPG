@@ -21,8 +21,8 @@
                     {% for j in range(10) %}
 
                         <td>
-                            <a href="#">
-                                <img src='../static/img/пусто.png' alt='Image'>
+                            <a href="#" class="item-link" data-index="{{ i*10 + j }}">
+                                <img id="item_{{ i*10 + j }}" src='../static/img/пусто.png' alt='Image'>
                             </a>
                         </td>
 
@@ -44,19 +44,40 @@
             </div>
         </div>
 
+        <h2>Снаряжение</h2>
+
         <table id="equip">
             <tbody>
             <tr>
-                {% for i in range(5) %}
-                    <td>
+                    <td id="weapon">
                     <img src='../static/img/пусто.png' alt='Image'>
-                    <p>Название предмета</p>
+                    <p>Оружие</p>
                     </td>
-                {% endfor %}
+
+                    <td id="armor">
+                    <img src='../static/img/пусто.png' alt='Image'>
+                    <p>Броня</p>
+                    </td>
+
+                    <td id="consumable1">
+                    <img src='../static/img/пусто.png' alt='Image'>
+                    <p>Расходник 1</p>
+                    </td>
+
+                    <td id="consumable2">
+                    <img src='../static/img/пусто.png' alt='Image'>
+                    <p>Расходник 2</p>
+                    </td>
+
+                    <td id="consumable3">
+                    <img src='../static/img/пусто.png' alt='Image'>
+                    <p>Расходник 3</p>
+                    </td>
             </tr>
             </tbody>
         </table>
 
         {%include 'statusbar.htm'%}
+    <script src="../static/js/inventory.js"></script>
 
     {% endblock %}

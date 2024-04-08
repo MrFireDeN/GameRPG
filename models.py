@@ -149,7 +149,7 @@ class ItemData(Base):
         return {
             'name': self.name,
             'level': self.value,
-            'max_health': self.note
+            'note': self.note
         }
 
     def serialize_equipment(self, equipment):

@@ -232,6 +232,43 @@ def game_satus(player):
 
     return GAME_STATUS[0]
 
+
+@app.route('/get-inventory/', methods=['GET'])
+def get_inventory():
+    player = db_session.query(PlayerData).first()
+
+    # Retrieve inventories and items
+    inventories = player.items
+    items = [inventory.item for inventory in inventories]
+
+    # Serialize inventories and items
+    inventories_data = [inventory.serialize() for inventory in inventories]
+    items_data = [item.serialize() for item in items]
+
+    # Prepare response data
+    response_data = {
+        "inventory": inventories_data,
+        "items": items_data,
+        "weapon": player.weapon.serialize() if player.weapon else None,
+        "armor": player.armor.serialize() if player.armor else None,
+        "consumable1": player.consumable1.serialize() if player.consumable1 else None,
+        "consumable2": player.consumable2.serialize() if player.consumable2 else None,
+        "consumable3": player.consumable3.serialize() if player.consumable3 else None
+    }
+
+    return jsonify(response_data)
+
+@app.route('/get-item/', methods=['GET', 'POST'])
+def get_item():
+    player = db_session.query(PlayerData).first()
+
+    if request.method == 'POST':
+        item_index = int(request.form.get('item'))  # Assuming 'item' is an index
+        if 0 <= item_index < len(player.items):
+            return jsonify(player.items[item_index].item.serialize())
+        else:
+            return jsonify({'error': 'Invalid item index'})
+
 @app.route("/register/", methods=['GET', 'POST'])
 def register():
     error = None

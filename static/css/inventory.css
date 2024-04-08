@@ -29,10 +29,14 @@ table {
 }
 
 /* Стили для ячеек снаряжения */
+h2 {
+    margin-top: 1%;
+    margin-bottom: 1%;
+}
+
 #equip {
     width: 80%; /* Занимает всю доступную ширину */
     margin: 0 auto; /* Центрируем таблицу */
-    margin-top: 5%;
     border-collapse: collapse;
 }
 
@@ -62,6 +66,11 @@ table {
     justify-content: space-between;
     align-items: center;
     padding: 20px;
+}
+
+.info img {
+    max-width: 100%;
+    height: auto;
 }
 
 .info p {
