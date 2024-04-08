@@ -153,7 +153,7 @@ $(document).ready(function(){
                     var enemy_is_alive = data.enemy.is_alive;
 
                     var characterHtml = '';
-                    characterHtml += "<img src='../img/" + enemy_name + ".png' alt='Image'>"
+                    characterHtml += "<img src='../img/characters/" + enemy_name + ".png' alt='Image'>"
                     characterHtml += "<h2>" + enemy_name + "</h2>"
                     characterHtml += "<p>" + enemy_note + "</p>"
                     characterHtml += "<div class='health-bar'><div class='bar' style='width: " +
