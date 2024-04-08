@@ -35,10 +35,16 @@
     align-items: center;
     padding: 20px;
 }
+
 .info img {
-    max-width: 100%;
+    max-width: 150px;
     height: auto;
 }
+
+.info h2 {
+    font-size: 120%;
+}
+
 .info h2 {
     margin-top: 0;
 }
