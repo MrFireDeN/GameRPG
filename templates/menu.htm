@@ -1,13 +1,13 @@
 ﻿<nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
-        <a class="navbar-brand" href="{{url_for('main', page_name='/')}}">СУПЕР ДУПЕР ИГРА</a>
+        <a class="navbar-brand" href="{{url_for('main', page_name='/')}}">Милосердие Павших</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link" href="{{url_for('main', page_name='field')}}">Поле</a>
+                    <a class="nav-link" aria-current="page" href="{{url_for('main', page_name='field')}}">Поле</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{url_for('main', page_name='window')}}">Окно</a>
@@ -15,23 +15,26 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{url_for('main', page_name='inventory')}}">Инвентарь</a>
                 </li>
-                {% if current_user.is_authenticated %}
+            </ul>
+            {% if current_user.is_authenticated %}
+            <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a class="nav-link disabled" href="#">{{ current_user.login }}</a>
+                    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">{{ current_user.login }}</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ url_for('logout') }}">Выход</a>
                 </li>
-                {% else %}
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{url_for('main', page_name='register')}}">Регистрация</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{url_for('main', page_name='login')}}">Вход</a>
-                    </li>
-                </ul>
-                {% endif %}
+            </ul>
+            {% else %}
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{url_for('main', page_name='register')}}">Регистрация</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{url_for('main', page_name='login')}}">Вход</a>
+                </li>
+            </ul>
+            {% endif %}
         </div>
     </div>
 </nav>
