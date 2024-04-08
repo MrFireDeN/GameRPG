@@ -119,9 +119,28 @@ $(document).ready(function(){
     // Функция для обновления визуального представления окна
     function updateWindowView(data) {
         console.log(data.game_status)
+        loadChatHistory(data.name);
 
         switch (data.game_status) {
             case GAME_STATUS[0]:
+                if (data.name && data.note) {
+                    var levelHtml = '';
+                    //levelHtml += "<img src='../img/" + data.name + ".png' alt='Image'>"
+                    levelHtml += "<h2>" + data.name + "</h2>"
+                    levelHtml += "<p>" + data.note + "</p>"
+
+                    $('.info').html(levelHtml);
+                }
+                else {
+                    console.log('ошибка при получении уровня');
+                }
+
+                var actionsHtml = '';
+
+                actionsHtml += "<a href=`{{url_for('look')}}`>Осмотреть</a><br>"
+
+                $('.actions').html(actionsHtml);
+
                 break;
             case GAME_STATUS[1]:
                 if (data.enemy) {
@@ -133,24 +152,19 @@ $(document).ready(function(){
                     var enemy_note = data.enemy.note;
                     var enemy_is_alive = data.enemy.is_alive;
 
-                    loadChatHistory(enemy_name);
-
                     var characterHtml = '';
-                    // Здесь заменить на реальные картинки
-                    // -------------------------------
                     characterHtml += "<img src='../img/" + enemy_name + ".png' alt='Image'>"
-                    // -------------------------------
                     characterHtml += "<h2>" + enemy_name + "</h2>"
                     characterHtml += "<p>" + enemy_note + "</p>"
                     characterHtml += "<div class='health-bar'><div class='bar' style='width: " +
                         (enemy_health/enemy_max_health) * 100 + "%;'></div></div>";
 
-                    console.log(enemy_health)
-                    console.log(enemy_max_health)
+                    console.log(enemy_health);
+                    console.log(enemy_max_health);
 
                     $('.info').html(characterHtml);
                 } else {
-                    console.log('ошибка при получении противника')
+                    console.log('ошибка при получении противника');
                 }
 
                 var actionsHtml = '';

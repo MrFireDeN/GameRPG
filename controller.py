@@ -132,7 +132,7 @@ def get_window():
     game_status = game_satus(player)
 
     if game_status == GAME_STATUS[0]:
-        return jsonify('')
+        return walking_info(player)
     if game_status == GAME_STATUS[1]:
         return dialog_info(player)
     if game_status == GAME_STATUS[2]:
@@ -143,7 +143,17 @@ def get_window():
     return jsonify('')
 
 def walking_info(player):
-    pass
+    level = 'Природа'
+    level_note = 'Кароче очь красиво, мамой клянусб'
+
+    walking_data = {
+        'game_status': GAME_STATUS[0],
+        'player': player.serialize(),
+        'note': level_note if level_note else None,
+        'name': level if level else None
+    }
+
+    return jsonify(walking_data)
 
 def dialog_info(player):
     enemy = (db_session.query(CharacterData).filter(CharacterData.player_id == player.id).
@@ -157,7 +167,8 @@ def dialog_info(player):
         'player_consumable1': player.consumable1.serialize() if player.consumable1 else None,
         'player_consumable2': player.consumable2.serialize() if player.consumable2 else None,
         'player_consumable3': player.consumable3.serialize() if player.consumable3 else None,
-        'enemy': enemy.serialize() if enemy else None
+        'enemy': enemy.serialize() if enemy else None,
+        'name': enemy.persona.name if enemy else None
     }
 
     return jsonify(window_data)
