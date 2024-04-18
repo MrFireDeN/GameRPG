@@ -1,20 +1,20 @@
-<mxfile host="app.diagrams.net" modified="2024-04-18T07:23:43.437Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36" version="24.0.7" etag="Ijo22viCbPik8ExIGs_F" type="github">
+<mxfile host="app.diagrams.net" modified="2024-04-18T07:32:53.767Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36" version="24.0.7" etag="v2f2T9fq56F7x2dF0fey" type="github">
   <diagram id="f685UhNyy9ZdbpdK8Kp1" name="Страница — 1">
-    <mxGraphModel dx="1947" dy="1390" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="827" pageHeight="1169" background="none" math="0" shadow="0">
+    <mxGraphModel dx="2487" dy="2068" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="827" pageHeight="1169" background="none" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
         <mxCell id="node0" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;Actor&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;# transform: Transform&lt;br&gt;# name: String&lt;br&gt;# equip:&amp;nbsp;Equipment&lt;br&gt;# max_health: int&lt;br&gt;# isAlive: bool&lt;br&gt;# level: int&lt;br&gt;# ep: int&lt;br&gt;# items: Inventory&lt;br&gt;# health: int&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;- init (name: str = &#39;&#39;, level: int = 0, isAlive: bool = True, transform: Transform = Transform(0, 0)): &lt;br&gt;+ takeDamage(damage: int): void&lt;br&gt;+ calculateGainedEP(player_level: int, monster_level: int): void&lt;br&gt;+ gainExperience(ep: int = 0): void&lt;br&gt;- levelUp(): int&lt;br&gt;+ info(): void&lt;br&gt;+ isAlive(): bool&lt;br&gt;+ moveXY(x: int, y: int): void&lt;br&gt;+ heal(amount: int): void&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=14;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;" parent="1" vertex="1">
           <mxGeometry x="-546" y="-650" width="321" height="460" as="geometry" />
         </mxCell>
-        <mxCell id="node7" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;Armor&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;- defence: &lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;- init(name: str, level: int = 0, value: int = 0,&lt;/p&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;&amp;nbsp;transform: Transform = Transform(0, 0),&amp;nbsp;&lt;/p&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;&amp;nbsp;slash: int = 0, pierce: int = 0, blunt: int = 0,&amp;nbsp;&lt;/p&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;&amp;nbsp;fire: int = 0, ice: int = 0, poison: int = 0,&amp;nbsp;&lt;/p&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;&amp;nbsp;electric: int = 0): Armor&lt;br&gt; defence(): void&lt;br&gt; level(): int&lt;br&gt; getInfo(): string&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=14;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;" parent="1" vertex="1">
-          <mxGeometry x="790" y="-127.5" width="290" height="210" as="geometry" />
+        <mxCell id="node7" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;Armor&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;- defence: &lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;- init(name: str, level: int = 0, value: int = 0,&lt;/p&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;&amp;nbsp;transform: Transform = Transform(0, 0),&amp;nbsp;&lt;/p&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;&amp;nbsp;slash: int = 0, pierce: int = 0, blunt: int = 0,&amp;nbsp;&lt;/p&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;&amp;nbsp;fire: int = 0, ice: int = 0, poison: int = 0,&amp;nbsp;&lt;/p&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;&amp;nbsp;electric: int = 0): Armor&lt;br&gt;+ defence(): void&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=14;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;" parent="1" vertex="1">
+          <mxGeometry x="520" y="-710" width="290" height="216.5" as="geometry" />
         </mxCell>
         <mxCell id="node1" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;static.py.Battle.Battle&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt; __winner: &lt;br/&gt; __enemy: &lt;br/&gt; __player: &lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt; __init__(self, player: Player, enemy: Enemy): &lt;br/&gt; start_battle(self): &lt;br/&gt; __player_turn(self): &lt;br/&gt; __enemies_turn(self): &lt;br/&gt; __is_battle_over(self): &lt;br/&gt; __display_battle_result(self): &lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=14;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;" parent="1" vertex="1">
           <mxGeometry x="1470" y="-620" width="259" height="231" as="geometry" />
         </mxCell>
         <mxCell id="node4" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;Damage&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;- ice: &lt;br&gt;- pierce: &lt;br&gt;- electric: &lt;br&gt;- blunt: &lt;br&gt;- poison: &lt;br&gt;- slash: &lt;br&gt;- fire: &lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;- init(slash: int = 0, pierce: int = 0, blunt: int = 0,&amp;nbsp;&lt;/p&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;&amp;nbsp;fire: int = 0, ice: int = 0, poison: int = 0,&amp;nbsp;&lt;/p&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;electric: int = 0): Damage&lt;br&gt;+ calculate_damage(weapon_damage: &#39;Damage&#39;,&amp;nbsp;&lt;/p&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;weapon_level: int, armor_defence: &#39;Damage&#39;,&amp;nbsp;&lt;/p&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;armor_level: int): int&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=14;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;" parent="1" vertex="1">
-          <mxGeometry x="820" y="-700" width="356" height="350" as="geometry" />
+          <mxGeometry x="680" y="-410" width="356" height="350" as="geometry" />
         </mxCell>
         <mxCell id="node8" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;Equipment&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;# consumables: Consumables&lt;br&gt;# weapon: Weapon&lt;br&gt;# armor: Armor&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;- init (): Equipment&lt;br&gt;+ equip_weapon(weapon: Weapon): void&lt;br&gt;+ unequip_weapon(): void&lt;br&gt;+ equip_armor(armor: Armor): void&lt;br&gt;+ unequip_armor(): void&lt;br&gt;+ add_item(item: Consumable): void&lt;br&gt;+ use_item(item: int): void&lt;br&gt;- remove_item(item: Consumable): void&lt;br&gt; info(self): string&lt;br&gt; armor(self): &lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=14;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;" parent="1" vertex="1">
           <mxGeometry x="-17" y="-700" width="317" height="319" as="geometry" />
@@ -23,65 +23,65 @@
           <mxGeometry x="4" y="-340" width="222" height="187" as="geometry" />
         </mxCell>
         <mxCell id="node12" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;Bomb&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;- damage: &lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;- init(name: str = &quot;Бомба&quot;, level: int = 1, value: int = 100,&amp;nbsp;&lt;/p&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;&amp;nbsp;transfrom: Transform = Transform(0, 0),&amp;nbsp;&lt;/p&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;damage: Damage = Damage(fire=5)): Bomb&lt;br&gt;+ use(target: Actor): void&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=14;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;" parent="1" vertex="1">
-          <mxGeometry x="590" y="120" width="360" height="166" as="geometry" />
+          <mxGeometry x="550" y="263" width="360" height="166" as="geometry" />
         </mxCell>
         <mxCell id="node10" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;Consumable&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;- init(name: str, level: int = 0, value: int = 0,&amp;nbsp;&lt;/p&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;&amp;nbsp;transfrom: Transform = Transform(0, 0)):&amp;nbsp;Consumable&lt;br&gt;+ use(target: Actor): &lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=14;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;" parent="1" vertex="1">
-          <mxGeometry x="410" y="-93" width="310" height="113" as="geometry" />
+          <mxGeometry x="362" y="10" width="310" height="113" as="geometry" />
         </mxCell>
         <mxCell id="node11" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;HealthPotion&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;- init(level: int = 1, value: int = 50,&amp;nbsp;&lt;/p&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;&amp;nbsp;transfrom: Transform = Transform(0, 0)): HealthPotion&lt;/p&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;+ use(target: Actor): void&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=14;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;" parent="1" vertex="1">
-          <mxGeometry x="270" y="94" width="295" height="112" as="geometry" />
+          <mxGeometry x="190" y="270" width="295" height="112" as="geometry" />
         </mxCell>
         <mxCell id="node9" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;Item&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;# name: string&lt;br&gt;# level: int&lt;br&gt;# value: int&lt;br&gt;# transfrom: Transform&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;- init(name: str, level: int = 0, value: int = 0,&amp;nbsp;&lt;/p&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;&amp;nbsp;transfrom: Transform = Transform(0, 0)): Item&lt;br&gt;+ getName(): string&amp;nbsp;&amp;nbsp;&lt;br&gt;+ getInfo(): string&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=14;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;" parent="1" vertex="1">
-          <mxGeometry x="471" y="-590" width="294" height="240" as="geometry" />
+          <mxGeometry x="370" y="-300" width="294" height="240" as="geometry" />
         </mxCell>
         <mxCell id="node13" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;Transform&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;- x: int&lt;br&gt;- y: int&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;- init(x: int, y: int):&amp;nbsp;&lt;span style=&quot;background-color: initial;&quot;&gt;Transform&lt;/span&gt;&lt;/p&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;+ getX(): int&lt;br&gt;+ setX(x: int): void&lt;br&gt;+ getY(): int&lt;br&gt;+ setY(y: int): void&lt;br&gt; distance(other: &#39;Transform&#39;): void&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=14;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;" parent="1" vertex="1">
           <mxGeometry x="-4" y="-105" width="230" height="298" as="geometry" />
         </mxCell>
-        <mxCell id="node5" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;Weapon&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;- damage: &lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt; __init__(self, name: str, level: int = 0, value: int = 0,                  transform: Transform = Transform(0, 0),                  slash: int = 0, pierce: int = 0, blunt: int = 0,                  fire: int = 0, ice: int = 0, poison: int = 0, electric: int = 0): &lt;br&gt; damage(self): &lt;br&gt; level(self): &lt;br&gt; getInfo(self): &lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=14;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;" parent="1" vertex="1">
-          <mxGeometry x="1092" y="-105" width="269" height="165" as="geometry" />
+        <mxCell id="node5" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;Weapon&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;- damage: &lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;- init(name: str, level: int = 0, value: int = 0,&amp;nbsp;&lt;/p&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;&amp;nbsp;transform: Transform = Transform(0, 0),&amp;nbsp;&lt;/p&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;&amp;nbsp;slash: int = 0, pierce: int = 0, blunt: int = 0,&amp;nbsp;&lt;/p&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;&amp;nbsp;fire: int = 0, ice: int = 0, poison: int = 0,&amp;nbsp;&lt;/p&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;electric: int = 0): Weapon&lt;br&gt;+ damage(): void&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=14;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;" parent="1" vertex="1">
+          <mxGeometry x="890" y="-700" width="280" height="216.5" as="geometry" />
         </mxCell>
-        <mxCell id="edge3" value="" style="html=1;rounded=1;edgeStyle=orthogonalEdgeStyle;dashed=0;startArrow=block;startSize=12;endArrow=none;strokeColor=#595959;exitX=0.75;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" parent="1" source="node7" target="node4" edge="1">
+        <mxCell id="edge3" value="" style="html=1;rounded=1;edgeStyle=orthogonalEdgeStyle;dashed=0;startArrow=block;startSize=12;endArrow=none;strokeColor=#595959;entryX=0.5;entryY=0;entryDx=0;entryDy=0;exitX=0.75;exitY=1;exitDx=0;exitDy=0;" parent="1" source="node7" edge="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
             <Array as="points">
-              <mxPoint x="967" y="-171" />
-              <mxPoint x="1000" y="-171" />
-              <mxPoint x="1000" y="-350" />
+              <mxPoint x="737" y="-430" />
+              <mxPoint x="838" y="-430" />
             </Array>
-            <mxPoint x="1195" y="-224" as="targetPoint" />
+            <mxPoint x="710" y="-440" as="sourcePoint" />
+            <mxPoint x="838" y="-400" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="edge5" value="" style="html=1;rounded=1;edgeStyle=orthogonalEdgeStyle;dashed=0;startArrow=block;startSize=12;endArrow=none;strokeColor=#595959;exitX=0.25;exitY=0;exitDx=0;exitDy=0;entryX=0.500;entryY=1.000;entryDx=0;entryDy=0;" parent="1" source="node7" target="node9" edge="1">
+        <mxCell id="edge5" value="" style="html=1;rounded=1;edgeStyle=orthogonalEdgeStyle;dashed=0;startArrow=block;startSize=12;endArrow=none;strokeColor=#595959;exitX=0.25;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="node7" target="node9" edge="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
             <Array as="points">
-              <mxPoint x="832" y="-180" />
-              <mxPoint x="618" y="-180" />
+              <mxPoint x="593" y="-440" />
+              <mxPoint x="517" y="-440" />
             </Array>
           </mxGeometry>
         </mxCell>
         <mxCell id="edge8" value="" style="html=1;rounded=1;edgeStyle=orthogonalEdgeStyle;dashed=0;startArrow=block;startSize=12;endArrow=none;strokeColor=#595959;exitX=0.500;exitY=0.000;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" parent="1" source="node12" target="node10" edge="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
             <Array as="points">
-              <mxPoint x="770" y="50" />
-              <mxPoint x="565" y="50" />
+              <mxPoint x="730" y="190" />
+              <mxPoint x="517" y="190" />
             </Array>
-            <mxPoint x="798" y="76" as="targetPoint" />
+            <mxPoint x="638" y="456" as="targetPoint" />
           </mxGeometry>
         </mxCell>
         <mxCell id="edge6" value="" style="html=1;rounded=1;edgeStyle=orthogonalEdgeStyle;dashed=0;startArrow=block;startSize=12;endArrow=none;strokeColor=#595959;exitX=0.500;exitY=0.000;exitDx=0;exitDy=0;entryX=0.500;entryY=1.000;entryDx=0;entryDy=0;" parent="1" source="node10" target="node9" edge="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
             <Array as="points">
-              <mxPoint x="557" y="-180" />
-              <mxPoint x="618" y="-180" />
+              <mxPoint x="517" y="10" />
+              <mxPoint x="517" y="10" />
             </Array>
           </mxGeometry>
         </mxCell>
         <mxCell id="edge7" value="" style="html=1;rounded=1;edgeStyle=orthogonalEdgeStyle;dashed=0;startArrow=block;startSize=12;endArrow=none;strokeColor=#595959;exitX=0.500;exitY=0.000;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" parent="1" source="node11" target="node10" edge="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
             <Array as="points">
-              <mxPoint x="418" y="50" />
-              <mxPoint x="565" y="50" />
+              <mxPoint x="337" y="190" />
+              <mxPoint x="517" y="190" />
             </Array>
-            <mxPoint x="798" y="76" as="targetPoint" />
+            <mxPoint x="638" y="456" as="targetPoint" />
           </mxGeometry>
         </mxCell>
         <mxCell id="edge0" value="" style="html=1;rounded=1;edgeStyle=orthogonalEdgeStyle;dashed=0;startArrow=block;startSize=12;endArrow=none;strokeColor=#595959;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" parent="1" source="8WZF-T2sYhvgGJxaZhB4-11" target="node0" edge="1">
@@ -91,22 +91,24 @@
             <mxPoint x="-385.5" y="-169" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="edge2" value="" style="html=1;rounded=1;edgeStyle=orthogonalEdgeStyle;dashed=0;startArrow=block;startSize=12;endArrow=none;strokeColor=#595959;exitX=0.556;exitY=0.000;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" parent="1" source="node5" target="node4" edge="1">
+        <mxCell id="edge2" value="" style="html=1;rounded=1;edgeStyle=orthogonalEdgeStyle;dashed=0;startArrow=block;startSize=12;endArrow=none;strokeColor=#595959;exitX=0.75;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="node5" target="node4" edge="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
             <Array as="points">
-              <mxPoint x="1242" y="-171" />
-              <mxPoint x="1000" y="-171" />
-              <mxPoint x="1000" y="-350" />
+              <mxPoint x="1100" y="-430" />
+              <mxPoint x="858" y="-430" />
             </Array>
-            <mxPoint x="1195" y="-224" as="targetPoint" />
+            <mxPoint x="1035" y="156" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="edge4" value="" style="html=1;rounded=1;edgeStyle=orthogonalEdgeStyle;dashed=0;startArrow=block;startSize=12;endArrow=none;strokeColor=#595959;exitX=0.500;exitY=0.000;exitDx=0;exitDy=0;entryX=0.500;entryY=1.000;entryDx=0;entryDy=0;" parent="1" source="node5" target="node9" edge="1">
+        <mxCell id="edge4" value="" style="html=1;rounded=1;edgeStyle=orthogonalEdgeStyle;dashed=0;startArrow=block;startSize=12;endArrow=none;strokeColor=#595959;entryX=0.5;entryY=0;entryDx=0;entryDy=0;exitX=0.25;exitY=1;exitDx=0;exitDy=0;" parent="1" source="node5" target="node9" edge="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
             <Array as="points">
-              <mxPoint x="1227" y="-140" />
-              <mxPoint x="618" y="-140" />
+              <mxPoint x="960" y="-450" />
+              <mxPoint x="600" y="-450" />
+              <mxPoint x="600" y="-360" />
+              <mxPoint x="517" y="-360" />
             </Array>
+            <mxPoint x="960" y="-460" as="sourcePoint" />
           </mxGeometry>
         </mxCell>
         <mxCell id="8WZF-T2sYhvgGJxaZhB4-11" value="&lt;b style=&quot;font-size: 14px; text-wrap: nowrap;&quot;&gt;Player&lt;/b&gt;" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
@@ -169,6 +171,53 @@
         </mxCell>
         <mxCell id="8WZF-T2sYhvgGJxaZhB4-24" value="transform" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="8WZF-T2sYhvgGJxaZhB4-23">
           <mxGeometry x="0.8058" y="-2" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="8WZF-T2sYhvgGJxaZhB4-27" value="arr" style="endArrow=open;html=1;endSize=12;startArrow=diamondThin;startSize=14;startFill=1;edgeStyle=orthogonalEdgeStyle;align=left;verticalAlign=bottom;rounded=0;exitX=1;exitY=0.25;exitDx=0;exitDy=0;" edge="1" parent="1" source="node6" target="node9">
+          <mxGeometry x="-1" y="3" relative="1" as="geometry">
+            <mxPoint x="260" y="-10" as="sourcePoint" />
+            <mxPoint x="420" y="-10" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="270" y="-293" />
+              <mxPoint x="270" y="-180" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="8WZF-T2sYhvgGJxaZhB4-28" value="items" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="8WZF-T2sYhvgGJxaZhB4-27">
+          <mxGeometry x="0.619" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="8WZF-T2sYhvgGJxaZhB4-29" value="1" style="endArrow=open;html=1;endSize=12;startArrow=diamondThin;startSize=14;startFill=1;edgeStyle=orthogonalEdgeStyle;align=left;verticalAlign=bottom;rounded=0;exitX=1;exitY=0.25;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="node8" target="node7">
+          <mxGeometry x="-1" y="3" relative="1" as="geometry">
+            <mxPoint x="460" y="-780" as="sourcePoint" />
+            <mxPoint x="620" y="-780" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="410" y="-620" />
+              <mxPoint x="410" y="-750" />
+              <mxPoint x="665" y="-750" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="8WZF-T2sYhvgGJxaZhB4-31" value="armor" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="8WZF-T2sYhvgGJxaZhB4-29">
+          <mxGeometry x="0.3792" y="1" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="8WZF-T2sYhvgGJxaZhB4-30" value="1" style="endArrow=open;html=1;endSize=12;startArrow=diamondThin;startSize=14;startFill=1;edgeStyle=orthogonalEdgeStyle;align=left;verticalAlign=bottom;rounded=0;exitX=1.013;exitY=0.172;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" target="node5">
+          <mxGeometry x="-1" y="3" relative="1" as="geometry">
+            <mxPoint x="300.0010000000001" y="-650.032" as="sourcePoint" />
+            <mxPoint x="1025.88" y="-704.9" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="356" y="-650" />
+              <mxPoint x="356" y="-795" />
+              <mxPoint x="1030" y="-795" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="8WZF-T2sYhvgGJxaZhB4-32" value="weapon" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="8WZF-T2sYhvgGJxaZhB4-30">
+          <mxGeometry x="-0.1676" y="-2" relative="1" as="geometry">
             <mxPoint as="offset" />
           </mxGeometry>
         </mxCell>
