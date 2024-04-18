@@ -1,120 +1,176 @@
-<mxGraphModel dx="0" dy="0" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" background="none" math="0" shadow="0">
-  <root>
-    <mxCell id="0" />
-    <mxCell id="1" parent="0" />
-    <mxCell id="node0" parent="1" vertex="1" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;static.py.Actor.Actor&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt; _transform: &lt;br/&gt; _name: &lt;br/&gt; equip: &lt;br/&gt; _max_health: &lt;br/&gt; _isAlive: &lt;br/&gt; _level: &lt;br/&gt; _ep: &lt;br/&gt; _items: &lt;br/&gt; _health: &lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt; __init__(self, name: str = &amp;#39;&amp;#39;, level: int = 0, isAlive: bool = True, transform: Transform = Transform(0, 0)): &lt;br/&gt; takeDamage(self, damage: int): &lt;br/&gt; calculateGainedEP(player_level: int, monster_level: int): &lt;br/&gt; gainExperience(self, ep: int = 0): &lt;br/&gt; __levelUp(self): &lt;br/&gt; info(self): &lt;br/&gt; __isAlive(self): &lt;br/&gt; moveXY(self, x: int, y: int): &lt;br/&gt; heal(self, amount: int): &lt;br/&gt; name(self): &lt;br/&gt; level(self): &lt;br/&gt; health(self): &lt;br/&gt; max_health(self): &lt;br/&gt; armor(self): &lt;br/&gt; is_alive(self): &lt;br/&gt; __del__(self): &lt;br/&gt; __add__(self, other): &lt;br/&gt; __iadd__(self, other): &lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=14;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;">
-      <mxGeometry x="16" y="677" width="321" height="627" as="geometry" />
-    </mxCell>
-    <mxCell id="node7" parent="1" vertex="1" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;static.py.Armor.Armor&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt; _defence: &lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt; __init__(self, name: str, level: int = 0, value: int = 0,                  transform: Transform = Transform(0, 0),                  slash: int = 0, pierce: int = 0, blunt: int = 0,                  fire: int = 0, ice: int = 0, poison: int = 0, electric: int = 0): &lt;br/&gt; defence(self): &lt;br/&gt; level(self): &lt;br/&gt; getInfo(self): &lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=14;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;">
-      <mxGeometry x="372" y="339" width="269" height="143" as="geometry" />
-    </mxCell>
-    <mxCell id="node1" parent="1" vertex="1" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;static.py.Battle.Battle&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt; __winner: &lt;br/&gt; __enemy: &lt;br/&gt; __player: &lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt; __init__(self, player: Player, enemy: Enemy): &lt;br/&gt; start_battle(self): &lt;br/&gt; __player_turn(self): &lt;br/&gt; __enemies_turn(self): &lt;br/&gt; __is_battle_over(self): &lt;br/&gt; __display_battle_result(self): &lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=14;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;">
-      <mxGeometry x="1109" y="677" width="259" height="231" as="geometry" />
-    </mxCell>
-    <mxCell id="node4" parent="1" vertex="1" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;static.py.Damage.Damage&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt; _ice: &lt;br/&gt; _pierce: &lt;br/&gt; _electric: &lt;br/&gt; _blunt: &lt;br/&gt; _poison: &lt;br/&gt; _slash: &lt;br/&gt; _fire: &lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt; __init__(self, slash: int = 0, pierce: int = 0, blunt: int = 0,                  fire: int = 0, ice: int = 0, poison: int = 0, electric: int = 0): &lt;br/&gt; calculate_damage(weapon_damage: &amp;#39;Damage&amp;#39;, weapon_level: int, armor_defence: &amp;#39;Damage&amp;#39;, armor_level: int): &lt;br/&gt; slash(self): &lt;br/&gt; slash(self, value): &lt;br/&gt; pierce(self): &lt;br/&gt; pierce(self, value): &lt;br/&gt; blunt(self): &lt;br/&gt; blunt(self, value): &lt;br/&gt; fire(self): &lt;br/&gt; fire(self, value): &lt;br/&gt; ice(self): &lt;br/&gt; ice(self, value): &lt;br/&gt; poison(self): &lt;br/&gt; poison(self, value): &lt;br/&gt; electric(self): &lt;br/&gt; electric(self, value): &lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=14;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;">
-      <mxGeometry x="630" y="-270" width="356" height="539" as="geometry" />
-    </mxCell>
-    <mxCell id="node3" parent="1" vertex="1" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;static.py.Enemy.Enemy&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt; __init__(self, name: str = &amp;#39;&amp;#39;, level: int = 0, isAlive: bool = True, transform: Transform = Transform(0, 0)): &lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=14;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;">
-      <mxGeometry x="186" y="1354" width="314" height="58" as="geometry" />
-    </mxCell>
-    <mxCell id="node8" parent="1" vertex="1" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;static.py.Equipment.Equipment&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt; _consumables: &lt;br/&gt; _weapon: &lt;br/&gt; _armor: &lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt; __init__(self): &lt;br/&gt; equip_weapon(self, weapon: Weapon): &lt;br/&gt; unequip_weapon(self): &lt;br/&gt; equip_armor(self, armor: Armor): &lt;br/&gt; unequip_armor(self): &lt;br/&gt; add_item(self, item: Consumable): &lt;br/&gt; use_item(self, item: int): &lt;br/&gt; __remove_item(self, item: Consumable): &lt;br/&gt; info(self): &lt;br/&gt; armor(self): &lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=14;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;">
-      <mxGeometry x="545" y="677" width="244" height="319" as="geometry" />
-    </mxCell>
-    <mxCell id="node6" parent="1" vertex="1" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;static.py.Inventory.Inventory&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt; _capacity: &lt;br/&gt; _items: &lt;br/&gt; __CAPACITY: &lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt; __init__(self, capacity=__CAPACITY): &lt;br/&gt; add_item(self, item: Item): &lt;br/&gt; remove_item(self, item: Item): &lt;br/&gt; display_inventory(self): &lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=14;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;">
-      <mxGeometry x="556" y="1021" width="222" height="187" as="geometry" />
-    </mxCell>
-    <mxCell id="node12" parent="1" vertex="1" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;static.py.Item.Bomb&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt; _damage: &lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt; __init__(self, name: str = &amp;quot;Бомба&amp;quot;, level: int = 1, value: int = 100,                  transfrom: Transform = Transform(0, 0), damage: Damage = Damage(fire=5)): &lt;br/&gt; use(self, target: Actor): &lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=14;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;">
-      <mxGeometry x="167" y="532" width="313" height="108" as="geometry" />
-    </mxCell>
-    <mxCell id="node10" parent="1" vertex="1" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;static.py.Item.Consumable&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt; __init__(self,  name: str, level: int = 0, value: int = 0,                  transfrom: Transform = Transform(0, 0)): &lt;br/&gt; use(self, target: Actor): &lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=14;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;">
-      <mxGeometry x="53" y="373" width="294" height="82" as="geometry" />
-    </mxCell>
-    <mxCell id="node11" parent="1" vertex="1" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;static.py.Item.HealthPotion&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt; __init__(self, level: int = 1, value: int = 50,                  transfrom: Transform = Transform(0, 0)): &lt;br/&gt; use(self, target: Actor): &lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=14;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;">
-      <mxGeometry x="-148" y="544" width="295" height="82" as="geometry" />
-    </mxCell>
-    <mxCell id="node9" parent="1" vertex="1" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;static.py.Item.Item&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt; _name: &lt;br/&gt; _level: &lt;br/&gt; _value: &lt;br/&gt; _transfrom: &lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt; __init__(self,  name: str, level: int = 0, value: int = 0,                  transfrom: Transform = Transform(0, 0)): &lt;br/&gt; name(self): &lt;br/&gt; getInfo(self): &lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=14;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;">
-      <mxGeometry x="316" y="-94" width="294" height="187" as="geometry" />
-    </mxCell>
-    <mxCell id="node2" parent="1" vertex="1" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;static.py.Player.Player&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt; __init__(self, name: str = &amp;#39;&amp;#39;, level: int = 0, isAlive: bool = True, transform: Transform = Transform(0, 0)): &lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=14;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;">
-      <mxGeometry x="-148" y="1354" width="314" height="58" as="geometry" />
-    </mxCell>
-    <mxCell id="node13" parent="1" vertex="1" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;static.py.Transform.Transform&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt; _x: &lt;br/&gt; _y: &lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt; __init__(self, x: int, y: int): &lt;br/&gt; x(self): &lt;br/&gt; x(self, x: int): &lt;br/&gt; y(self): &lt;br/&gt; x(self, y: int): &lt;br/&gt; distance(self, other: &amp;#39;Transform&amp;#39;): &lt;br/&gt; __add__(self, other: &amp;#39;Transform&amp;#39;): &lt;br/&gt; __sub__(self, other: &amp;#39;Transform&amp;#39;): &lt;br/&gt; __iadd__(self, other: &amp;#39;Transform&amp;#39;): &lt;br/&gt; __isub__(self, other: &amp;#39;Transform&amp;#39;): &lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=14;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;">
-      <mxGeometry x="558" y="1232" width="230" height="298" as="geometry" />
-    </mxCell>
-    <mxCell id="node5" parent="1" vertex="1" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;static.py.Weapon.Weapon&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt; _damage: &lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt; __init__(self, name: str, level: int = 0, value: int = 0,                  transform: Transform = Transform(0, 0),                  slash: int = 0, pierce: int = 0, blunt: int = 0,                  fire: int = 0, ice: int = 0, poison: int = 0, electric: int = 0): &lt;br/&gt; damage(self): &lt;br/&gt; level(self): &lt;br/&gt; getInfo(self): &lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=14;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;">
-      <mxGeometry x="705" y="339" width="269" height="143" as="geometry" />
-    </mxCell>
-    <mxCell id="edge3" edge="1" value="" parent="1" source="node7" target="node4" style="html=1;rounded=1;edgeStyle=orthogonalEdgeStyle;dashed=0;startArrow=block;startSize=12;endArrow=none;strokeColor=#595959;exitX=0.444;exitY=0.000;exitDx=0;exitDy=0;entryX=0.500;entryY=1.000;entryDx=0;entryDy=0;">
-      <mxGeometry width="50" height="50" relative="1" as="geometry">
-        <Array as="points">
-          <mxPoint x="491" y="322" />
-          <mxPoint x="808" y="322" />
-        </Array>
-      </mxGeometry>
-    </mxCell>
-    <mxCell id="edge5" edge="1" value="" parent="1" source="node7" target="node9" style="html=1;rounded=1;edgeStyle=orthogonalEdgeStyle;dashed=0;startArrow=block;startSize=12;endArrow=none;strokeColor=#595959;exitX=0.500;exitY=0.000;exitDx=0;exitDy=0;entryX=0.500;entryY=1.000;entryDx=0;entryDy=0;">
-      <mxGeometry width="50" height="50" relative="1" as="geometry">
-        <Array as="points">
-          <mxPoint x="506" y="304" />
-          <mxPoint x="463" y="304" />
-        </Array>
-      </mxGeometry>
-    </mxCell>
-    <mxCell id="edge1" edge="1" value="" parent="1" source="node3" target="node0" style="html=1;rounded=1;edgeStyle=orthogonalEdgeStyle;dashed=0;startArrow=block;startSize=12;endArrow=none;strokeColor=#595959;exitX=0.500;exitY=0.001;exitDx=0;exitDy=0;entryX=0.500;entryY=1.000;entryDx=0;entryDy=0;">
-      <mxGeometry width="50" height="50" relative="1" as="geometry">
-        <Array as="points">
-          <mxPoint x="343" y="1329" />
-          <mxPoint x="176" y="1329" />
-        </Array>
-      </mxGeometry>
-    </mxCell>
-    <mxCell id="edge8" edge="1" value="" parent="1" source="node12" target="node10" style="html=1;rounded=1;edgeStyle=orthogonalEdgeStyle;dashed=0;startArrow=block;startSize=12;endArrow=none;strokeColor=#595959;exitX=0.500;exitY=0.000;exitDx=0;exitDy=0;entryX=0.500;entryY=1.000;entryDx=0;entryDy=0;">
-      <mxGeometry width="50" height="50" relative="1" as="geometry">
-        <Array as="points">
-          <mxPoint x="324" y="507" />
-          <mxPoint x="200" y="507" />
-        </Array>
-      </mxGeometry>
-    </mxCell>
-    <mxCell id="edge6" edge="1" value="" parent="1" source="node10" target="node9" style="html=1;rounded=1;edgeStyle=orthogonalEdgeStyle;dashed=0;startArrow=block;startSize=12;endArrow=none;strokeColor=#595959;exitX=0.500;exitY=0.000;exitDx=0;exitDy=0;entryX=0.500;entryY=1.000;entryDx=0;entryDy=0;">
-      <mxGeometry width="50" height="50" relative="1" as="geometry">
-        <Array as="points">
-          <mxPoint x="200" y="304" />
-          <mxPoint x="463" y="304" />
-        </Array>
-      </mxGeometry>
-    </mxCell>
-    <mxCell id="edge7" edge="1" value="" parent="1" source="node11" target="node10" style="html=1;rounded=1;edgeStyle=orthogonalEdgeStyle;dashed=0;startArrow=block;startSize=12;endArrow=none;strokeColor=#595959;exitX=0.500;exitY=0.000;exitDx=0;exitDy=0;entryX=0.500;entryY=1.000;entryDx=0;entryDy=0;">
-      <mxGeometry width="50" height="50" relative="1" as="geometry">
-        <Array as="points">
-          <mxPoint x="0" y="507" />
-          <mxPoint x="200" y="507" />
-        </Array>
-      </mxGeometry>
-    </mxCell>
-    <mxCell id="edge0" edge="1" value="" parent="1" source="node2" target="node0" style="html=1;rounded=1;edgeStyle=orthogonalEdgeStyle;dashed=0;startArrow=block;startSize=12;endArrow=none;strokeColor=#595959;exitX=0.500;exitY=0.001;exitDx=0;exitDy=0;entryX=0.500;entryY=1.000;entryDx=0;entryDy=0;">
-      <mxGeometry width="50" height="50" relative="1" as="geometry">
-        <Array as="points">
-          <mxPoint x="9" y="1329" />
-          <mxPoint x="176" y="1329" />
-        </Array>
-      </mxGeometry>
-    </mxCell>
-    <mxCell id="edge2" edge="1" value="" parent="1" source="node5" target="node4" style="html=1;rounded=1;edgeStyle=orthogonalEdgeStyle;dashed=0;startArrow=block;startSize=12;endArrow=none;strokeColor=#595959;exitX=0.556;exitY=0.000;exitDx=0;exitDy=0;entryX=0.500;entryY=1.000;entryDx=0;entryDy=0;">
-      <mxGeometry width="50" height="50" relative="1" as="geometry">
-        <Array as="points">
-          <mxPoint x="855" y="322" />
-          <mxPoint x="808" y="322" />
-        </Array>
-      </mxGeometry>
-    </mxCell>
-    <mxCell id="edge4" edge="1" value="" parent="1" source="node5" target="node9" style="html=1;rounded=1;edgeStyle=orthogonalEdgeStyle;dashed=0;startArrow=block;startSize=12;endArrow=none;strokeColor=#595959;exitX=0.500;exitY=0.000;exitDx=0;exitDy=0;entryX=0.500;entryY=1.000;entryDx=0;entryDy=0;">
-      <mxGeometry width="50" height="50" relative="1" as="geometry">
-        <Array as="points">
-          <mxPoint x="840" y="304" />
-          <mxPoint x="463" y="304" />
-        </Array>
-      </mxGeometry>
-    </mxCell>
-  </root>
-</mxGraphModel>
+<mxfile host="app.diagrams.net" modified="2024-04-18T07:11:38.553Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36" version="24.0.7" etag="oAPr0XbmRmo2Yqot695M" type="github">
+  <diagram id="f685UhNyy9ZdbpdK8Kp1" name="Страница — 1">
+    <mxGraphModel dx="1947" dy="1390" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="827" pageHeight="1169" background="none" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="node0" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;Actor&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;# transform: Transform&lt;br&gt;# name: String&lt;br&gt;# equip:&amp;nbsp;Equipment&lt;br&gt;# max_health: int&lt;br&gt;# isAlive: bool&lt;br&gt;# level: int&lt;br&gt;# ep: int&lt;br&gt;# items: Inventory&lt;br&gt;# health: int&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;- init (name: str = &#39;&#39;, level: int = 0, isAlive: bool = True, transform: Transform = Transform(0, 0)): &lt;br&gt;+ takeDamage(damage: int): void&lt;br&gt;+ calculateGainedEP(player_level: int, monster_level: int): void&lt;br&gt;+ gainExperience(ep: int = 0): void&lt;br&gt;- levelUp(): int&lt;br&gt;+ info(): void&lt;br&gt;+ isAlive(): bool&lt;br&gt;+ moveXY(x: int, y: int): void&lt;br&gt;+ heal(amount: int): void&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=14;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;" parent="1" vertex="1">
+          <mxGeometry x="-546" y="-650" width="321" height="460" as="geometry" />
+        </mxCell>
+        <mxCell id="node7" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;static.py.Armor.Armor&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt; _defence: &lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt; __init__(self, name: str, level: int = 0, value: int = 0,                  transform: Transform = Transform(0, 0),                  slash: int = 0, pierce: int = 0, blunt: int = 0,                  fire: int = 0, ice: int = 0, poison: int = 0, electric: int = 0): &lt;br/&gt; defence(self): &lt;br/&gt; level(self): &lt;br/&gt; getInfo(self): &lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=14;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;" parent="1" vertex="1">
+          <mxGeometry x="759" y="-154" width="269" height="143" as="geometry" />
+        </mxCell>
+        <mxCell id="node1" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;static.py.Battle.Battle&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt; __winner: &lt;br/&gt; __enemy: &lt;br/&gt; __player: &lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt; __init__(self, player: Player, enemy: Enemy): &lt;br/&gt; start_battle(self): &lt;br/&gt; __player_turn(self): &lt;br/&gt; __enemies_turn(self): &lt;br/&gt; __is_battle_over(self): &lt;br/&gt; __display_battle_result(self): &lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=14;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;" parent="1" vertex="1">
+          <mxGeometry x="1470" y="-620" width="259" height="231" as="geometry" />
+        </mxCell>
+        <mxCell id="node4" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;static.py.Damage.Damage&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt; _ice: &lt;br/&gt; _pierce: &lt;br/&gt; _electric: &lt;br/&gt; _blunt: &lt;br/&gt; _poison: &lt;br/&gt; _slash: &lt;br/&gt; _fire: &lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt; __init__(self, slash: int = 0, pierce: int = 0, blunt: int = 0,                  fire: int = 0, ice: int = 0, poison: int = 0, electric: int = 0): &lt;br/&gt; calculate_damage(weapon_damage: &amp;#39;Damage&amp;#39;, weapon_level: int, armor_defence: &amp;#39;Damage&amp;#39;, armor_level: int): &lt;br/&gt; slash(self): &lt;br/&gt; slash(self, value): &lt;br/&gt; pierce(self): &lt;br/&gt; pierce(self, value): &lt;br/&gt; blunt(self): &lt;br/&gt; blunt(self, value): &lt;br/&gt; fire(self): &lt;br/&gt; fire(self, value): &lt;br/&gt; ice(self): &lt;br/&gt; ice(self, value): &lt;br/&gt; poison(self): &lt;br/&gt; poison(self, value): &lt;br/&gt; electric(self): &lt;br/&gt; electric(self, value): &lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=14;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;" parent="1" vertex="1">
+          <mxGeometry x="820" y="-754" width="356" height="539" as="geometry" />
+        </mxCell>
+        <mxCell id="node8" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;Equipment&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;# consumables: Consumables&lt;br&gt;# weapon: Weapon&lt;br&gt;# armor: Armor&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;- init (): Equipment&lt;br&gt;+ equip_weapon(weapon: Weapon): void&lt;br&gt;+ unequip_weapon(): void&lt;br&gt;+ equip_armor(armor: Armor): void&lt;br&gt;+ unequip_armor(): void&lt;br&gt;+ add_item(item: Consumable): void&lt;br&gt;+ use_item(item: int): void&lt;br&gt;- remove_item(item: Consumable): void&lt;br&gt; info(self): string&lt;br&gt; armor(self): &lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=14;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;" parent="1" vertex="1">
+          <mxGeometry x="-17" y="-700" width="317" height="319" as="geometry" />
+        </mxCell>
+        <mxCell id="node6" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;Inventory&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;- capacity: int&lt;br&gt;- items: int&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;- init(capacity): void&lt;br&gt;+ add_item(item: Item): void&lt;br&gt;+ remove_item(item: Item): void&lt;br&gt;+ display_inventory(): string&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=14;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;" parent="1" vertex="1">
+          <mxGeometry x="4" y="-340" width="222" height="187" as="geometry" />
+        </mxCell>
+        <mxCell id="node12" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;static.py.Item.Bomb&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt; _damage: &lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt; __init__(self, name: str = &amp;quot;Бомба&amp;quot;, level: int = 1, value: int = 100,                  transfrom: Transform = Transform(0, 0), damage: Damage = Damage(fire=5)): &lt;br/&gt; use(self, target: Actor): &lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=14;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;" parent="1" vertex="1">
+          <mxGeometry x="765" y="153" width="313" height="108" as="geometry" />
+        </mxCell>
+        <mxCell id="node10" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;static.py.Item.Consumable&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt; __init__(self,  name: str, level: int = 0, value: int = 0,                  transfrom: Transform = Transform(0, 0)): &lt;br/&gt; use(self, target: Actor): &lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=14;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;" parent="1" vertex="1">
+          <mxGeometry x="410" y="-93" width="294" height="82" as="geometry" />
+        </mxCell>
+        <mxCell id="node11" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;static.py.Item.HealthPotion&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt; __init__(self, level: int = 1, value: int = 50,                  transfrom: Transform = Transform(0, 0)): &lt;br/&gt; use(self, target: Actor): &lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=14;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;" parent="1" vertex="1">
+          <mxGeometry x="450" y="165" width="295" height="82" as="geometry" />
+        </mxCell>
+        <mxCell id="node9" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;Item&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;# name: string&lt;br&gt;# level: int&lt;br&gt;# value: int&lt;br&gt;# transfrom: Transform&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;- init(name: str, level: int = 0, value: int = 0,                  transfrom: Transform = Transform(0, 0)): &lt;br&gt;+ getName(): string&amp;nbsp;&amp;nbsp;&lt;br&gt;+ getInfo(): string&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=14;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;" parent="1" vertex="1">
+          <mxGeometry x="471" y="-590" width="294" height="209" as="geometry" />
+        </mxCell>
+        <mxCell id="node13" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;Transform&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;- x: int&lt;br&gt;- y: int&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt;- init(x: int, y: int): void&lt;br&gt;+ getX(): int&lt;br&gt;+ setX(x: int): void&lt;br&gt;+ getY(): int&lt;br&gt;+ setY(y: int): void&lt;br&gt; distance(other: &#39;Transform&#39;): void&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=14;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;" parent="1" vertex="1">
+          <mxGeometry x="-4" y="-105" width="230" height="298" as="geometry" />
+        </mxCell>
+        <mxCell id="node5" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;static.py.Weapon.Weapon&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt; _damage: &lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt; __init__(self, name: str, level: int = 0, value: int = 0,                  transform: Transform = Transform(0, 0),                  slash: int = 0, pierce: int = 0, blunt: int = 0,                  fire: int = 0, ice: int = 0, poison: int = 0, electric: int = 0): &lt;br/&gt; damage(self): &lt;br/&gt; level(self): &lt;br/&gt; getInfo(self): &lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=14;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;" parent="1" vertex="1">
+          <mxGeometry x="1092" y="-154" width="269" height="143" as="geometry" />
+        </mxCell>
+        <mxCell id="edge3" value="" style="html=1;rounded=1;edgeStyle=orthogonalEdgeStyle;dashed=0;startArrow=block;startSize=12;endArrow=none;strokeColor=#595959;exitX=0.444;exitY=0.000;exitDx=0;exitDy=0;entryX=0.500;entryY=1.000;entryDx=0;entryDy=0;" parent="1" source="node7" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="878" y="-171" />
+              <mxPoint x="1195" y="-171" />
+            </Array>
+            <mxPoint x="1195" y="-224" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge5" value="" style="html=1;rounded=1;edgeStyle=orthogonalEdgeStyle;dashed=0;startArrow=block;startSize=12;endArrow=none;strokeColor=#595959;exitX=0.500;exitY=0.000;exitDx=0;exitDy=0;entryX=0.500;entryY=1.000;entryDx=0;entryDy=0;" parent="1" source="node7" target="node9" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="696" y="-180" />
+              <mxPoint x="653" y="-180" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge8" value="" style="html=1;rounded=1;edgeStyle=orthogonalEdgeStyle;dashed=0;startArrow=block;startSize=12;endArrow=none;strokeColor=#595959;exitX=0.500;exitY=0.000;exitDx=0;exitDy=0;entryX=0.500;entryY=1.000;entryDx=0;entryDy=0;" parent="1" source="node12" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="922" y="128" />
+              <mxPoint x="798" y="128" />
+            </Array>
+            <mxPoint x="798" y="76" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge6" value="" style="html=1;rounded=1;edgeStyle=orthogonalEdgeStyle;dashed=0;startArrow=block;startSize=12;endArrow=none;strokeColor=#595959;exitX=0.500;exitY=0.000;exitDx=0;exitDy=0;entryX=0.500;entryY=1.000;entryDx=0;entryDy=0;" parent="1" source="node10" target="node9" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="557" y="-180" />
+              <mxPoint x="618" y="-180" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge7" value="" style="html=1;rounded=1;edgeStyle=orthogonalEdgeStyle;dashed=0;startArrow=block;startSize=12;endArrow=none;strokeColor=#595959;exitX=0.500;exitY=0.000;exitDx=0;exitDy=0;entryX=0.500;entryY=1.000;entryDx=0;entryDy=0;" parent="1" source="node11" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="598" y="128" />
+              <mxPoint x="798" y="128" />
+            </Array>
+            <mxPoint x="798" y="76" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge0" value="" style="html=1;rounded=1;edgeStyle=orthogonalEdgeStyle;dashed=0;startArrow=block;startSize=12;endArrow=none;strokeColor=#595959;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" parent="1" source="8WZF-T2sYhvgGJxaZhB4-11" target="node0" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <Array as="points" />
+            <mxPoint x="-552.5" y="-105" as="sourcePoint" />
+            <mxPoint x="-385.5" y="-169" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge2" value="" style="html=1;rounded=1;edgeStyle=orthogonalEdgeStyle;dashed=0;startArrow=block;startSize=12;endArrow=none;strokeColor=#595959;exitX=0.556;exitY=0.000;exitDx=0;exitDy=0;entryX=0.500;entryY=1.000;entryDx=0;entryDy=0;" parent="1" source="node5" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1242" y="-171" />
+              <mxPoint x="1195" y="-171" />
+            </Array>
+            <mxPoint x="1195" y="-224" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge4" value="" style="html=1;rounded=1;edgeStyle=orthogonalEdgeStyle;dashed=0;startArrow=block;startSize=12;endArrow=none;strokeColor=#595959;exitX=0.500;exitY=0.000;exitDx=0;exitDy=0;entryX=0.500;entryY=1.000;entryDx=0;entryDy=0;" parent="1" source="node5" target="node9" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1030" y="-180" />
+              <mxPoint x="653" y="-180" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="8WZF-T2sYhvgGJxaZhB4-11" value="&lt;b style=&quot;font-size: 14px; text-wrap: nowrap;&quot;&gt;Player&lt;/b&gt;" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-540.25" y="-129" width="309.5" height="138" as="geometry" />
+        </mxCell>
+        <mxCell id="8WZF-T2sYhvgGJxaZhB4-12" value="&lt;span style=&quot;font-size: 14px; text-wrap: nowrap;&quot;&gt;- playercontroller: PlayerController&lt;/span&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="8WZF-T2sYhvgGJxaZhB4-11">
+          <mxGeometry y="26" width="309.5" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="8WZF-T2sYhvgGJxaZhB4-13" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="8WZF-T2sYhvgGJxaZhB4-11">
+          <mxGeometry y="52" width="309.5" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="8WZF-T2sYhvgGJxaZhB4-14" value="&lt;span style=&quot;font-size: 14px; text-wrap: nowrap;&quot;&gt;- init(name: str = &#39;&#39;, level: int = 0, isAlive: bool = True, transform: Transform = Transform(0, 0))&lt;/span&gt;&lt;div&gt;&lt;span style=&quot;font-size: 14px; text-wrap: nowrap;&quot;&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="8WZF-T2sYhvgGJxaZhB4-11">
+          <mxGeometry y="60" width="309.5" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="8WZF-T2sYhvgGJxaZhB4-15" value="&lt;div&gt;&lt;span style=&quot;font-size: 14px; text-wrap: nowrap;&quot;&gt;+ moveVectorForward(float Vector): void&lt;br&gt;&lt;/span&gt;&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="8WZF-T2sYhvgGJxaZhB4-11">
+          <mxGeometry y="86" width="309.5" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="8WZF-T2sYhvgGJxaZhB4-16" value="&lt;div&gt;&lt;span style=&quot;font-size: 14px; text-wrap: nowrap;&quot;&gt;+ moveVectorRight(float Vector): void&lt;br&gt;&lt;/span&gt;&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="8WZF-T2sYhvgGJxaZhB4-11">
+          <mxGeometry y="112" width="309.5" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="8WZF-T2sYhvgGJxaZhB4-17" value="1" style="endArrow=open;html=1;endSize=12;startArrow=diamondThin;startSize=14;startFill=1;edgeStyle=orthogonalEdgeStyle;align=left;verticalAlign=bottom;rounded=0;exitX=1;exitY=0.25;exitDx=0;exitDy=0;" edge="1" parent="1" source="node0" target="node8">
+          <mxGeometry x="-1" y="3" relative="1" as="geometry">
+            <mxPoint x="-190" y="-520" as="sourcePoint" />
+            <mxPoint x="-30" y="-520" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="-70" y="-535" />
+              <mxPoint x="-70" y="-535" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="8WZF-T2sYhvgGJxaZhB4-18" value="euip" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="8WZF-T2sYhvgGJxaZhB4-17">
+          <mxGeometry x="0.556" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="8WZF-T2sYhvgGJxaZhB4-20" value="1" style="endArrow=open;html=1;endSize=12;startArrow=diamondThin;startSize=14;startFill=1;edgeStyle=orthogonalEdgeStyle;align=left;verticalAlign=bottom;rounded=0;" edge="1" parent="1" source="node0" target="node6">
+          <mxGeometry x="-1" y="3" relative="1" as="geometry">
+            <mxPoint x="-210" y="-470" as="sourcePoint" />
+            <mxPoint x="-30" y="-320" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="-150" y="-470" />
+              <mxPoint x="-150" y="-222" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="8WZF-T2sYhvgGJxaZhB4-21" value="items" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="8WZF-T2sYhvgGJxaZhB4-20">
+          <mxGeometry x="0.7563" y="-3" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="8WZF-T2sYhvgGJxaZhB4-23" value="1" style="endArrow=open;html=1;endSize=12;startArrow=diamondThin;startSize=14;startFill=1;edgeStyle=orthogonalEdgeStyle;align=left;verticalAlign=bottom;rounded=0;" edge="1" parent="1" source="node0" target="node13">
+          <mxGeometry x="-1" y="3" relative="1" as="geometry">
+            <mxPoint x="-200" y="-440" as="sourcePoint" />
+            <mxPoint x="10" y="-30" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="-150" y="-440" />
+              <mxPoint x="-150" y="44" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="8WZF-T2sYhvgGJxaZhB4-24" value="transform" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="8WZF-T2sYhvgGJxaZhB4-23">
+          <mxGeometry x="0.8058" y="-2" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
