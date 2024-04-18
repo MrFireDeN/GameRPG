@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2024-04-18T08:50:01.360Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36" version="24.0.7" etag="vtbhuhRqDl4rFMvJGsg_" type="github" pages="3">
+<mxfile host="app.diagrams.net" modified="2024-04-18T08:52:59.551Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36" version="24.0.7" etag="JYHXj8kH7oLuWNSkcmfA" type="github" pages="3">
   <diagram id="f685UhNyy9ZdbpdK8Kp1" name="Диаграмма классов">
     <mxGraphModel dx="2487" dy="2068" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="827" pageHeight="1169" background="none" math="0" shadow="0">
       <root>
@@ -590,7 +590,7 @@
     </mxGraphModel>
   </diagram>
   <diagram id="q7C_Y47MR5K9YU2qkyn-" name="Диаграмма последвательности">
-    <mxGraphModel dx="819" dy="422" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="1103" dy="568" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -809,9 +809,6 @@
           <mxGeometry x="0.4488" y="-1" relative="1" as="geometry">
             <mxPoint x="5" y="-9" as="offset" />
           </mxGeometry>
-        </mxCell>
-        <mxCell id="_id-U-SqbWQENcYwSVzI-76" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="_id-U-SqbWQENcYwSVzI-44" target="_id-U-SqbWQENcYwSVzI-55">
-          <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="_id-U-SqbWQENcYwSVzI-44" value="" style="shape=umlDestroy;whiteSpace=wrap;html=1;strokeWidth=3;targetShapes=umlLifeline;" vertex="1" parent="1">
           <mxGeometry x="890.0000000000001" y="720" width="30" height="30" as="geometry" />
