@@ -1,6 +1,8 @@
 table {
     margin: 0 auto;
     border-collapse: collapse;
+    border: 1px solid black;
+
 }
 
 #field td {
@@ -10,25 +12,27 @@ table {
     height: 30px;
     max-width: 30px;
     max-height: 30px;
-    border: 1px solid black;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
 .hero {
-    background-color: blue;
+    background-image: url("../img/field/hero.jpg");
 }
 
 .friend {
-    background-color: green;
+    background-image: url("../img/field/character.png");
 }
 
 .enemy {
-    background-color: #9C1A1C;
+    background-image: url("../img/field/enemy.png");
 }
 
 .wall {
-    background-color: black;
+    background-image: url("../img/field/wall.jpg");
 }
 
 .door {
-    background-color: brown;
+    background-image: url("../img/field/door.png");
 }

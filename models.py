@@ -353,7 +353,7 @@ def print_columns(table_class, *attrNames):
                             for attrName in attrNames if hasattr(c, attrName)
                )))
 
-if __name__ == "__main__":
-    init_db()
+
+
     #print_columns(Payment, "created")
     #print_schema(SoltButton)

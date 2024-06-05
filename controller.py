@@ -113,16 +113,11 @@ def move():
     wall = db_session.query(WallData).filter(WallData.x == player.x, WallData.y == player.y).first()
     door = db_session.query(DoorData).filter(DoorData.id == player.id, not(DoorData.is_open), DoorData.x == player.x, DoorData.y == player.y).first()
 
-    print(door)
-
     if wall or door:
         return jsonify({'status': 'failure'})
 
     # Сохраняем изменения в базе данных
     db_session.commit()
-    time.sleep(0.2)
-
-    print(player.serialize_coordinates())
 
     return jsonify({'status': 'success'})
 
